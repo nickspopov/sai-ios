@@ -7,21 +7,42 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B2D81AF2A94A9FA00558031 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D81AE2A94A9FA00558031 /* View+Extensions.swift */; };
+		4B2D81B12A94AA1900558031 /* Color+HEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D81B02A94AA1900558031 /* Color+HEX.swift */; };
+		4B2D81B72A94AA3E00558031 /* Inter-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B2D81B22A94AA3E00558031 /* Inter-Bold.otf */; };
+		4B2D81B82A94AA3E00558031 /* Inter-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B2D81B32A94AA3E00558031 /* Inter-SemiBold.otf */; };
+		4B2D81B92A94AA3E00558031 /* Inter-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B2D81B42A94AA3E00558031 /* Inter-Regular.otf */; };
+		4B2D81BA2A94AA3E00558031 /* Inter-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B2D81B52A94AA3E00558031 /* Inter-Light.otf */; };
+		4B2D81BB2A94AA3E00558031 /* Inter-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B2D81B62A94AA3E00558031 /* Inter-Medium.otf */; };
+		4B2D81BD2A94AA6F00558031 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D81BC2A94AA6F00558031 /* Typography.swift */; };
+		4B2D81BF2A94AA9B00558031 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D81BE2A94AA9B00558031 /* ButtonStyles.swift */; };
+		4B2D81C12A94AAE800558031 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D81C02A94AAE800558031 /* MapView.swift */; };
+		4B2D81C42A94ABA900558031 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D81C32A94ABA900558031 /* NavigationController.swift */; };
 		4B9F4BA42A93FF9700E8ECB5 /* saiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA32A93FF9700E8ECB5 /* saiApp.swift */; };
 		4B9F4BA62A93FF9700E8ECB5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA52A93FF9700E8ECB5 /* ContentView.swift */; };
 		4B9F4BA82A93FF9900E8ECB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA72A93FF9900E8ECB5 /* Assets.xcassets */; };
 		4B9F4BAB2A93FF9900E8ECB5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B9F4BAA2A93FF9900E8ECB5 /* Preview Assets.xcassets */; };
-		4B9F4BAD2A93FF9900E8ECB5 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9F4BAC2A93FF9900E8ECB5 /* Persistence.swift */; };
 		4B9F4BB02A93FF9900E8ECB5 /* sai.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B9F4BAE2A93FF9900E8ECB5 /* sai.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B2D81A92A94A8E200558031 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4B2D81AE2A94A9FA00558031 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		4B2D81B02A94AA1900558031 /* Color+HEX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+HEX.swift"; sourceTree = "<group>"; };
+		4B2D81B22A94AA3E00558031 /* Inter-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.otf"; sourceTree = "<group>"; };
+		4B2D81B32A94AA3E00558031 /* Inter-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.otf"; sourceTree = "<group>"; };
+		4B2D81B42A94AA3E00558031 /* Inter-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.otf"; sourceTree = "<group>"; };
+		4B2D81B52A94AA3E00558031 /* Inter-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Light.otf"; sourceTree = "<group>"; };
+		4B2D81B62A94AA3E00558031 /* Inter-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.otf"; sourceTree = "<group>"; };
+		4B2D81BC2A94AA6F00558031 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
+		4B2D81BE2A94AA9B00558031 /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
+		4B2D81C02A94AAE800558031 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		4B2D81C32A94ABA900558031 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		4B9F4BA02A93FF9700E8ECB5 /* sai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B9F4BA32A93FF9700E8ECB5 /* saiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saiApp.swift; sourceTree = "<group>"; };
 		4B9F4BA52A93FF9700E8ECB5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4B9F4BA72A93FF9900E8ECB5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B9F4BAA2A93FF9900E8ECB5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		4B9F4BAC2A93FF9900E8ECB5 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		4B9F4BAF2A93FF9900E8ECB5 /* sai.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = sai.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -36,6 +57,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B2D81AA2A94A9D800558031 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4B2D81AE2A94A9FA00558031 /* View+Extensions.swift */,
+				4B2D81B02A94AA1900558031 /* Color+HEX.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4B2D81AB2A94A9DF00558031 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				4B2D81B22A94AA3E00558031 /* Inter-Bold.otf */,
+				4B2D81B52A94AA3E00558031 /* Inter-Light.otf */,
+				4B2D81B62A94AA3E00558031 /* Inter-Medium.otf */,
+				4B2D81B42A94AA3E00558031 /* Inter-Regular.otf */,
+				4B2D81B32A94AA3E00558031 /* Inter-SemiBold.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		4B2D81AC2A94A9E600558031 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				4B2D81BC2A94AA6F00558031 /* Typography.swift */,
+				4B2D81BE2A94AA9B00558031 /* ButtonStyles.swift */,
+				4B2D81C02A94AAE800558031 /* MapView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		4B2D81AD2A94A9ED00558031 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		4B2D81C22A94AB9400558031 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				4B2D81C32A94ABA900558031 /* NavigationController.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 		4B9F4B972A93FF9700E8ECB5 = {
 			isa = PBXGroup;
 			children = (
@@ -55,10 +122,15 @@
 		4B9F4BA22A93FF9700E8ECB5 /* sai */ = {
 			isa = PBXGroup;
 			children = (
+				4B2D81C22A94AB9400558031 /* Navigation */,
+				4B2D81AD2A94A9ED00558031 /* Screens */,
+				4B2D81AC2A94A9E600558031 /* Components */,
+				4B2D81AB2A94A9DF00558031 /* Fonts */,
+				4B2D81AA2A94A9D800558031 /* Extensions */,
+				4B2D81A92A94A8E200558031 /* Info.plist */,
 				4B9F4BA32A93FF9700E8ECB5 /* saiApp.swift */,
 				4B9F4BA52A93FF9700E8ECB5 /* ContentView.swift */,
 				4B9F4BA72A93FF9900E8ECB5 /* Assets.xcassets */,
-				4B9F4BAC2A93FF9900E8ECB5 /* Persistence.swift */,
 				4B9F4BAE2A93FF9900E8ECB5 /* sai.xcdatamodeld */,
 				4B9F4BA92A93FF9900E8ECB5 /* Preview Content */,
 			);
@@ -131,8 +203,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B2D81BB2A94AA3E00558031 /* Inter-Medium.otf in Resources */,
 				4B9F4BAB2A93FF9900E8ECB5 /* Preview Assets.xcassets in Resources */,
+				4B2D81BA2A94AA3E00558031 /* Inter-Light.otf in Resources */,
+				4B2D81B92A94AA3E00558031 /* Inter-Regular.otf in Resources */,
 				4B9F4BA82A93FF9900E8ECB5 /* Assets.xcassets in Resources */,
+				4B2D81B72A94AA3E00558031 /* Inter-Bold.otf in Resources */,
+				4B2D81B82A94AA3E00558031 /* Inter-SemiBold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,9 +220,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B9F4BAD2A93FF9900E8ECB5 /* Persistence.swift in Sources */,
+				4B2D81B12A94AA1900558031 /* Color+HEX.swift in Sources */,
+				4B2D81C12A94AAE800558031 /* MapView.swift in Sources */,
 				4B9F4BB02A93FF9900E8ECB5 /* sai.xcdatamodeld in Sources */,
 				4B9F4BA62A93FF9700E8ECB5 /* ContentView.swift in Sources */,
+				4B2D81C42A94ABA900558031 /* NavigationController.swift in Sources */,
+				4B2D81AF2A94A9FA00558031 /* View+Extensions.swift in Sources */,
+				4B2D81BF2A94AA9B00558031 /* ButtonStyles.swift in Sources */,
+				4B2D81BD2A94AA6F00558031 /* Typography.swift in Sources */,
 				4B9F4BA42A93FF9700E8ECB5 /* saiApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,11 +359,13 @@
 				DEVELOPMENT_ASSET_PATHS = "\"sai/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = sai/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "To track your walkings";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To track your walkings";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -305,11 +389,13 @@
 				DEVELOPMENT_ASSET_PATHS = "\"sai/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = sai/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "To track your walkings";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To track your walkings";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -24,5 +24,4 @@ class NavigationController: ObservableObject {
     func pop() {
         stack.removeLast()
     }
-    
 }

@@ -21,7 +21,6 @@
 		4B2D81C72A94B18E00558031 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 4B2D81C62A94B18E00558031 /* Swinject */; };
 		4B2D81CD2A94B6BB00558031 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D81CC2A94B6BB00558031 /* LocationService.swift */; };
 		4B2D81D02A94B7C200558031 /* Walk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D81CF2A94B7C200558031 /* Walk.swift */; };
-		4B2D81D22A94DD4400558031 /* WalkHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D81D12A94DD4400558031 /* WalkHistory.swift */; };
 		4B2D81D42A94DDA000558031 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D81D32A94DDA000558031 /* Location.swift */; };
 		4B2D81D62A94E57400558031 /* ActiveWalkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D81D52A94E57400558031 /* ActiveWalkService.swift */; };
 		4B2D82132A94F53800558031 /* Persistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82122A94F53800558031 /* Persistance.swift */; };
@@ -52,7 +51,6 @@
 		4B2D81C32A94ABA900558031 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		4B2D81CC2A94B6BB00558031 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		4B2D81CF2A94B7C200558031 /* Walk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Walk.swift; sourceTree = "<group>"; };
-		4B2D81D12A94DD4400558031 /* WalkHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkHistory.swift; sourceTree = "<group>"; };
 		4B2D81D32A94DDA000558031 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		4B2D81D52A94E57400558031 /* ActiveWalkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWalkService.swift; sourceTree = "<group>"; };
 		4B2D82122A94F53800558031 /* Persistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistance.swift; sourceTree = "<group>"; };
@@ -149,7 +147,6 @@
 			isa = PBXGroup;
 			children = (
 				4B2D81CF2A94B7C200558031 /* Walk.swift */,
-				4B2D81D12A94DD4400558031 /* WalkHistory.swift */,
 				4B2D81D32A94DDA000558031 /* Location.swift */,
 			);
 			path = Models;
@@ -317,7 +314,6 @@
 				4B2D821D2A94FFAF00558031 /* WalksDao.swift in Sources */,
 				4B2D81D62A94E57400558031 /* ActiveWalkService.swift in Sources */,
 				4B2D81BF2A94AA9B00558031 /* ButtonStyles.swift in Sources */,
-				4B2D81D22A94DD4400558031 /* WalkHistory.swift in Sources */,
 				4B2D81BD2A94AA6F00558031 /* Typography.swift in Sources */,
 				4B2D821F2A95058500558031 /* WalksRepository.swift in Sources */,
 				4B9F4BA42A93FF9700E8ECB5 /* saiApp.swift in Sources */,

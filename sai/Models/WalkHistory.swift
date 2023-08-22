@@ -14,5 +14,19 @@ struct WalkHistory{
     mutating func addLocation(_ location: Location) {
         history.append(location)
     }
+    
+    func toJSON() -> String {
+        let encoder = JSONEncoder()
+        let data = try! encoder.encode(history)
+        let result = String(data: data, encoding: .utf8)!
+        return result
+    }
+    
+    static func fromJSON(_ json: String) -> WalkHistory {
+        let decoder = JSONDecoder()
+        let data = json.data(using: .utf8)!
+        let history = try! decoder.decode([Location].self, from: data)
+        return WalkHistory(history: history)
+    }
 }
 

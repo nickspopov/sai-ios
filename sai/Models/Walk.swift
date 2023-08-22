@@ -6,10 +6,10 @@
 //
 
 import Foundation
-
+import CoreData
 
 struct Walk: Identifiable {
-    var id: Int = UUID().hashValue
+    var id: UUID = UUID()
     var startedAt: Date
     var finishedAt: Date
     var walkHistory: WalkHistory
@@ -31,4 +31,17 @@ struct Walk: Identifiable {
         return distance
     }
     
+    func toCoreData(context: NSManagedObjectContext) -> WalkCoreData {
+        let walkCoreData = WalkCoreData(context: context)
+        walkCoreData.id = id
+        walkCoreData.startedAt = startedAt
+        walkCoreData.finishedAt = finishedAt
+        walkCoreData.walkHistory = walkHistory.toJSON()
+        return walkCoreData
+    }
+    
+    static func fromCoreData(coreData: WalkCoreData) -> Walk {
+        let walkHistory = WalkHistory.fromJSON(coreData.walkHistory!)
+        return Walk(id: coreData.id!, startedAt: coreData.startedAt!, finishedAt: coreData.finishedAt!, walkHistory: walkHistory)
+    }
 }

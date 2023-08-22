@@ -24,6 +24,10 @@
 		4B2D81D22A94DD4400558031 /* WalkHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D81D12A94DD4400558031 /* WalkHistory.swift */; };
 		4B2D81D42A94DDA000558031 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D81D32A94DDA000558031 /* Location.swift */; };
 		4B2D81D62A94E57400558031 /* ActiveWalkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D81D52A94E57400558031 /* ActiveWalkService.swift */; };
+		4B2D82132A94F53800558031 /* Persistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82122A94F53800558031 /* Persistance.swift */; };
+		4B2D82162A94F5F000558031 /* WalkCoreData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82142A94F5F000558031 /* WalkCoreData+CoreDataClass.swift */; };
+		4B2D82172A94F5F000558031 /* WalkCoreData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82152A94F5F000558031 /* WalkCoreData+CoreDataProperties.swift */; };
+		4B2D82192A94F77A00558031 /* TestScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82182A94F77A00558031 /* TestScreen.swift */; };
 		4B9F4BA42A93FF9700E8ECB5 /* saiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA32A93FF9700E8ECB5 /* saiApp.swift */; };
 		4B9F4BA62A93FF9700E8ECB5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA52A93FF9700E8ECB5 /* ContentView.swift */; };
 		4B9F4BA82A93FF9900E8ECB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA72A93FF9900E8ECB5 /* Assets.xcassets */; };
@@ -49,6 +53,10 @@
 		4B2D81D12A94DD4400558031 /* WalkHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkHistory.swift; sourceTree = "<group>"; };
 		4B2D81D32A94DDA000558031 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		4B2D81D52A94E57400558031 /* ActiveWalkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWalkService.swift; sourceTree = "<group>"; };
+		4B2D82122A94F53800558031 /* Persistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistance.swift; sourceTree = "<group>"; };
+		4B2D82142A94F5F000558031 /* WalkCoreData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "WalkCoreData+CoreDataClass.swift"; path = "sai/WalkCoreData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		4B2D82152A94F5F000558031 /* WalkCoreData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "WalkCoreData+CoreDataProperties.swift"; path = "sai/WalkCoreData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4B2D82182A94F77A00558031 /* TestScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestScreen.swift; sourceTree = "<group>"; };
 		4B9F4BA02A93FF9700E8ECB5 /* sai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B9F4BA32A93FF9700E8ECB5 /* saiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saiApp.swift; sourceTree = "<group>"; };
 		4B9F4BA52A93FF9700E8ECB5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -103,6 +111,7 @@
 		4B2D81AD2A94A9ED00558031 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				4B2D82182A94F77A00558031 /* TestScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -127,6 +136,7 @@
 			children = (
 				4B2D81CC2A94B6BB00558031 /* LocationService.swift */,
 				4B2D81D52A94E57400558031 /* ActiveWalkService.swift */,
+				4B2D82122A94F53800558031 /* Persistance.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -144,6 +154,8 @@
 		4B9F4B972A93FF9700E8ECB5 = {
 			isa = PBXGroup;
 			children = (
+				4B2D82142A94F5F000558031 /* WalkCoreData+CoreDataClass.swift */,
+				4B2D82152A94F5F000558031 /* WalkCoreData+CoreDataProperties.swift */,
 				4B9F4BA22A93FF9700E8ECB5 /* sai */,
 				4B9F4BA12A93FF9700E8ECB5 /* Products */,
 			);
@@ -268,10 +280,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B2D81B12A94AA1900558031 /* Color+HEX.swift in Sources */,
+				4B2D82172A94F5F000558031 /* WalkCoreData+CoreDataProperties.swift in Sources */,
 				4B2D81C12A94AAE800558031 /* MapView.swift in Sources */,
+				4B2D82192A94F77A00558031 /* TestScreen.swift in Sources */,
+				4B2D82162A94F5F000558031 /* WalkCoreData+CoreDataClass.swift in Sources */,
 				4B9F4BB02A93FF9900E8ECB5 /* sai.xcdatamodeld in Sources */,
 				4B9F4BA62A93FF9700E8ECB5 /* ContentView.swift in Sources */,
 				4B2D81D02A94B7C200558031 /* Walk.swift in Sources */,
+				4B2D82132A94F53800558031 /* Persistance.swift in Sources */,
 				4B2D81C42A94ABA900558031 /* NavigationController.swift in Sources */,
 				4B2D81D42A94DDA000558031 /* Location.swift in Sources */,
 				4B2D81CD2A94B6BB00558031 /* LocationService.swift in Sources */,

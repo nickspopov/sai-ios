@@ -28,6 +28,8 @@
 		4B2D82162A94F5F000558031 /* WalkCoreData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82142A94F5F000558031 /* WalkCoreData+CoreDataClass.swift */; };
 		4B2D82172A94F5F000558031 /* WalkCoreData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82152A94F5F000558031 /* WalkCoreData+CoreDataProperties.swift */; };
 		4B2D82192A94F77A00558031 /* TestScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82182A94F77A00558031 /* TestScreen.swift */; };
+		4B2D821D2A94FFAF00558031 /* WalksDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D821C2A94FFAF00558031 /* WalksDao.swift */; };
+		4B2D821F2A95058500558031 /* WalksRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D821E2A95058500558031 /* WalksRepository.swift */; };
 		4B9F4BA42A93FF9700E8ECB5 /* saiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA32A93FF9700E8ECB5 /* saiApp.swift */; };
 		4B9F4BA62A93FF9700E8ECB5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA52A93FF9700E8ECB5 /* ContentView.swift */; };
 		4B9F4BA82A93FF9900E8ECB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA72A93FF9900E8ECB5 /* Assets.xcassets */; };
@@ -57,6 +59,8 @@
 		4B2D82142A94F5F000558031 /* WalkCoreData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "WalkCoreData+CoreDataClass.swift"; path = "sai/WalkCoreData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4B2D82152A94F5F000558031 /* WalkCoreData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "WalkCoreData+CoreDataProperties.swift"; path = "sai/WalkCoreData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4B2D82182A94F77A00558031 /* TestScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestScreen.swift; sourceTree = "<group>"; };
+		4B2D821C2A94FFAF00558031 /* WalksDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalksDao.swift; sourceTree = "<group>"; };
+		4B2D821E2A95058500558031 /* WalksRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalksRepository.swift; sourceTree = "<group>"; };
 		4B9F4BA02A93FF9700E8ECB5 /* sai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B9F4BA32A93FF9700E8ECB5 /* saiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saiApp.swift; sourceTree = "<group>"; };
 		4B9F4BA52A93FF9700E8ECB5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -151,6 +155,22 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		4B2D821A2A94FF9400558031 /* Dao */ = {
+			isa = PBXGroup;
+			children = (
+				4B2D821C2A94FFAF00558031 /* WalksDao.swift */,
+			);
+			path = Dao;
+			sourceTree = "<group>";
+		};
+		4B2D821B2A94FF9800558031 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				4B2D821E2A95058500558031 /* WalksRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
 		4B9F4B972A93FF9700E8ECB5 = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +192,8 @@
 		4B9F4BA22A93FF9700E8ECB5 /* sai */ = {
 			isa = PBXGroup;
 			children = (
+				4B2D821B2A94FF9800558031 /* Repositories */,
+				4B2D821A2A94FF9400558031 /* Dao */,
 				4B2D81CE2A94B7B400558031 /* Models */,
 				4B2D81CB2A94B6AE00558031 /* Services */,
 				4B2D81C82A94B19700558031 /* Utils */,
@@ -292,10 +314,12 @@
 				4B2D81D42A94DDA000558031 /* Location.swift in Sources */,
 				4B2D81CD2A94B6BB00558031 /* LocationService.swift in Sources */,
 				4B2D81AF2A94A9FA00558031 /* View+Extensions.swift in Sources */,
+				4B2D821D2A94FFAF00558031 /* WalksDao.swift in Sources */,
 				4B2D81D62A94E57400558031 /* ActiveWalkService.swift in Sources */,
 				4B2D81BF2A94AA9B00558031 /* ButtonStyles.swift in Sources */,
 				4B2D81D22A94DD4400558031 /* WalkHistory.swift in Sources */,
 				4B2D81BD2A94AA6F00558031 /* Typography.swift in Sources */,
+				4B2D821F2A95058500558031 /* WalksRepository.swift in Sources */,
 				4B9F4BA42A93FF9700E8ECB5 /* saiApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

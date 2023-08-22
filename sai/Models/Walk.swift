@@ -41,8 +41,8 @@ struct Walk: Identifiable {
     }
     
     static func fromCoreData(coreData: WalkCoreData) -> Walk {
-        let walkHistory = WalkHistory.fromJSON(coreData.walkHistory!)
-        return Walk(id: coreData.id!, startedAt: coreData.startedAt!, finishedAt: coreData.finishedAt!, walkHistory: walkHistory)
+        let walkHistory = WalkHistory.fromJSON(coreData.walkHistory)
+        return Walk(id: coreData.id, startedAt: coreData.startedAt, finishedAt: coreData.finishedAt, walkHistory: walkHistory)
     }
 }
 

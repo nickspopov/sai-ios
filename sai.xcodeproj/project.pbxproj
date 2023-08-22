@@ -18,13 +18,11 @@
 		4B2D81BF2A94AA9B00558031 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D81BE2A94AA9B00558031 /* ButtonStyles.swift */; };
 		4B2D81C12A94AAE800558031 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D81C02A94AAE800558031 /* MapView.swift */; };
 		4B2D81C42A94ABA900558031 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D81C32A94ABA900558031 /* NavigationController.swift */; };
-		4B2D81C72A94B18E00558031 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 4B2D81C62A94B18E00558031 /* Swinject */; };
 		4B2D81CD2A94B6BB00558031 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D81CC2A94B6BB00558031 /* LocationService.swift */; };
 		4B2D81D02A94B7C200558031 /* Walk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D81CF2A94B7C200558031 /* Walk.swift */; };
 		4B2D81D42A94DDA000558031 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D81D32A94DDA000558031 /* Location.swift */; };
 		4B2D81D62A94E57400558031 /* ActiveWalkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D81D52A94E57400558031 /* ActiveWalkService.swift */; };
 		4B2D82132A94F53800558031 /* Persistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82122A94F53800558031 /* Persistance.swift */; };
-		4B2D82162A94F5F000558031 /* WalkCoreData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82142A94F5F000558031 /* WalkCoreData+CoreDataClass.swift */; };
 		4B2D82172A94F5F000558031 /* WalkCoreData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82152A94F5F000558031 /* WalkCoreData+CoreDataProperties.swift */; };
 		4B2D82192A94F77A00558031 /* TestScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82182A94F77A00558031 /* TestScreen.swift */; };
 		4B2D821D2A94FFAF00558031 /* WalksDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D821C2A94FFAF00558031 /* WalksDao.swift */; };
@@ -54,7 +52,6 @@
 		4B2D81D32A94DDA000558031 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		4B2D81D52A94E57400558031 /* ActiveWalkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWalkService.swift; sourceTree = "<group>"; };
 		4B2D82122A94F53800558031 /* Persistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistance.swift; sourceTree = "<group>"; };
-		4B2D82142A94F5F000558031 /* WalkCoreData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "WalkCoreData+CoreDataClass.swift"; path = "sai/WalkCoreData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4B2D82152A94F5F000558031 /* WalkCoreData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "WalkCoreData+CoreDataProperties.swift"; path = "sai/WalkCoreData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4B2D82182A94F77A00558031 /* TestScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestScreen.swift; sourceTree = "<group>"; };
 		4B2D821C2A94FFAF00558031 /* WalksDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalksDao.swift; sourceTree = "<group>"; };
@@ -72,7 +69,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B2D81C72A94B18E00558031 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,7 +167,6 @@
 		4B9F4B972A93FF9700E8ECB5 = {
 			isa = PBXGroup;
 			children = (
-				4B2D82142A94F5F000558031 /* WalkCoreData+CoreDataClass.swift */,
 				4B2D82152A94F5F000558031 /* WalkCoreData+CoreDataProperties.swift */,
 				4B9F4BA22A93FF9700E8ECB5 /* sai */,
 				4B9F4BA12A93FF9700E8ECB5 /* Products */,
@@ -234,7 +229,6 @@
 			);
 			name = sai;
 			packageProductDependencies = (
-				4B2D81C62A94B18E00558031 /* Swinject */,
 			);
 			productName = sai;
 			productReference = 4B9F4BA02A93FF9700E8ECB5 /* sai.app */;
@@ -265,7 +259,6 @@
 			);
 			mainGroup = 4B9F4B972A93FF9700E8ECB5;
 			packageReferences = (
-				4B2D81C52A94B18E00558031 /* XCRemoteSwiftPackageReference "Swinject" */,
 			);
 			productRefGroup = 4B9F4BA12A93FF9700E8ECB5 /* Products */;
 			projectDirPath = "";
@@ -302,7 +295,6 @@
 				4B2D82172A94F5F000558031 /* WalkCoreData+CoreDataProperties.swift in Sources */,
 				4B2D81C12A94AAE800558031 /* MapView.swift in Sources */,
 				4B2D82192A94F77A00558031 /* TestScreen.swift in Sources */,
-				4B2D82162A94F5F000558031 /* WalkCoreData+CoreDataClass.swift in Sources */,
 				4B9F4BB02A93FF9900E8ECB5 /* sai.xcdatamodeld in Sources */,
 				4B9F4BA62A93FF9700E8ECB5 /* ContentView.swift in Sources */,
 				4B2D81D02A94B7C200558031 /* Walk.swift in Sources */,
@@ -519,25 +511,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		4B2D81C52A94B18E00558031 /* XCRemoteSwiftPackageReference "Swinject" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Swinject/Swinject.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		4B2D81C62A94B18E00558031 /* Swinject */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4B2D81C52A94B18E00558031 /* XCRemoteSwiftPackageReference "Swinject" */;
-			productName = Swinject;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		4B9F4BAE2A93FF9900E8ECB5 /* sai.xcdatamodeld */ = {

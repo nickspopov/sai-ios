@@ -23,7 +23,7 @@ struct TestScreen: View {
                 viewModel.stop()
             }
             List(viewModel.walks) { walk in
-                Text("\(walk.id.uuidString)")
+                Text("\(walk.id!)")
             }
         }.onAppear(perform: viewModel.onAppear)
     }
@@ -40,6 +40,8 @@ extension TestScreen {
     class ViewModel: ObservableObject {
         private var viewContext: NSManagedObjectContext = PersistenceController.shared.container.viewContext
         private var activeWalkService = ActiveWalkService.shared
+        private var walksRepository = WalksRepository.shared
+        
         
         @Published var walks: [Walk] = []
         @Published var activeWalk: Walk? = nil
@@ -67,23 +69,31 @@ extension TestScreen {
         }
         
         private func saveWalk() {
-            _ = activeWalkService.activeWalk!.toCoreData(context: viewContext)
-            do {
-                try viewContext.save()
-            } catch {
-                print(error)
+            Task {
+                if let _activeWalk = activeWalk {
+                    if let _walk = try? await walksRepository.save(_activeWalk) {
+                        getAll()
+                    }
+                }
             }
         }
         
         
         private func getAll() {
-            let fetchRequest: NSFetchRequest<WalkCoreData> = WalkCoreData.fetchRequest()
-            do {
-                let result = try viewContext.fetch(fetchRequest)
-                walks = result.map {Walk.fromCoreData(coreData: $0)}
-            } catch {
-                print(error)
+            Task {
+                if let _walks = try? await walksRepository.getAll() {
+                    DispatchQueue.main.async {
+                        self.walks = _walks
+                    }
+                }
             }
+//            let fetchRequest: NSFetchRequest<WalkCoreData> = WalkCoreData.fetchRequest()
+//            do {
+//                let result = try viewContext.fetch(fetchRequest)
+//                walks = result.map {Walk.fromCoreData(coreData: $0)}
+//            } catch {
+//                print(error)
+//            }
         }
     }
 }

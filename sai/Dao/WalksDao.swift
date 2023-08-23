@@ -8,24 +8,11 @@
 import Foundation
 import CoreData
 
-enum DaoError: Error {
-    case notFound
-    case somethingWrong
-}
-
-protocol WalksDaoProtocol {
-    func getAll() throws -> [Walk]
-    func get(by id: UUID) throws -> Walk
-    func get(from fromDate: Date, to toDate: Date) throws -> [Walk]
-    func save(_ walk: Walk)
-    func delete(_ walk: Walk)
-}
-
 class WalksDao: WalksDaoProtocol {
     
     private let viewContext = PersistenceController.shared.container.viewContext
     
-    func getAll() throws -> [Walk] {
+    func getAll() async throws -> [Walk] {
         let fetchRequest: NSFetchRequest<WalkCoreData> = WalkCoreData.fetchRequest()
         do {
             let result = try viewContext.fetch(fetchRequest)
@@ -36,7 +23,7 @@ class WalksDao: WalksDaoProtocol {
         }
     }
     
-    func get(by id: UUID) throws -> Walk {
+    func get(by id: String) async throws -> Walk {
         let fetchRequest: NSFetchRequest<WalkCoreData> = WalkCoreData.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
         
@@ -53,7 +40,7 @@ class WalksDao: WalksDaoProtocol {
         }
     }
     
-    func get(from fromDate: Date, to toDate: Date) throws -> [Walk] {
+    func get(from fromDate: Date, to toDate: Date) async throws -> [Walk] {
         let fromPredicate = NSPredicate(format: "startedAt >= %@", fromDate as CVarArg)
         let toPredicate = NSPredicate(format: "startedAt <= %@", toDate as CVarArg)
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
@@ -71,12 +58,13 @@ class WalksDao: WalksDaoProtocol {
     
     }
     
-    func save(_ walk: Walk) {
+    func save(_ walk: Walk) async throws -> Walk {
         let walkCoreData = walk.toCoreData(context: viewContext)
         try? viewContext.save()
+        return walk
     }
     
-    func delete(_ walk: Walk) {
+    func delete(_ walk: Walk) async throws {
         viewContext.delete(walk.toCoreData(context: viewContext))
         try? viewContext.save()
     }

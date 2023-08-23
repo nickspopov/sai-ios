@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-struct Location: Encodable, Decodable {
+struct Location: Codable {
     var latitude: Double
     var longitude: Double
     var timestamp: Date

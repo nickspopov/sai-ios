@@ -7,12 +7,14 @@
 
 import Foundation
 import CoreData
+import FirebaseFirestoreSwift
 
-struct Walk: Identifiable {
-    var id: UUID = UUID()
+struct Walk: Codable, Identifiable {
+    @DocumentID var id: String?
     var startedAt: Date
     var finishedAt: Date
     var walkHistory: WalkHistory
+    var user: String = "default"
     
     var distance: Double {
         return getDistance()
@@ -33,7 +35,7 @@ struct Walk: Identifiable {
     
     func toCoreData(context: NSManagedObjectContext) -> WalkCoreData {
         let walkCoreData = WalkCoreData(context: context)
-        walkCoreData.id = id
+        walkCoreData.id = id ?? UUID().uuidString
         walkCoreData.startedAt = startedAt
         walkCoreData.finishedAt = finishedAt
         walkCoreData.walkHistory = walkHistory.toJSON()
@@ -47,7 +49,7 @@ struct Walk: Identifiable {
 }
 
 
-struct WalkHistory{
+struct WalkHistory: Codable {
     var history: [Location]
     
     mutating func addLocation(_ location: Location) {

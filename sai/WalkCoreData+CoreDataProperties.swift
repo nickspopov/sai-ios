@@ -18,7 +18,7 @@ extension WalkCoreData {
         return NSFetchRequest<WalkCoreData>(entityName: "Walk")
     }
 
-    @NSManaged public var id: UUID
+    @NSManaged public var id: String
     @NSManaged public var startedAt: Date
     @NSManaged public var finishedAt: Date
     @NSManaged public var walkHistory: String

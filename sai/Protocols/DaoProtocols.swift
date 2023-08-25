@@ -15,3 +15,11 @@ protocol WalksDaoProtocol {
     func save(_ walk: Walk) async throws -> Walk
     func delete(_ walk: Walk) async throws
 }
+
+protocol CalendarEventsDaoProtocol {
+    func get(by id: String) async throws -> CalendarEvent
+    func get(from fromDate: Date, to toDate: Date) async throws -> [CalendarEvent]
+    func save(_ event: CalendarEvent) async throws -> CalendarEvent
+    func update(_ event: CalendarEvent) async throws -> CalendarEvent
+    func delete(_ calendarEvent: CalendarEvent) async throws
+}

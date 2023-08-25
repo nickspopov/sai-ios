@@ -64,7 +64,7 @@ class WalksFirestore: WalksDaoProtocol {
     
     func delete(_ walk: Walk) async throws {
         try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<Void, Error>) -> Void in
-            db.collection("cities").document(walk.id!).delete() { err in
+            db.collection(collection).document(walk.id!).delete() { err in
                 if let err = err {
                     continuation.resume(throwing: DaoError.somethingWrong)
                 } else {

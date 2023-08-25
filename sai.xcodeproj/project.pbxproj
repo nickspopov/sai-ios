@@ -40,6 +40,9 @@
 		4B2D82442A9629F200558031 /* CalendarWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82432A9629F200558031 /* CalendarWidget.swift */; };
 		4B2D82462A96352400558031 /* TripsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82452A96352400558031 /* TripsWidget.swift */; };
 		4B2D82482A96396A00558031 /* CommunityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82472A96396A00558031 /* CommunityWidget.swift */; };
+		4B2D824A2A9899F300558031 /* CalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82492A9899F300558031 /* CalendarEvent.swift */; };
+		4B2D824C2A989ABF00558031 /* CalendarEventsFirestore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D824B2A989ABF00558031 /* CalendarEventsFirestore.swift */; };
+		4B2D824E2A989CC400558031 /* CalendarEventsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D824D2A989CC400558031 /* CalendarEventsRepository.swift */; };
 		4B9F4BA42A93FF9700E8ECB5 /* saiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA32A93FF9700E8ECB5 /* saiApp.swift */; };
 		4B9F4BA62A93FF9700E8ECB5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA52A93FF9700E8ECB5 /* ContentView.swift */; };
 		4B9F4BA82A93FF9900E8ECB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA72A93FF9900E8ECB5 /* Assets.xcassets */; };
@@ -78,6 +81,9 @@
 		4B2D82432A9629F200558031 /* CalendarWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidget.swift; sourceTree = "<group>"; };
 		4B2D82452A96352400558031 /* TripsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsWidget.swift; sourceTree = "<group>"; };
 		4B2D82472A96396A00558031 /* CommunityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityWidget.swift; sourceTree = "<group>"; };
+		4B2D82492A9899F300558031 /* CalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEvent.swift; sourceTree = "<group>"; };
+		4B2D824B2A989ABF00558031 /* CalendarEventsFirestore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventsFirestore.swift; sourceTree = "<group>"; };
+		4B2D824D2A989CC400558031 /* CalendarEventsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventsRepository.swift; sourceTree = "<group>"; };
 		4B9F4BA02A93FF9700E8ECB5 /* sai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B9F4BA32A93FF9700E8ECB5 /* saiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saiApp.swift; sourceTree = "<group>"; };
 		4B9F4BA52A93FF9700E8ECB5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -171,6 +177,7 @@
 			children = (
 				4B2D81CF2A94B7C200558031 /* Walk.swift */,
 				4B2D81D32A94DDA000558031 /* Location.swift */,
+				4B2D82492A9899F300558031 /* CalendarEvent.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -187,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				4B2D821E2A95058500558031 /* WalksRepository.swift */,
+				4B2D824D2A989CC400558031 /* CalendarEventsRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -195,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				4B2D822A2A9549AA00558031 /* WalksFirestore.swift */,
+				4B2D824B2A989ABF00558031 /* CalendarEventsFirestore.swift */,
 			);
 			path = Firestore;
 			sourceTree = "<group>";
@@ -377,17 +386,20 @@
 				4B2D81C12A94AAE800558031 /* MapView.swift in Sources */,
 				4B2D82192A94F77A00558031 /* TestScreen.swift in Sources */,
 				4B2D823D2A9619B200558031 /* HomeScreen.swift in Sources */,
+				4B2D824C2A989ABF00558031 /* CalendarEventsFirestore.swift in Sources */,
 				4B9F4BB02A93FF9900E8ECB5 /* sai.xcdatamodeld in Sources */,
 				4B9F4BA62A93FF9700E8ECB5 /* ContentView.swift in Sources */,
 				4B2D81D02A94B7C200558031 /* Walk.swift in Sources */,
 				4B2D82132A94F53800558031 /* Persistance.swift in Sources */,
 				4B2D822B2A9549AA00558031 /* WalksFirestore.swift in Sources */,
+				4B2D824A2A9899F300558031 /* CalendarEvent.swift in Sources */,
 				4B2D81C42A94ABA900558031 /* NavigationController.swift in Sources */,
 				4B2D82372A960A9200558031 /* DaoProtocols.swift in Sources */,
 				4B2D81D42A94DDA000558031 /* Location.swift in Sources */,
 				4B2D82482A96396A00558031 /* CommunityWidget.swift in Sources */,
 				4B2D81CD2A94B6BB00558031 /* LocationService.swift in Sources */,
 				4B2D82392A960AD100558031 /* Errors.swift in Sources */,
+				4B2D824E2A989CC400558031 /* CalendarEventsRepository.swift in Sources */,
 				4B2D81AF2A94A9FA00558031 /* View+Extensions.swift in Sources */,
 				4B2D82442A9629F200558031 /* CalendarWidget.swift in Sources */,
 				4B2D821D2A94FFAF00558031 /* WalksDao.swift in Sources */,

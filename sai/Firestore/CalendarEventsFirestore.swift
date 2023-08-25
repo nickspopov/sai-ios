@@ -15,7 +15,7 @@ class CalendarEventsFirestore: CalendarEventsDaoProtocol {
     func get(by id: String) async throws -> CalendarEvent {
         try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<CalendarEvent, Error>) -> Void in
             db.collection(collection).document(id).getDocument { (document, error) in
-                if let error = error {
+                if let _ = error {
                     continuation.resume(throwing: DaoError.notFound)
                 } else {
                     do {
@@ -33,7 +33,7 @@ class CalendarEventsFirestore: CalendarEventsDaoProtocol {
     func get(from fromDate: Date, to toDate: Date) async throws -> [CalendarEvent] {
         try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<[CalendarEvent], Error>) -> Void in
             db.collection(collection).whereField("startedAt", isLessThan: toDate).whereField("startedAt", isGreaterThan: fromDate).getDocuments() { (querySnapshot, err) in
-                if let err = err {
+                if let _ = err {
                     continuation.resume(throwing: DaoError.somethingWrong)
                 } else {
                     var calendarEvents: [CalendarEvent] = []
@@ -54,7 +54,7 @@ class CalendarEventsFirestore: CalendarEventsDaoProtocol {
     
     func save(_ event: CalendarEvent) async throws -> CalendarEvent {
         try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<CalendarEvent, Error>) -> Void in
-            if let result = try? db.collection(collection).addDocument(from: event) {
+            if let _ = try? db.collection(collection).addDocument(from: event) {
                 continuation.resume(returning: event)
             } else {
                 continuation.resume(throwing: DaoError.somethingWrong)
@@ -69,7 +69,7 @@ class CalendarEventsFirestore: CalendarEventsDaoProtocol {
     func delete(_ calendarEvent: CalendarEvent) async throws {
         try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<Void, Error>) -> Void in
             db.collection(collection).document(calendarEvent.id!).delete() { err in
-                if let err = err {
+                if let _ = err {
                     continuation.resume(throwing: DaoError.somethingWrong)
                 } else {
                     print("Document successfully removed!")

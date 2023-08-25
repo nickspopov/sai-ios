@@ -19,8 +19,8 @@ struct ContentView: View {
             }
             .navigationDestination(for: Route.self) { currentRoute in
                 switch currentRoute {
-                case .testScreen:
-                    TestScreen()
+                case .testScreen: TestScreen()
+                case .calendarScreen: CalendarScreen().environmentObject(navigationController)
                 }
             }
         }

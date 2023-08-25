@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct HomeScreen: View {
+    @EnvironmentObject var navigationController: NavigationController
+    
+    
     var body: some View {
         VStack{
             Group {
@@ -17,6 +20,9 @@ struct HomeScreen: View {
             }
             VStack(spacing: 10) {
                 CalendarWidget()
+                    .onTapGesture {
+                        navigationController.push(to: .calendarScreen)
+                    }
                 HStack(spacing: 10) {
                     TripsWidget()
                     CommunityWidget()

@@ -10,7 +10,7 @@ import SwiftUI
 var randomGrayColor = Color(uiColor: UIColor(red: 0.72, green: 0.72, blue: 0.72, alpha: 1))
 
 struct CalendarWidget: View {
-    @ObservedObject var viewModel = ViewModel()
+    @StateObject var viewModel = ViewModel()
     
     
     var body: some View {

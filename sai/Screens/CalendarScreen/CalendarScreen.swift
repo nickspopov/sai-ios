@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CalendarScreen: View {
     @Environment(\.safeAreaInsets) private var safeAreaInsets
+    @EnvironmentObject var navigationController: NavigationController
     
     @StateObject var viewModel: CalendarScreenViewModel = CalendarScreenViewModel()
     
@@ -145,9 +146,12 @@ extension CalendarScreen {
             Spacer()
             Typography("August", .semibold(.five))
             Spacer()
-            Button(action: {}) {
+            Button(action: {viewModel.showCreateEventScreen.toggle()}) {
                 Image(systemName: "plus")
                     .blendMode(.difference)
+            }
+            .sheet(isPresented: $viewModel.showCreateEventScreen) {
+                CreateEventScreen()
             }
         }
     }

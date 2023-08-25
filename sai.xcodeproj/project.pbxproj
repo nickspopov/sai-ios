@@ -48,6 +48,7 @@
 		4B2D82552A98EA5A00558031 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82542A98EA5A00558031 /* UIApplication+Extension.swift */; };
 		4B2D82572A98EED300558031 /* CalendarScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82562A98EED300558031 /* CalendarScreenViewModel.swift */; };
 		4B8192532A98F2A10002D953 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8192522A98F2A10002D953 /* UINavigationController+Extension.swift */; };
+		4B8192562A994F530002D953 /* CreateEventScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8192552A994F530002D953 /* CreateEventScreen.swift */; };
 		4B9F4BA42A93FF9700E8ECB5 /* saiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA32A93FF9700E8ECB5 /* saiApp.swift */; };
 		4B9F4BA62A93FF9700E8ECB5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA52A93FF9700E8ECB5 /* ContentView.swift */; };
 		4B9F4BA82A93FF9900E8ECB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA72A93FF9900E8ECB5 /* Assets.xcassets */; };
@@ -94,6 +95,7 @@
 		4B2D82542A98EA5A00558031 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		4B2D82562A98EED300558031 /* CalendarScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarScreenViewModel.swift; sourceTree = "<group>"; };
 		4B8192522A98F2A10002D953 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
+		4B8192552A994F530002D953 /* CreateEventScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventScreen.swift; sourceTree = "<group>"; };
 		4B9F4BA02A93FF9700E8ECB5 /* sai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B9F4BA32A93FF9700E8ECB5 /* saiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saiApp.swift; sourceTree = "<group>"; };
 		4B9F4BA52A93FF9700E8ECB5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 		4B2D81AD2A94A9ED00558031 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				4B8192542A994F320002D953 /* CreateEventScreen */,
 				4B2D82512A98A4D000558031 /* CalendarScreen */,
 				4B2D82412A9626B200558031 /* HomeScreen */,
 				4B2D82182A94F77A00558031 /* TestScreen.swift */,
@@ -265,6 +268,14 @@
 				4B2D82522A98A4DE00558031 /* CalendarScreen.swift */,
 			);
 			path = CalendarScreen;
+			sourceTree = "<group>";
+		};
+		4B8192542A994F320002D953 /* CreateEventScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4B8192552A994F530002D953 /* CreateEventScreen.swift */,
+			);
+			path = CreateEventScreen;
 			sourceTree = "<group>";
 		};
 		4B9F4B972A93FF9700E8ECB5 = {
@@ -411,6 +422,7 @@
 				4B2D823D2A9619B200558031 /* HomeScreen.swift in Sources */,
 				4B2D82502A98A20A00558031 /* Date+Extension.swift in Sources */,
 				4B2D824C2A989ABF00558031 /* CalendarEventsFirestore.swift in Sources */,
+				4B8192562A994F530002D953 /* CreateEventScreen.swift in Sources */,
 				4B9F4BB02A93FF9900E8ECB5 /* sai.xcdatamodeld in Sources */,
 				4B9F4BA62A93FF9700E8ECB5 /* ContentView.swift in Sources */,
 				4B2D81D02A94B7C200558031 /* Walk.swift in Sources */,

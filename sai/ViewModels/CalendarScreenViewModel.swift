@@ -15,6 +15,8 @@ class CalendarScreenViewModel: ObservableObject {
     @Published var daysArray: [Date] = []
     @Published var events: [CalendarEvent] = []
     
+    @Published var showCreateEventScreen: Bool = false
+    
     
     init() {
         $selectedDate.sink { selectedDate in

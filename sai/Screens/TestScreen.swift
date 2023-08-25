@@ -71,7 +71,7 @@ extension TestScreen {
         private func saveWalk() {
             Task {
                 if let _activeWalk = activeWalk {
-                    if let _walk = try? await walksRepository.save(_activeWalk) {
+                    if let _ = try? await walksRepository.save(_activeWalk) {
                         getAll()
                     }
                 }

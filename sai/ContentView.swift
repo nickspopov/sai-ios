@@ -9,10 +9,20 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    @ObservedObject var navigationController = NavigationController()
 
     var body: some View {
-        NavigationView {
-            TestScreen()
+        NavigationStack(path: $navigationController.stack) {
+            ZStack {
+                HomeScreen()
+                    .environmentObject(navigationController)
+            }
+            .navigationDestination(for: Route.self) { currentRoute in
+                switch currentRoute {
+                case .testScreen:
+                    TestScreen()
+                }
+            }
         }
     }
 }

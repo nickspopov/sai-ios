@@ -27,7 +27,6 @@ struct IsVisibleModifier : ViewModifier{
 }
 
 extension View {
-
     func isVisible(
         isVisible : Bool,
         transition : AnyTransition = .scale
@@ -49,5 +48,20 @@ extension View {
         } else {
             self
         }
+    }
+}
+
+extension View {
+    func screenContainer() -> some View {
+        return self
+            .preferredColorScheme(.dark)
+            .frame(
+                  minWidth: 0,
+                  maxWidth: .infinity,
+                  minHeight: 0,
+                  maxHeight: .infinity,
+                  alignment: .center
+            )
+            .background(.black)
     }
 }

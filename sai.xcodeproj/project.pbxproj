@@ -35,6 +35,11 @@
 		4B2D82342A95506300558031 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4B2D82332A95506300558031 /* FirebaseFirestoreSwift */; };
 		4B2D82372A960A9200558031 /* DaoProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82362A960A9200558031 /* DaoProtocols.swift */; };
 		4B2D82392A960AD100558031 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82382A960AD100558031 /* Errors.swift */; };
+		4B2D823D2A9619B200558031 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D823C2A9619B200558031 /* HomeScreen.swift */; };
+		4B2D82402A961BC300558031 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D823F2A961BC300558031 /* HomeScreenViewModel.swift */; };
+		4B2D82442A9629F200558031 /* CalendarWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82432A9629F200558031 /* CalendarWidget.swift */; };
+		4B2D82462A96352400558031 /* TripsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82452A96352400558031 /* TripsWidget.swift */; };
+		4B2D82482A96396A00558031 /* CommunityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82472A96396A00558031 /* CommunityWidget.swift */; };
 		4B9F4BA42A93FF9700E8ECB5 /* saiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA32A93FF9700E8ECB5 /* saiApp.swift */; };
 		4B9F4BA62A93FF9700E8ECB5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA52A93FF9700E8ECB5 /* ContentView.swift */; };
 		4B9F4BA82A93FF9900E8ECB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA72A93FF9900E8ECB5 /* Assets.xcassets */; };
@@ -68,6 +73,11 @@
 		4B2D822A2A9549AA00558031 /* WalksFirestore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalksFirestore.swift; sourceTree = "<group>"; };
 		4B2D82362A960A9200558031 /* DaoProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaoProtocols.swift; sourceTree = "<group>"; };
 		4B2D82382A960AD100558031 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		4B2D823C2A9619B200558031 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		4B2D823F2A961BC300558031 /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
+		4B2D82432A9629F200558031 /* CalendarWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidget.swift; sourceTree = "<group>"; };
+		4B2D82452A96352400558031 /* TripsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsWidget.swift; sourceTree = "<group>"; };
+		4B2D82472A96396A00558031 /* CommunityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityWidget.swift; sourceTree = "<group>"; };
 		4B9F4BA02A93FF9700E8ECB5 /* sai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B9F4BA32A93FF9700E8ECB5 /* saiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saiApp.swift; sourceTree = "<group>"; };
 		4B9F4BA52A93FF9700E8ECB5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -125,6 +135,7 @@
 		4B2D81AD2A94A9ED00558031 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				4B2D82412A9626B200558031 /* HomeScreen */,
 				4B2D82182A94F77A00558031 /* TestScreen.swift */,
 			);
 			path = Screens;
@@ -197,6 +208,33 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		4B2D823E2A961BB000558031 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				4B2D823F2A961BC300558031 /* HomeScreenViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		4B2D82412A9626B200558031 /* HomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4B2D82422A9629E100558031 /* Components */,
+				4B2D823C2A9619B200558031 /* HomeScreen.swift */,
+			);
+			path = HomeScreen;
+			sourceTree = "<group>";
+		};
+		4B2D82422A9629E100558031 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				4B2D82432A9629F200558031 /* CalendarWidget.swift */,
+				4B2D82452A96352400558031 /* TripsWidget.swift */,
+				4B2D82472A96396A00558031 /* CommunityWidget.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		4B9F4B972A93FF9700E8ECB5 = {
 			isa = PBXGroup;
 			children = (
@@ -217,6 +255,7 @@
 		4B9F4BA22A93FF9700E8ECB5 /* sai */ = {
 			isa = PBXGroup;
 			children = (
+				4B2D823E2A961BB000558031 /* ViewModels */,
 				4B2D82352A960A7800558031 /* Protocols */,
 				4B2D82292A95498300558031 /* Firestore */,
 				4B2D821B2A94FF9800558031 /* Repositories */,
@@ -337,6 +376,7 @@
 				4B2D82172A94F5F000558031 /* WalkCoreData+CoreDataProperties.swift in Sources */,
 				4B2D81C12A94AAE800558031 /* MapView.swift in Sources */,
 				4B2D82192A94F77A00558031 /* TestScreen.swift in Sources */,
+				4B2D823D2A9619B200558031 /* HomeScreen.swift in Sources */,
 				4B9F4BB02A93FF9900E8ECB5 /* sai.xcdatamodeld in Sources */,
 				4B9F4BA62A93FF9700E8ECB5 /* ContentView.swift in Sources */,
 				4B2D81D02A94B7C200558031 /* Walk.swift in Sources */,
@@ -345,14 +385,18 @@
 				4B2D81C42A94ABA900558031 /* NavigationController.swift in Sources */,
 				4B2D82372A960A9200558031 /* DaoProtocols.swift in Sources */,
 				4B2D81D42A94DDA000558031 /* Location.swift in Sources */,
+				4B2D82482A96396A00558031 /* CommunityWidget.swift in Sources */,
 				4B2D81CD2A94B6BB00558031 /* LocationService.swift in Sources */,
 				4B2D82392A960AD100558031 /* Errors.swift in Sources */,
 				4B2D81AF2A94A9FA00558031 /* View+Extensions.swift in Sources */,
+				4B2D82442A9629F200558031 /* CalendarWidget.swift in Sources */,
 				4B2D821D2A94FFAF00558031 /* WalksDao.swift in Sources */,
 				4B2D81D62A94E57400558031 /* ActiveWalkService.swift in Sources */,
 				4B2D81BF2A94AA9B00558031 /* ButtonStyles.swift in Sources */,
 				4B2D81BD2A94AA6F00558031 /* Typography.swift in Sources */,
+				4B2D82402A961BC300558031 /* HomeScreenViewModel.swift in Sources */,
 				4B2D821F2A95058500558031 /* WalksRepository.swift in Sources */,
+				4B2D82462A96352400558031 /* TripsWidget.swift in Sources */,
 				4B9F4BA42A93FF9700E8ECB5 /* saiApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

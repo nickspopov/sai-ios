@@ -16,6 +16,12 @@ struct Walk: Codable, Identifiable {
     var walkHistory: WalkHistory
     var user: String = "default"
     
+    // MARK: - Computed properties
+    
+    var duration: TimeInterval {
+        return finishedAt.timeIntervalSince(startedAt)
+    }
+    
     var distance: Double {
         return getDistance()
     }
@@ -33,6 +39,8 @@ struct Walk: Codable, Identifiable {
         return distance
     }
     
+    
+    // MARK: - Core Data
     func toCoreData(context: NSManagedObjectContext) -> WalkCoreData {
         let walkCoreData = WalkCoreData(context: context)
         walkCoreData.id = id ?? UUID().uuidString
@@ -48,7 +56,7 @@ struct Walk: Codable, Identifiable {
     }
 }
 
-
+// MARK: - WalkHistory
 struct WalkHistory: Codable {
     var history: [Location]
     

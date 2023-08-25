@@ -1,0 +1,58 @@
+//
+//  HomeScreen.swift
+//  sai
+//
+//  Created by Николай Попов on 23.08.2023.
+//
+
+import SwiftUI
+
+struct HomeScreen: View {
+    var body: some View {
+        VStack{
+            Group {
+                header
+                Spacer()
+                    .frame(height: 40)
+            }
+            VStack(spacing: 10) {
+                CalendarWidget()
+                HStack(spacing: 10) {
+                    TripsWidget()
+                    CommunityWidget()
+                }
+                Spacer()
+            }
+        }
+        .padding(.horizontal, 16)
+        .padding(.top, 36)
+        .screenContainer()
+    }
+}
+
+struct HomeScreen_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeScreen()
+    }
+}
+
+
+// MARK: - Header
+extension HomeScreen {
+    var header: some View {
+        HStack {
+            Circle()
+                .frame(width: 58, height: 58)
+                .foregroundColor(Color(red: 55, green: 55, blue: 55))
+            Spacer()
+                .frame(width: 20)
+            VStack(alignment: .leading) {
+                Typography("Hello, Nick", .semibold(.two))
+                Typography("How Sai feels today?", .regular(.seven))
+                    .foregroundColor(Color(uiColor: UIColor(red: 0.64, green: 0.67, blue: 0.69, alpha: 1)))
+            }
+            Spacer()
+        }
+        .padding(.horizontal, 4)
+    }
+}

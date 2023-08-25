@@ -43,6 +43,7 @@
 		4B2D824A2A9899F300558031 /* CalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82492A9899F300558031 /* CalendarEvent.swift */; };
 		4B2D824C2A989ABF00558031 /* CalendarEventsFirestore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D824B2A989ABF00558031 /* CalendarEventsFirestore.swift */; };
 		4B2D824E2A989CC400558031 /* CalendarEventsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D824D2A989CC400558031 /* CalendarEventsRepository.swift */; };
+		4B2D82502A98A20A00558031 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D824F2A98A20A00558031 /* Date+Extension.swift */; };
 		4B9F4BA42A93FF9700E8ECB5 /* saiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA32A93FF9700E8ECB5 /* saiApp.swift */; };
 		4B9F4BA62A93FF9700E8ECB5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA52A93FF9700E8ECB5 /* ContentView.swift */; };
 		4B9F4BA82A93FF9900E8ECB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA72A93FF9900E8ECB5 /* Assets.xcassets */; };
@@ -84,6 +85,7 @@
 		4B2D82492A9899F300558031 /* CalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEvent.swift; sourceTree = "<group>"; };
 		4B2D824B2A989ABF00558031 /* CalendarEventsFirestore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventsFirestore.swift; sourceTree = "<group>"; };
 		4B2D824D2A989CC400558031 /* CalendarEventsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventsRepository.swift; sourceTree = "<group>"; };
+		4B2D824F2A98A20A00558031 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		4B9F4BA02A93FF9700E8ECB5 /* sai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B9F4BA32A93FF9700E8ECB5 /* saiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saiApp.swift; sourceTree = "<group>"; };
 		4B9F4BA52A93FF9700E8ECB5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			children = (
 				4B2D81AE2A94A9FA00558031 /* View+Extensions.swift */,
 				4B2D81B02A94AA1900558031 /* Color+HEX.swift */,
+				4B2D824F2A98A20A00558031 /* Date+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				4B2D81C12A94AAE800558031 /* MapView.swift in Sources */,
 				4B2D82192A94F77A00558031 /* TestScreen.swift in Sources */,
 				4B2D823D2A9619B200558031 /* HomeScreen.swift in Sources */,
+				4B2D82502A98A20A00558031 /* Date+Extension.swift in Sources */,
 				4B2D824C2A989ABF00558031 /* CalendarEventsFirestore.swift in Sources */,
 				4B9F4BB02A93FF9900E8ECB5 /* sai.xcdatamodeld in Sources */,
 				4B9F4BA62A93FF9700E8ECB5 /* ContentView.swift in Sources */,

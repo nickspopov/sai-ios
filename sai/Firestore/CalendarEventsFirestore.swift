@@ -32,7 +32,7 @@ class CalendarEventsFirestore: CalendarEventsDaoProtocol {
     
     func get(from fromDate: Date, to toDate: Date) async throws -> [CalendarEvent] {
         try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<[CalendarEvent], Error>) -> Void in
-            db.collection(collection).whereField("startedAt", isLessThan: toDate).whereField("endedAt", isGreaterThan: fromDate).getDocuments() { (querySnapshot, err) in
+            db.collection(collection).whereField("startedAt", isLessThan: toDate).whereField("startedAt", isGreaterThan: fromDate).getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     continuation.resume(throwing: DaoError.somethingWrong)
                 } else {

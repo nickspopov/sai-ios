@@ -12,7 +12,7 @@ enum CalendarEventType: String, Codable {
     case walk, grooming, food, vet, other
 }
 
-struct CalendarEvent: Codable {
+struct CalendarEvent: Codable,Identifiable {
     @DocumentID var id: String?
     var title: String
     var notes: String

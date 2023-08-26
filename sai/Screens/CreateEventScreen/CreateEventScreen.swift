@@ -37,8 +37,19 @@ struct CreateEventScreen: View {
             VStack {
                 Form {
                     TextField("Title", text: $title)
-                    TextField("Notes", text: $notes)
-                        .frame(height: 80)
+                    TextField("Notes", text: $notes, axis: .vertical)
+                        .lineLimit(3...5)
+                    DatePicker(selection: $startedAt, in: ...(endedAt - 3600)) {
+                        Text("Start date")
+                    }
+                    DatePicker(selection: $endedAt, in: ...endedAt) {
+                        Text("End date")
+                    }
+                    Picker("Type", selection: $type) {
+                        ForEach(CalendarEventType.allCases, id: \.self) {
+                            Text($0.name)
+                        }
+                    }
                 }
             }
             .screenContainer()

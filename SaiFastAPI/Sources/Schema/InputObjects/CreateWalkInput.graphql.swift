@@ -11,8 +11,8 @@ public struct CreateWalkInput: InputObject {
   }
 
   public init(
-    startedAt: DateTime,
-    finishedAt: DateTime,
+    startedAt: DateTimeType,
+    finishedAt: DateTimeType,
     walkHistory: CreateWalkHistoryType
   ) {
     __data = InputDict([
@@ -22,12 +22,12 @@ public struct CreateWalkInput: InputObject {
     ])
   }
 
-  public var startedAt: DateTime {
+  public var startedAt: DateTimeType {
     get { __data["startedAt"] }
     set { __data["startedAt"] = newValue }
   }
 
-  public var finishedAt: DateTime {
+  public var finishedAt: DateTimeType {
     get { __data["finishedAt"] }
     set { __data["finishedAt"] = newValue }
   }

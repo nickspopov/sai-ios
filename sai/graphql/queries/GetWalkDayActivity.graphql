@@ -1,4 +1,4 @@
-query GetWalkDayActivity($date: DateTime!) {
+query GetWalkDayActivity($date: DateTimeType!) {
     getWalkDayActivity(date: $date) {
         totalDistance
         totalDuration

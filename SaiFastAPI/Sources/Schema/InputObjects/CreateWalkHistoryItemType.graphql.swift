@@ -13,7 +13,7 @@ public struct CreateWalkHistoryItemType: InputObject {
   public init(
     latitude: Double,
     longitude: Double,
-    timestamp: DateTime
+    timestamp: DateTimeType
   ) {
     __data = InputDict([
       "latitude": latitude,
@@ -32,7 +32,7 @@ public struct CreateWalkHistoryItemType: InputObject {
     set { __data["longitude"] = newValue }
   }
 
-  public var timestamp: DateTime {
+  public var timestamp: DateTimeType {
     get { __data["timestamp"] }
     set { __data["timestamp"] = newValue }
   }

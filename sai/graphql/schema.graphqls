@@ -8,23 +8,23 @@ type Query {
   getAllEvents: [CalendarEventType]!
   getWalks: [WalkType!]!
   getWalk(id: String!): WalkType
-  getWalkDayActivity(date: DateTime!): WalkDayActivity!
+  getWalkDayActivity(date: DateTimeType!): WalkDayActivity!
   me: UserType!
 }
 
 type CalendarEventType {
   id: String!
   name: String!
-  startedAt: DateTime!
+  startedAt: DateTimeType!
 }
 
 """Date with time (isoformat)"""
-scalar DateTime
+scalar DateTimeType
 
 type WalkType {
   id: String!
-  startedAt: DateTime!
-  finishedAt: DateTime!
+  startedAt: DateTimeType!
+  finishedAt: DateTimeType!
   walkHistory: WalkHistoryType!
   distance: Float!
   duration: Float!
@@ -39,7 +39,7 @@ type WalkHistoryType {
 type WalkHistoryItemType {
   latitude: Float!
   longitude: Float!
-  timestamp: DateTime!
+  timestamp: DateTimeType!
 }
 
 type WalkDayActivity {
@@ -47,7 +47,7 @@ type WalkDayActivity {
   totalDuration: Float!
   avgSpeed: Float!
   avgPace: Float!
-  date: DateTime!
+  date: DateTimeType!
 }
 
 type UserType {
@@ -60,18 +60,18 @@ type DogType {
   id: String!
   name: String!
   breed: String!
-  dateOfBirth: DateTime!
+  dateOfBirth: DateTimeType!
   sex: String!
 }
 
 type Mutation {
-  createEvent(name: String!, startedAt: DateTime!): CalendarEventType!
+  createEvent(name: String!, startedAt: DateTimeType!): CalendarEventType!
   createWalk(input: CreateWalkInput!): WalkType!
 }
 
 input CreateWalkInput {
-  startedAt: DateTime!
-  finishedAt: DateTime!
+  startedAt: DateTimeType!
+  finishedAt: DateTimeType!
   walkHistory: CreateWalkHistoryType!
 }
 
@@ -82,5 +82,5 @@ input CreateWalkHistoryType {
 input CreateWalkHistoryItemType {
   latitude: Float!
   longitude: Float!
-  timestamp: DateTime!
+  timestamp: DateTimeType!
 }

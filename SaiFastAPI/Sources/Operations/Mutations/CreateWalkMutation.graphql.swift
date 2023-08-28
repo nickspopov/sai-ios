@@ -40,8 +40,8 @@ public class CreateWalkMutation: GraphQLMutation {
       public static var __selections: [ApolloAPI.Selection] { [
         .field("__typename", String.self),
         .field("id", String.self),
-        .field("startedAt", SaiFastAPI.DateTime.self),
-        .field("finishedAt", SaiFastAPI.DateTime.self),
+        .field("startedAt", SaiFastAPI.DateTimeType.self),
+        .field("finishedAt", SaiFastAPI.DateTimeType.self),
         .field("distance", Double.self),
         .field("duration", Double.self),
         .field("avgSpeed", Double.self),
@@ -50,8 +50,8 @@ public class CreateWalkMutation: GraphQLMutation {
       ] }
 
       public var id: String { __data["id"] }
-      public var startedAt: SaiFastAPI.DateTime { __data["startedAt"] }
-      public var finishedAt: SaiFastAPI.DateTime { __data["finishedAt"] }
+      public var startedAt: SaiFastAPI.DateTimeType { __data["startedAt"] }
+      public var finishedAt: SaiFastAPI.DateTimeType { __data["finishedAt"] }
       public var distance: Double { __data["distance"] }
       public var duration: Double { __data["duration"] }
       public var avgSpeed: Double { __data["avgSpeed"] }
@@ -85,12 +85,12 @@ public class CreateWalkMutation: GraphQLMutation {
             .field("__typename", String.self),
             .field("latitude", Double.self),
             .field("longitude", Double.self),
-            .field("timestamp", SaiFastAPI.DateTime.self),
+            .field("timestamp", SaiFastAPI.DateTimeType.self),
           ] }
 
           public var latitude: Double { __data["latitude"] }
           public var longitude: Double { __data["longitude"] }
-          public var timestamp: SaiFastAPI.DateTime { __data["timestamp"] }
+          public var timestamp: SaiFastAPI.DateTimeType { __data["timestamp"] }
         }
       }
     }

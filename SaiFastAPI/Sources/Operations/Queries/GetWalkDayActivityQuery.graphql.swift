@@ -7,12 +7,12 @@ public class GetWalkDayActivityQuery: GraphQLQuery {
   public static let operationName: String = "GetWalkDayActivity"
   public static let operationDocument: ApolloAPI.OperationDocument = .init(
     definition: .init(
-      #"query GetWalkDayActivity($date: DateTime!) { getWalkDayActivity(date: $date) { __typename totalDistance totalDuration avgSpeed avgPace date } }"#
+      #"query GetWalkDayActivity($date: DateTimeType!) { getWalkDayActivity(date: $date) { __typename totalDistance totalDuration avgSpeed avgPace date } }"#
     ))
 
-  public var date: DateTime
+  public var date: DateTimeType
 
-  public init(date: DateTime) {
+  public init(date: DateTimeType) {
     self.date = date
   }
 
@@ -43,14 +43,14 @@ public class GetWalkDayActivityQuery: GraphQLQuery {
         .field("totalDuration", Double.self),
         .field("avgSpeed", Double.self),
         .field("avgPace", Double.self),
-        .field("date", SaiFastAPI.DateTime.self),
+        .field("date", SaiFastAPI.DateTimeType.self),
       ] }
 
       public var totalDistance: Double { __data["totalDistance"] }
       public var totalDuration: Double { __data["totalDuration"] }
       public var avgSpeed: Double { __data["avgSpeed"] }
       public var avgPace: Double { __data["avgPace"] }
-      public var date: SaiFastAPI.DateTime { __data["date"] }
+      public var date: SaiFastAPI.DateTimeType { __data["date"] }
     }
   }
 }

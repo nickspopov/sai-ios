@@ -7,7 +7,7 @@ public class GetWalksQuery: GraphQLQuery {
   public static let operationName: String = "GetWalks"
   public static let operationDocument: ApolloAPI.OperationDocument = .init(
     definition: .init(
-      #"query GetWalks { getWalks { __typename id } }"#
+      #"query GetWalks { getWalks { __typename id startedAt } }"#
     ))
 
   public init() {}
@@ -34,9 +34,11 @@ public class GetWalksQuery: GraphQLQuery {
       public static var __selections: [ApolloAPI.Selection] { [
         .field("__typename", String.self),
         .field("id", String.self),
+        .field("startedAt", SaiFastAPI.DateTime.self),
       ] }
 
       public var id: String { __data["id"] }
+      public var startedAt: SaiFastAPI.DateTime { __data["startedAt"] }
     }
   }
 }

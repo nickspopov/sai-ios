@@ -1,5 +1,6 @@
 query GetWalks {
     getWalks {
         id
+        startedAt
     }
 }

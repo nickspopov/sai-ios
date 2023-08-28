@@ -58,6 +58,9 @@
 		4BC477812A9CB047007CCF95 /* GetAllWalks.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 4BC4777F2A9CB047007CCF95 /* GetAllWalks.graphql */; };
 		4BC477862A9CB0AF007CCF95 /* SaiFastAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 4BC477852A9CB0AF007CCF95 /* SaiFastAPI */; };
 		4BC477882A9CB19B007CCF95 /* GetWalk.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 4BC477872A9CB19B007CCF95 /* GetWalk.graphql */; };
+		4BC4778B2A9CB290007CCF95 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4778A2A9CB290007CCF95 /* Network.swift */; };
+		4BC4778D2A9CB47E007CCF95 /* AuthorizationInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4778C2A9CB47E007CCF95 /* AuthorizationInterceptor.swift */; };
+		4BC4778F2A9CD187007CCF95 /* NetworkInterceptorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4778E2A9CD187007CCF95 /* NetworkInterceptorProvider.swift */; };
 		4BD94A6E2A9A257A00B268CF /* WalksScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD94A6D2A9A257A00B268CF /* WalksScreen.swift */; };
 		4BD94A702A9A285800B268CF /* WalksScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD94A6F2A9A285800B268CF /* WalksScreenViewModel.swift */; };
 		4BD94A732A9C9CB100B268CF /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 4BD94A722A9C9CB100B268CF /* Apollo */; };
@@ -113,6 +116,9 @@
 		4BC4777F2A9CB047007CCF95 /* GetAllWalks.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GetAllWalks.graphql; sourceTree = "<group>"; };
 		4BC477832A9CB092007CCF95 /* SaiFastAPI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SaiFastAPI; sourceTree = "<group>"; };
 		4BC477872A9CB19B007CCF95 /* GetWalk.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = GetWalk.graphql; sourceTree = "<group>"; };
+		4BC4778A2A9CB290007CCF95 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		4BC4778C2A9CB47E007CCF95 /* AuthorizationInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationInterceptor.swift; sourceTree = "<group>"; };
+		4BC4778E2A9CD187007CCF95 /* NetworkInterceptorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterceptorProvider.swift; sourceTree = "<group>"; };
 		4BD94A6D2A9A257A00B268CF /* WalksScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalksScreen.swift; sourceTree = "<group>"; };
 		4BD94A6F2A9A285800B268CF /* WalksScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalksScreenViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -317,7 +323,6 @@
 		4B9F4BA22A93FF9700E8ECB5 /* sai */ = {
 			isa = PBXGroup;
 			children = (
-				4BC4777C2A9CB047007CCF95 /* graphql */,
 				4B2D81AD2A94A9ED00558031 /* Screens */,
 				4B2D823E2A961BB000558031 /* ViewModels */,
 				4B2D82352A960A7800558031 /* Protocols */,
@@ -331,9 +336,11 @@
 				4B2D81AC2A94A9E600558031 /* Components */,
 				4B2D81AB2A94A9DF00558031 /* Fonts */,
 				4B2D81AA2A94A9D800558031 /* Extensions */,
-				4B2D81A92A94A8E200558031 /* Info.plist */,
+				4BC477892A9CB254007CCF95 /* Network */,
+				4BC4777C2A9CB047007CCF95 /* graphql */,
 				4B9F4BA32A93FF9700E8ECB5 /* saiApp.swift */,
 				4B9F4BA52A93FF9700E8ECB5 /* ContentView.swift */,
+				4B2D81A92A94A8E200558031 /* Info.plist */,
 				4B9F4BA72A93FF9900E8ECB5 /* Assets.xcassets */,
 				4B9F4BAE2A93FF9900E8ECB5 /* sai.xcdatamodeld */,
 				4B2D82202A95475E00558031 /* GoogleService-Info.plist */,
@@ -356,7 +363,8 @@
 				4BC4777D2A9CB047007CCF95 /* schema.graphqls */,
 				4BC4777E2A9CB047007CCF95 /* queries */,
 			);
-			path = graphql;
+			name = graphql;
+			path = sai/graphql;
 			sourceTree = SOURCE_ROOT;
 		};
 		4BC4777E2A9CB047007CCF95 /* queries */ = {
@@ -381,6 +389,16 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4BC477892A9CB254007CCF95 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				4BC4778A2A9CB290007CCF95 /* Network.swift */,
+				4BC4778C2A9CB47E007CCF95 /* AuthorizationInterceptor.swift */,
+				4BC4778E2A9CD187007CCF95 /* NetworkInterceptorProvider.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		4BD94A6C2A9A256D00B268CF /* WalksScreen */ = {
@@ -494,6 +512,7 @@
 				4B9F4BB02A93FF9900E8ECB5 /* sai.xcdatamodeld in Sources */,
 				4BD94A702A9A285800B268CF /* WalksScreenViewModel.swift in Sources */,
 				4B9F4BA62A93FF9700E8ECB5 /* ContentView.swift in Sources */,
+				4BC4778B2A9CB290007CCF95 /* Network.swift in Sources */,
 				4B2D81D02A94B7C200558031 /* Walk.swift in Sources */,
 				4B2D82132A94F53800558031 /* Persistance.swift in Sources */,
 				4B2D822B2A9549AA00558031 /* WalksFirestore.swift in Sources */,
@@ -503,6 +522,7 @@
 				4B2D81D42A94DDA000558031 /* Location.swift in Sources */,
 				4B2D82482A96396A00558031 /* CommunityWidget.swift in Sources */,
 				4B2D81CD2A94B6BB00558031 /* LocationService.swift in Sources */,
+				4BC4778F2A9CD187007CCF95 /* NetworkInterceptorProvider.swift in Sources */,
 				4B2D82552A98EA5A00558031 /* UIApplication+Extension.swift in Sources */,
 				4B2D82392A960AD100558031 /* Errors.swift in Sources */,
 				4B2D824E2A989CC400558031 /* CalendarEventsRepository.swift in Sources */,
@@ -513,6 +533,7 @@
 				4B2D81D62A94E57400558031 /* ActiveWalkService.swift in Sources */,
 				4B2D81BF2A94AA9B00558031 /* ButtonStyles.swift in Sources */,
 				4B2D81BD2A94AA6F00558031 /* Typography.swift in Sources */,
+				4BC4778D2A9CB47E007CCF95 /* AuthorizationInterceptor.swift in Sources */,
 				4B2D82532A98A4DE00558031 /* CalendarScreen.swift in Sources */,
 				4B2D82402A961BC300558031 /* HomeScreenViewModel.swift in Sources */,
 				4B2D821F2A95058500558031 /* WalksRepository.swift in Sources */,

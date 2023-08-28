@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Apollo
+import SaiFastAPI
 
 var randomGrayColor = Color(uiColor: UIColor(red: 0.72, green: 0.72, blue: 0.72, alpha: 1))
 
@@ -40,7 +42,7 @@ extension CalendarWidget {
         private let calendarEventsRepository: CalendarEventsRepository = CalendarEventsRepository.shared
         @Published var date: Date = Date()
         @Published var events: [CalendarEvent] = []
-    
+        
         func onAppear() {
             Task {
                 do {
@@ -51,6 +53,17 @@ extension CalendarWidget {
                 } catch {
                     print(error)
                 }
+            }
+            Network.shared.apollo.fetch(query: GetWalksQuery()) { result in
+                switch result {
+                case .success(let graphQLResult):
+                    graphQLResult.data?.getWalks.forEach { walk in
+                        print(walk.startedAt)
+                    }
+                case .failure(let error):
+                    print("Failure! Error: \(error)")
+                }
+            
             }
         }
         

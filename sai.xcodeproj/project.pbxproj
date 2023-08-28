@@ -54,8 +54,13 @@
 		4B9F4BA82A93FF9900E8ECB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA72A93FF9900E8ECB5 /* Assets.xcassets */; };
 		4B9F4BAB2A93FF9900E8ECB5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B9F4BAA2A93FF9900E8ECB5 /* Preview Assets.xcassets */; };
 		4B9F4BB02A93FF9900E8ECB5 /* sai.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B9F4BAE2A93FF9900E8ECB5 /* sai.xcdatamodeld */; };
+		4BC477802A9CB047007CCF95 /* schema.graphqls in Resources */ = {isa = PBXBuildFile; fileRef = 4BC4777D2A9CB047007CCF95 /* schema.graphqls */; };
+		4BC477812A9CB047007CCF95 /* GetAllWalks.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 4BC4777F2A9CB047007CCF95 /* GetAllWalks.graphql */; };
+		4BC477862A9CB0AF007CCF95 /* SaiFastAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 4BC477852A9CB0AF007CCF95 /* SaiFastAPI */; };
+		4BC477882A9CB19B007CCF95 /* GetWalk.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 4BC477872A9CB19B007CCF95 /* GetWalk.graphql */; };
 		4BD94A6E2A9A257A00B268CF /* WalksScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD94A6D2A9A257A00B268CF /* WalksScreen.swift */; };
 		4BD94A702A9A285800B268CF /* WalksScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD94A6F2A9A285800B268CF /* WalksScreenViewModel.swift */; };
+		4BD94A732A9C9CB100B268CF /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 4BD94A722A9C9CB100B268CF /* Apollo */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +109,10 @@
 		4B9F4BA72A93FF9900E8ECB5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B9F4BAA2A93FF9900E8ECB5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4B9F4BAF2A93FF9900E8ECB5 /* sai.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = sai.xcdatamodel; sourceTree = "<group>"; };
+		4BC4777D2A9CB047007CCF95 /* schema.graphqls */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.graphqls; sourceTree = "<group>"; };
+		4BC4777F2A9CB047007CCF95 /* GetAllWalks.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GetAllWalks.graphql; sourceTree = "<group>"; };
+		4BC477832A9CB092007CCF95 /* SaiFastAPI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SaiFastAPI; sourceTree = "<group>"; };
+		4BC477872A9CB19B007CCF95 /* GetWalk.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = GetWalk.graphql; sourceTree = "<group>"; };
 		4BD94A6D2A9A257A00B268CF /* WalksScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalksScreen.swift; sourceTree = "<group>"; };
 		4BD94A6F2A9A285800B268CF /* WalksScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalksScreenViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,10 +122,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BD94A732A9C9CB100B268CF /* Apollo in Frameworks */,
 				4B2D82322A95506300558031 /* FirebaseFirestoreCombine-Community in Frameworks */,
 				4B2D822E2A95506300558031 /* FirebaseAuth in Frameworks */,
 				4B2D82302A95506300558031 /* FirebaseFirestore in Frameworks */,
 				4B2D82342A95506300558031 /* FirebaseFirestoreSwift in Frameworks */,
+				4BC477862A9CB0AF007CCF95 /* SaiFastAPI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,9 +298,11 @@
 		4B9F4B972A93FF9700E8ECB5 = {
 			isa = PBXGroup;
 			children = (
+				4BC477822A9CB092007CCF95 /* Packages */,
 				4B2D82152A94F5F000558031 /* WalkCoreData+CoreDataProperties.swift */,
 				4B9F4BA22A93FF9700E8ECB5 /* sai */,
 				4B9F4BA12A93FF9700E8ECB5 /* Products */,
+				4BC477842A9CB0AF007CCF95 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -304,6 +317,7 @@
 		4B9F4BA22A93FF9700E8ECB5 /* sai */ = {
 			isa = PBXGroup;
 			children = (
+				4BC4777C2A9CB047007CCF95 /* graphql */,
 				4B2D81AD2A94A9ED00558031 /* Screens */,
 				4B2D823E2A961BB000558031 /* ViewModels */,
 				4B2D82352A960A7800558031 /* Protocols */,
@@ -336,6 +350,39 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		4BC4777C2A9CB047007CCF95 /* graphql */ = {
+			isa = PBXGroup;
+			children = (
+				4BC4777D2A9CB047007CCF95 /* schema.graphqls */,
+				4BC4777E2A9CB047007CCF95 /* queries */,
+			);
+			path = graphql;
+			sourceTree = SOURCE_ROOT;
+		};
+		4BC4777E2A9CB047007CCF95 /* queries */ = {
+			isa = PBXGroup;
+			children = (
+				4BC4777F2A9CB047007CCF95 /* GetAllWalks.graphql */,
+				4BC477872A9CB19B007CCF95 /* GetWalk.graphql */,
+			);
+			path = queries;
+			sourceTree = "<group>";
+		};
+		4BC477822A9CB092007CCF95 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				4BC477832A9CB092007CCF95 /* SaiFastAPI */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		4BC477842A9CB0AF007CCF95 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4BD94A6C2A9A256D00B268CF /* WalksScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -365,6 +412,8 @@
 				4B2D822F2A95506300558031 /* FirebaseFirestore */,
 				4B2D82312A95506300558031 /* FirebaseFirestoreCombine-Community */,
 				4B2D82332A95506300558031 /* FirebaseFirestoreSwift */,
+				4BD94A722A9C9CB100B268CF /* Apollo */,
+				4BC477852A9CB0AF007CCF95 /* SaiFastAPI */,
 			);
 			productName = sai;
 			productReference = 4B9F4BA02A93FF9700E8ECB5 /* sai.app */;
@@ -396,6 +445,7 @@
 			mainGroup = 4B9F4B972A93FF9700E8ECB5;
 			packageReferences = (
 				4B2D822C2A95506300558031 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				4BD94A712A9C9CB100B268CF /* XCRemoteSwiftPackageReference "apollo-ios" */,
 			);
 			productRefGroup = 4B9F4BA12A93FF9700E8ECB5 /* Products */;
 			projectDirPath = "";
@@ -413,8 +463,11 @@
 			files = (
 				4B2D82212A95475F00558031 /* GoogleService-Info.plist in Resources */,
 				4B2D81BB2A94AA3E00558031 /* Inter-Medium.otf in Resources */,
+				4BC477882A9CB19B007CCF95 /* GetWalk.graphql in Resources */,
 				4B9F4BAB2A93FF9900E8ECB5 /* Preview Assets.xcassets in Resources */,
+				4BC477812A9CB047007CCF95 /* GetAllWalks.graphql in Resources */,
 				4B2D81BA2A94AA3E00558031 /* Inter-Light.otf in Resources */,
+				4BC477802A9CB047007CCF95 /* schema.graphqls in Resources */,
 				4B2D81B92A94AA3E00558031 /* Inter-Regular.otf in Resources */,
 				4B9F4BA82A93FF9900E8ECB5 /* Assets.xcassets in Resources */,
 				4B2D81B72A94AA3E00558031 /* Inter-Bold.otf in Resources */,
@@ -678,6 +731,14 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		4BD94A712A9C9CB100B268CF /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -700,6 +761,15 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4B2D822C2A95506300558031 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		4BC477852A9CB0AF007CCF95 /* SaiFastAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SaiFastAPI;
+		};
+		4BD94A722A9C9CB100B268CF /* Apollo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4BD94A712A9C9CB100B268CF /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = Apollo;
 		};
 /* End XCSwiftPackageProductDependency section */
 

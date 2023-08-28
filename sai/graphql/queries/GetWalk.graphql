@@ -1,5 +1,18 @@
 query GetWalk($id: String!) {
-    getWalk(id: $id) {
-        id
+  getWalk(id: $id) {
+    id
+    startedAt
+    finishedAt
+    avgPace
+    avgSpeed
+    distance
+    duration
+    walkHistory {
+      history {
+        latitude
+        longitude
+        timestamp
+      }
     }
+  }
 }

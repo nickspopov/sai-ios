@@ -3,36 +3,36 @@
 
 @_exported import ApolloAPI
 
-public class GetWalkQuery: GraphQLQuery {
-  public static let operationName: String = "GetWalk"
+public class CreateWalkMutation: GraphQLMutation {
+  public static let operationName: String = "CreateWalk"
   public static let operationDocument: ApolloAPI.OperationDocument = .init(
     definition: .init(
-      #"query GetWalk($id: String!) { getWalk(id: $id) { __typename id startedAt finishedAt avgPace avgSpeed distance duration walkHistory { __typename history { __typename latitude longitude timestamp } } } }"#
+      #"mutation CreateWalk($input: CreateWalkInput!) { createWalk(input: $input) { __typename id startedAt finishedAt distance duration avgSpeed avgPace walkHistory { __typename history { __typename latitude longitude timestamp } } } }"#
     ))
 
-  public var id: String
+  public var input: CreateWalkInput
 
-  public init(id: String) {
-    self.id = id
+  public init(input: CreateWalkInput) {
+    self.input = input
   }
 
-  public var __variables: Variables? { ["id": id] }
+  public var __variables: Variables? { ["input": input] }
 
   public struct Data: SaiFastAPI.SelectionSet {
     public let __data: DataDict
     public init(_dataDict: DataDict) { __data = _dataDict }
 
-    public static var __parentType: ApolloAPI.ParentType { SaiFastAPI.Objects.Query }
+    public static var __parentType: ApolloAPI.ParentType { SaiFastAPI.Objects.Mutation }
     public static var __selections: [ApolloAPI.Selection] { [
-      .field("getWalk", GetWalk?.self, arguments: ["id": .variable("id")]),
+      .field("createWalk", CreateWalk.self, arguments: ["input": .variable("input")]),
     ] }
 
-    public var getWalk: GetWalk? { __data["getWalk"] }
+    public var createWalk: CreateWalk { __data["createWalk"] }
 
-    /// GetWalk
+    /// CreateWalk
     ///
     /// Parent Type: `WalkType`
-    public struct GetWalk: SaiFastAPI.SelectionSet {
+    public struct CreateWalk: SaiFastAPI.SelectionSet {
       public let __data: DataDict
       public init(_dataDict: DataDict) { __data = _dataDict }
 
@@ -42,23 +42,23 @@ public class GetWalkQuery: GraphQLQuery {
         .field("id", String.self),
         .field("startedAt", SaiFastAPI.DateTime.self),
         .field("finishedAt", SaiFastAPI.DateTime.self),
-        .field("avgPace", Double.self),
-        .field("avgSpeed", Double.self),
         .field("distance", Double.self),
         .field("duration", Double.self),
+        .field("avgSpeed", Double.self),
+        .field("avgPace", Double.self),
         .field("walkHistory", WalkHistory.self),
       ] }
 
       public var id: String { __data["id"] }
       public var startedAt: SaiFastAPI.DateTime { __data["startedAt"] }
       public var finishedAt: SaiFastAPI.DateTime { __data["finishedAt"] }
-      public var avgPace: Double { __data["avgPace"] }
-      public var avgSpeed: Double { __data["avgSpeed"] }
       public var distance: Double { __data["distance"] }
       public var duration: Double { __data["duration"] }
+      public var avgSpeed: Double { __data["avgSpeed"] }
+      public var avgPace: Double { __data["avgPace"] }
       public var walkHistory: WalkHistory { __data["walkHistory"] }
 
-      /// GetWalk.WalkHistory
+      /// CreateWalk.WalkHistory
       ///
       /// Parent Type: `WalkHistoryType`
       public struct WalkHistory: SaiFastAPI.SelectionSet {
@@ -73,7 +73,7 @@ public class GetWalkQuery: GraphQLQuery {
 
         public var history: [History] { __data["history"] }
 
-        /// GetWalk.WalkHistory.History
+        /// CreateWalk.WalkHistory.History
         ///
         /// Parent Type: `WalkHistoryItemType`
         public struct History: SaiFastAPI.SelectionSet {

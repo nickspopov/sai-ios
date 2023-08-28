@@ -1,0 +1,9 @@
+query GetWalkDayActivity($date: DateTime!) {
+    getWalkDayActivity(date: $date) {
+        totalDistance
+        totalDuration
+        avgSpeed
+        avgPace
+        date
+    }
+}

@@ -1,0 +1,18 @@
+mutation CreateWalk($input: CreateWalkInput!) {
+  createWalk(input: $input) {
+      id
+      startedAt
+      finishedAt
+      distance
+      duration
+      avgSpeed
+      avgPace
+      walkHistory {
+        history {
+          latitude
+          longitude
+          timestamp
+        }
+      }
+  }
+}

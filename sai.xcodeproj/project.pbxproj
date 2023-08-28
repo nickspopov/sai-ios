@@ -54,10 +54,7 @@
 		4B9F4BA82A93FF9900E8ECB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA72A93FF9900E8ECB5 /* Assets.xcassets */; };
 		4B9F4BAB2A93FF9900E8ECB5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B9F4BAA2A93FF9900E8ECB5 /* Preview Assets.xcassets */; };
 		4B9F4BB02A93FF9900E8ECB5 /* sai.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B9F4BAE2A93FF9900E8ECB5 /* sai.xcdatamodeld */; };
-		4BC477802A9CB047007CCF95 /* schema.graphqls in Resources */ = {isa = PBXBuildFile; fileRef = 4BC4777D2A9CB047007CCF95 /* schema.graphqls */; };
-		4BC477812A9CB047007CCF95 /* GetAllWalks.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 4BC4777F2A9CB047007CCF95 /* GetAllWalks.graphql */; };
 		4BC477862A9CB0AF007CCF95 /* SaiFastAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 4BC477852A9CB0AF007CCF95 /* SaiFastAPI */; };
-		4BC477882A9CB19B007CCF95 /* GetWalk.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 4BC477872A9CB19B007CCF95 /* GetWalk.graphql */; };
 		4BC4778B2A9CB290007CCF95 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4778A2A9CB290007CCF95 /* Network.swift */; };
 		4BC4778D2A9CB47E007CCF95 /* AuthorizationInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4778C2A9CB47E007CCF95 /* AuthorizationInterceptor.swift */; };
 		4BC4778F2A9CD187007CCF95 /* NetworkInterceptorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4778E2A9CD187007CCF95 /* NetworkInterceptorProvider.swift */; };
@@ -112,13 +109,11 @@
 		4B9F4BA72A93FF9900E8ECB5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B9F4BAA2A93FF9900E8ECB5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4B9F4BAF2A93FF9900E8ECB5 /* sai.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = sai.xcdatamodel; sourceTree = "<group>"; };
-		4BC4777D2A9CB047007CCF95 /* schema.graphqls */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.graphqls; sourceTree = "<group>"; };
-		4BC4777F2A9CB047007CCF95 /* GetAllWalks.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GetAllWalks.graphql; sourceTree = "<group>"; };
 		4BC477832A9CB092007CCF95 /* SaiFastAPI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SaiFastAPI; sourceTree = "<group>"; };
-		4BC477872A9CB19B007CCF95 /* GetWalk.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = GetWalk.graphql; sourceTree = "<group>"; };
 		4BC4778A2A9CB290007CCF95 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		4BC4778C2A9CB47E007CCF95 /* AuthorizationInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationInterceptor.swift; sourceTree = "<group>"; };
 		4BC4778E2A9CD187007CCF95 /* NetworkInterceptorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterceptorProvider.swift; sourceTree = "<group>"; };
+		4BC477902A9CDF6D007CCF95 /* graphql */ = {isa = PBXFileReference; lastKnownFileType = folder; name = graphql; path = sai/graphql; sourceTree = "<group>"; };
 		4BD94A6D2A9A257A00B268CF /* WalksScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalksScreen.swift; sourceTree = "<group>"; };
 		4BD94A6F2A9A285800B268CF /* WalksScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalksScreenViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -304,6 +299,7 @@
 		4B9F4B972A93FF9700E8ECB5 = {
 			isa = PBXGroup;
 			children = (
+				4BC477902A9CDF6D007CCF95 /* graphql */,
 				4BC477822A9CB092007CCF95 /* Packages */,
 				4B2D82152A94F5F000558031 /* WalkCoreData+CoreDataProperties.swift */,
 				4B9F4BA22A93FF9700E8ECB5 /* sai */,
@@ -337,7 +333,6 @@
 				4B2D81AB2A94A9DF00558031 /* Fonts */,
 				4B2D81AA2A94A9D800558031 /* Extensions */,
 				4BC477892A9CB254007CCF95 /* Network */,
-				4BC4777C2A9CB047007CCF95 /* graphql */,
 				4B9F4BA32A93FF9700E8ECB5 /* saiApp.swift */,
 				4B9F4BA52A93FF9700E8ECB5 /* ContentView.swift */,
 				4B2D81A92A94A8E200558031 /* Info.plist */,
@@ -355,25 +350,6 @@
 				4B9F4BAA2A93FF9900E8ECB5 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		4BC4777C2A9CB047007CCF95 /* graphql */ = {
-			isa = PBXGroup;
-			children = (
-				4BC4777D2A9CB047007CCF95 /* schema.graphqls */,
-				4BC4777E2A9CB047007CCF95 /* queries */,
-			);
-			name = graphql;
-			path = sai/graphql;
-			sourceTree = SOURCE_ROOT;
-		};
-		4BC4777E2A9CB047007CCF95 /* queries */ = {
-			isa = PBXGroup;
-			children = (
-				4BC4777F2A9CB047007CCF95 /* GetAllWalks.graphql */,
-				4BC477872A9CB19B007CCF95 /* GetWalk.graphql */,
-			);
-			path = queries;
 			sourceTree = "<group>";
 		};
 		4BC477822A9CB092007CCF95 /* Packages */ = {
@@ -481,11 +457,8 @@
 			files = (
 				4B2D82212A95475F00558031 /* GoogleService-Info.plist in Resources */,
 				4B2D81BB2A94AA3E00558031 /* Inter-Medium.otf in Resources */,
-				4BC477882A9CB19B007CCF95 /* GetWalk.graphql in Resources */,
 				4B9F4BAB2A93FF9900E8ECB5 /* Preview Assets.xcassets in Resources */,
-				4BC477812A9CB047007CCF95 /* GetAllWalks.graphql in Resources */,
 				4B2D81BA2A94AA3E00558031 /* Inter-Light.otf in Resources */,
-				4BC477802A9CB047007CCF95 /* schema.graphqls in Resources */,
 				4B2D81B92A94AA3E00558031 /* Inter-Regular.otf in Resources */,
 				4B9F4BA82A93FF9900E8ECB5 /* Assets.xcassets in Resources */,
 				4B2D81B72A94AA3E00558031 /* Inter-Bold.otf in Resources */,

@@ -22,8 +22,12 @@ public enum SchemaMetadata: ApolloAPI.SchemaMetadata {
 
   public static func objectType(forTypename typename: String) -> Object? {
     switch typename {
-    case "Query": return SaiFastAPI.Objects.Query
+    case "Mutation": return SaiFastAPI.Objects.Mutation
     case "WalkType": return SaiFastAPI.Objects.WalkType
+    case "WalkHistoryType": return SaiFastAPI.Objects.WalkHistoryType
+    case "WalkHistoryItemType": return SaiFastAPI.Objects.WalkHistoryItemType
+    case "Query": return SaiFastAPI.Objects.Query
+    case "WalkDayActivity": return SaiFastAPI.Objects.WalkDayActivity
     default: return nil
     }
   }

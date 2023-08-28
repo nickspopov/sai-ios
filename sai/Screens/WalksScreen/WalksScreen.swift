@@ -10,12 +10,16 @@ import SwiftUI
 struct WalksScreen: View {
     @EnvironmentObject var navigationController: NavigationController
     
+    @StateObject var viewModel = WalksScreenViewModel()
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
                 header
+                today()
                 Spacer()
             }
+            .onAppear(perform: viewModel.onAppear)
             .screenContainer()
         }
         .toolbar(.hidden, for: .navigationBar)
@@ -38,5 +42,28 @@ extension WalksScreen {
             Spacer()
         }
         .padding(.horizontal, 16)
+        .padding(.vertical, 20)
+    }
+}
+
+
+extension WalksScreen {
+    func today() -> some View {
+        guard viewModel.stat != nil else { return AnyView(ProgressView().progressViewStyle(.circular)) }
+        
+        return AnyView(
+            VStack {
+                if viewModel.stat != nil {
+                    Text("duration: \(viewModel.stat?.totalDuration ?? 0)")
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundColor(Color(red: 0.72, green: 0.72, blue: 0.72))
+                    Text("avg speed: \(viewModel.stat?.avgSpeed ?? 0)")
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundColor(Color(red: 0.72, green: 0.72, blue: 0.72))
+                    Text("distance: \(viewModel.stat?.totalDistance ?? 0)")
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundColor(Color(red: 0.72, green: 0.72, blue: 0.72))
+                }
+            })
     }
 }

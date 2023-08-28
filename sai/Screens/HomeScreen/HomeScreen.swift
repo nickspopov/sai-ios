@@ -20,11 +20,14 @@ struct HomeScreen: View {
             }
             VStack(spacing: 10) {
                 CalendarWidget()
-                    .onTapGesture {
+                    .pressable {
                         navigationController.push(to: .calendarScreen)
                     }
                 HStack(spacing: 10) {
                     TripsWidget()
+                        .pressable {
+                            navigationController.push(to: .walksScreen)
+                        }
                     CommunityWidget()
                 }
                 Spacer()

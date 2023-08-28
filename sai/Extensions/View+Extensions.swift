@@ -83,3 +83,10 @@ extension View {
         clipShape( RoundedCorner(radius: radius, corners: corners) )
     }
 }
+
+
+extension View {
+    func pressable(_ action: @escaping () -> Void) -> some View {
+        self.onTapGesture(perform: action)
+    }
+}

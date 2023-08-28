@@ -21,6 +21,7 @@ struct ContentView: View {
                 switch currentRoute {
                 case .testScreen: TestScreen()
                 case .calendarScreen: CalendarScreen().environmentObject(navigationController)
+                case .walksScreen: WalksScreen().environmentObject(navigationController)
                 }
             }
         }

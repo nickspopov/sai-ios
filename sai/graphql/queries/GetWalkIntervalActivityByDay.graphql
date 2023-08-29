@@ -1,0 +1,11 @@
+
+query GetWalkIntervalActivityByDay($fromDate: DateTimeType!, $toDate: DateTimeType!) {
+  getWalkIntervalActivityByDay(fromDate: $fromDate, toDate: $toDate) {
+    totalDuration
+    totalDistance
+    items {
+      date
+      duration
+    }
+  }
+}

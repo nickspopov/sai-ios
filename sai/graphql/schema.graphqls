@@ -9,6 +9,7 @@ type Query {
   getWalks: [WalkType!]!
   getWalk(id: String!): WalkType
   getWalkDayActivity(date: DateTimeType!): WalkDayActivity!
+  getWalkIntervalActivityByDay(fromDate: DateTimeType!, toDate: DateTimeType!): WalkIntervalActivity!
   me: UserType!
 }
 
@@ -48,6 +49,17 @@ type WalkDayActivity {
   avgSpeed: Float!
   avgPace: Float!
   date: DateTimeType!
+}
+
+type WalkIntervalActivity {
+  totalDistance: Float!
+  totalDuration: Float!
+  items: [WalkIntervalActivityItem!]!
+}
+
+type WalkIntervalActivityItem {
+  date: DateTimeType!
+  duration: Float!
 }
 
 type UserType {

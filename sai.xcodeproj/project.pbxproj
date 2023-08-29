@@ -54,10 +54,13 @@
 		4B9F4BA82A93FF9900E8ECB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA72A93FF9900E8ECB5 /* Assets.xcassets */; };
 		4B9F4BAB2A93FF9900E8ECB5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B9F4BAA2A93FF9900E8ECB5 /* Preview Assets.xcassets */; };
 		4B9F4BB02A93FF9900E8ECB5 /* sai.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B9F4BAE2A93FF9900E8ECB5 /* sai.xcdatamodeld */; };
+		4BB6E3882A9D401300030B1E /* WalkTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB6E3872A9D401300030B1E /* WalkTimer.swift */; };
 		4BC477862A9CB0AF007CCF95 /* SaiFastAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 4BC477852A9CB0AF007CCF95 /* SaiFastAPI */; };
 		4BC4778B2A9CB290007CCF95 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4778A2A9CB290007CCF95 /* Network.swift */; };
 		4BC4778D2A9CB47E007CCF95 /* AuthorizationInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4778C2A9CB47E007CCF95 /* AuthorizationInterceptor.swift */; };
 		4BC4778F2A9CD187007CCF95 /* NetworkInterceptorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4778E2A9CD187007CCF95 /* NetworkInterceptorProvider.swift */; };
+		4BCFCFB72A9DDAB8000E2802 /* GraphQLModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCFCFB62A9DDAB8000E2802 /* GraphQLModels.swift */; };
+		4BCFCFB92A9DDAF8000E2802 /* SaiFastAPI+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCFCFB82A9DDAF8000E2802 /* SaiFastAPI+Extensions.swift */; };
 		4BD94A6E2A9A257A00B268CF /* WalksScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD94A6D2A9A257A00B268CF /* WalksScreen.swift */; };
 		4BD94A702A9A285800B268CF /* WalksScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD94A6F2A9A285800B268CF /* WalksScreenViewModel.swift */; };
 		4BD94A732A9C9CB100B268CF /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 4BD94A722A9C9CB100B268CF /* Apollo */; };
@@ -109,11 +112,14 @@
 		4B9F4BA72A93FF9900E8ECB5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B9F4BAA2A93FF9900E8ECB5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4B9F4BAF2A93FF9900E8ECB5 /* sai.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = sai.xcdatamodel; sourceTree = "<group>"; };
+		4BB6E3872A9D401300030B1E /* WalkTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkTimer.swift; sourceTree = "<group>"; };
 		4BC477832A9CB092007CCF95 /* SaiFastAPI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SaiFastAPI; sourceTree = "<group>"; };
 		4BC4778A2A9CB290007CCF95 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		4BC4778C2A9CB47E007CCF95 /* AuthorizationInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationInterceptor.swift; sourceTree = "<group>"; };
 		4BC4778E2A9CD187007CCF95 /* NetworkInterceptorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterceptorProvider.swift; sourceTree = "<group>"; };
 		4BC477902A9CDF6D007CCF95 /* graphql */ = {isa = PBXFileReference; lastKnownFileType = folder; name = graphql; path = sai/graphql; sourceTree = "<group>"; };
+		4BCFCFB62A9DDAB8000E2802 /* GraphQLModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLModels.swift; sourceTree = "<group>"; };
+		4BCFCFB82A9DDAF8000E2802 /* SaiFastAPI+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SaiFastAPI+Extensions.swift"; sourceTree = "<group>"; };
 		4BD94A6D2A9A257A00B268CF /* WalksScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalksScreen.swift; sourceTree = "<group>"; };
 		4BD94A6F2A9A285800B268CF /* WalksScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalksScreenViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,6 +149,7 @@
 				4B2D824F2A98A20A00558031 /* Date+Extension.swift */,
 				4B2D82542A98EA5A00558031 /* UIApplication+Extension.swift */,
 				4B8192522A98F2A10002D953 /* UINavigationController+Extension.swift */,
+				4BCFCFB82A9DDAF8000E2802 /* SaiFastAPI+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -212,6 +219,7 @@
 				4B2D81CF2A94B7C200558031 /* Walk.swift */,
 				4B2D81D32A94DDA000558031 /* Location.swift */,
 				4B2D82492A9899F300558031 /* CalendarEvent.swift */,
+				4BCFCFB62A9DDAB8000E2802 /* GraphQLModels.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -352,6 +360,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		4BB6E3862A9D3D1100030B1E /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				4BB6E3872A9D401300030B1E /* WalkTimer.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		4BC477822A9CB092007CCF95 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
@@ -380,6 +396,7 @@
 		4BD94A6C2A9A256D00B268CF /* WalksScreen */ = {
 			isa = PBXGroup;
 			children = (
+				4BB6E3862A9D3D1100030B1E /* Component */,
 				4BD94A6D2A9A257A00B268CF /* WalksScreen.swift */,
 			);
 			path = WalksScreen;
@@ -479,6 +496,7 @@
 				4B2D81C12A94AAE800558031 /* MapView.swift in Sources */,
 				4B2D82192A94F77A00558031 /* TestScreen.swift in Sources */,
 				4B2D823D2A9619B200558031 /* HomeScreen.swift in Sources */,
+				4BCFCFB92A9DDAF8000E2802 /* SaiFastAPI+Extensions.swift in Sources */,
 				4B2D82502A98A20A00558031 /* Date+Extension.swift in Sources */,
 				4B2D824C2A989ABF00558031 /* CalendarEventsFirestore.swift in Sources */,
 				4B8192562A994F530002D953 /* CreateEventScreen.swift in Sources */,
@@ -498,6 +516,7 @@
 				4BC4778F2A9CD187007CCF95 /* NetworkInterceptorProvider.swift in Sources */,
 				4B2D82552A98EA5A00558031 /* UIApplication+Extension.swift in Sources */,
 				4B2D82392A960AD100558031 /* Errors.swift in Sources */,
+				4BB6E3882A9D401300030B1E /* WalkTimer.swift in Sources */,
 				4B2D824E2A989CC400558031 /* CalendarEventsRepository.swift in Sources */,
 				4B2D81AF2A94A9FA00558031 /* View+Extensions.swift in Sources */,
 				4B2D82442A9629F200558031 /* CalendarWidget.swift in Sources */,
@@ -507,6 +526,7 @@
 				4B2D81BF2A94AA9B00558031 /* ButtonStyles.swift in Sources */,
 				4B2D81BD2A94AA6F00558031 /* Typography.swift in Sources */,
 				4BC4778D2A9CB47E007CCF95 /* AuthorizationInterceptor.swift in Sources */,
+				4BCFCFB72A9DDAB8000E2802 /* GraphQLModels.swift in Sources */,
 				4B2D82532A98A4DE00558031 /* CalendarScreen.swift in Sources */,
 				4B2D82402A961BC300558031 /* HomeScreenViewModel.swift in Sources */,
 				4B2D821F2A95058500558031 /* WalksRepository.swift in Sources */,

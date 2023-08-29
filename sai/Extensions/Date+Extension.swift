@@ -1,6 +1,13 @@
 import Foundation
 
 extension Date {
+    
+    init(fromISOString string: String) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        self = formatter.date(from: string) ?? Date()
+    }
+    
 
     func format(format: String = "yyyy-MM-dd") -> String {
         let formatter = DateFormatter()

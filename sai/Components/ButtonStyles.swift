@@ -107,9 +107,11 @@ enum ButtonSize {
 struct PrimaryButton: ButtonStyle {
     
     let size: ButtonSize
+    let color: Color
     
-    init(_ size: ButtonSize = .large) {
+    init(_ size: ButtonSize = .large, color: Color = Color.blue) {
         self.size = size
+        self.color = color
     }
     
     func makeBody(configuration: Configuration) -> some View {
@@ -123,7 +125,7 @@ struct PrimaryButton: ButtonStyle {
                 view.frame(width: size.width)
             }
             .frame(height: size.height)
-            .background(Color.blue)
+            .background(color)
             .clipShape(RoundedRectangle(cornerRadius: 6))
             .opacity(configuration.isPressed ? 0.5 : 1)
     }
@@ -132,14 +134,16 @@ struct PrimaryButton: ButtonStyle {
 struct SecondaryButton: ButtonStyle {
     
     let size: ButtonSize
+    let color: Color
     
-    init(_ size: ButtonSize = .large) {
+    init(_ size: ButtonSize = .large, color: Color = Color.grayThree) {
         self.size = size
+        self.color = color
     }
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .foregroundStyle(Color.accentBlue)
+            .foregroundStyle(color == Color.grayThree ? Color.accentBlue : color)
             .font(size.font)
             .if(size == .large) { view in
                 view.frame(maxWidth: .infinity)
@@ -149,7 +153,7 @@ struct SecondaryButton: ButtonStyle {
             }
             .frame(height: size.height)
             .overlay {
-                RoundedRectangle(cornerRadius: 6).stroke(Color.grayThree, lineWidth: 1)
+                RoundedRectangle(cornerRadius: 6).stroke(color, lineWidth: 1)
             }
             .opacity(configuration.isPressed ? 0.5 : 1)
     }

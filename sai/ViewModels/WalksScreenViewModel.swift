@@ -7,17 +7,124 @@
 
 import Foundation
 import SaiFastAPI
+import SwiftUI
+import Combine
 
-enum WalksScreenFilterState {
-     case today, week, month, year
+enum WalksScreenFilter {
+     case noFilter, today, week, month, year
+    
+    static var allCases: [WalksScreenFilter] {
+        [.today, .week, .month, .year]
+    }
+    
+    var title: String {
+        switch self {
+        case .today:
+            return "Today"
+        case .week:
+            return "Week"
+        case .month:
+            return "Month"
+        case .year:
+            return "Year"
+        default:
+            return ""
+        }
+    }
+}
+
+enum WalksScreenState {
+    case activeWalk
+    case today(loading: Bool, stat: GetWalkDayActivity?)
+    case week(loading: Bool)
+    case month(loading: Bool)
+    case year(loading: Bool)
+    
+    var filter: WalksScreenFilter {
+        switch self {
+        case .today:
+            return .today
+        case .week:
+            return .week
+        case .month:
+            return .month
+        case .year:
+            return .year
+        default:
+            return .noFilter
+        }
+    }
+    
+    static var initialState: WalksScreenState = .today(loading: false, stat: nil)
 }
 
 class WalksScreenViewModel: ObservableObject {
-    @Published var stat: GetWalkDayActivityQuery.Data.GetWalkDayActivity? = nil
+    @Published var state: WalksScreenState = .initialState
+    
+    @Published var activeWalk: Walk? = nil
+    @Published var timer: Int = 0
+    
+    
+    init() {
+        activeWalkService.$activeWalk
+            .assign(to: &$activeWalk)
+        activeWalkService.$timer
+            .assign(to: &$timer)
+    }
+    
+    private let activeWalkService = ActiveWalkService.shared
+    private var cancelable: AnyCancellable? = nil
+    
+    func onChangeFilter(to newFilter: WalksScreenFilter) {
+        switch newFilter {
+        case .today:
+            self.state = .today(loading: true, stat: nil)
+            getTodayData()
+        case .week:
+            self.state = .week(loading: true)
+        case .month:
+            self.state = .month(loading: true)
+        case .year:
+            self.state = .year(loading: true)
+        default:
+            return
+        }
+    }
     
     func onAppear() {
-        Network.shared.apollo.fetch(query: GetWalkDayActivityQuery(
-            date: "2020-02-20T21:00:00Z"
+        getTodayData()
+    }
+    
+    func startWalk() {
+        activeWalkService.start()
+        withAnimation(.spring()) {
+            self.state = .activeWalk
+        }
+    }
+    
+    func stopWalk() {
+        activeWalkService.stop()
+        withAnimation(.spring()) {
+            self.state = .today(loading: true, stat: nil)
+        }
+        sendLastWalk()
+    }
+    
+    private func sendLastWalk() {
+        guard let walk = activeWalk else {
+            return
+        }
+        
+        Network.shared.apollo.perform(mutation: CreateWalkMutation(
+            input: CreateWalkInput(
+                startedAt: walk.startedAt.ISO8601Format(), finishedAt: Date().ISO8601Format(), walkHistory: CreateWalkHistoryType(history: walk.walkHistory.history.map({ _historyItem in
+                    CreateWalkHistoryItemType(
+                        latitude: _historyItem.latitude,
+                        longitude: _historyItem.longitude,
+                        timestamp: _historyItem.timestamp.ISO8601Format()
+                    )
+                }))
+            )
         )) { [weak self] result in
             guard let self = self else {
                 return
@@ -25,11 +132,36 @@ class WalksScreenViewModel: ObservableObject {
             
             switch result {
             case .success(let graphQLResult):
-                self.stat = graphQLResult.data?.getWalkDayActivity
-            case .failure(let error):
-                print("Error loading data \(error)")
+                print(graphQLResult)
+                self.getTodayData()
+            case .failure(_):
+                return
             }
         }
     
+    }
+    
+    private func getTodayData() {
+        Task {
+            let date = Date().startOfDay().ISO8601Format()
+            Network.shared.apollo.fetch(query: GetWalkDayActivityQuery(
+                date: date
+            ), cachePolicy: .fetchIgnoringCacheData) { [weak self] result in
+                guard let self = self else {
+                    return
+                }
+                
+                if self.state.filter != .today {
+                    return
+                }
+                
+                switch result {
+                case .success(let graphQLResult):
+                    self.state = .today(loading: false, stat: graphQLResult.data?.getWalkDayActivity.toSwiftModel())
+                case .failure(_):
+                    self.state = .today(loading: false, stat: nil)
+                }
+            }
+        }
     }
 }

@@ -6,17 +6,30 @@
 //
 
 import SwiftUI
+import SaiFastAPI
 
 struct WalksScreen: View {
     @EnvironmentObject var navigationController: NavigationController
     
     @StateObject var viewModel = WalksScreenViewModel()
     
+    @Namespace var namespace
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
                 header
-                today()
+                if (viewModel.state.filter != .noFilter) {
+                    filtersRow
+                }
+                switch viewModel.state {
+                case .today(let loading, let stat):
+                    todayLayout(loading, stat)
+                case .activeWalk:
+                    activeWalkLayout()
+                default:
+                    Text("Not implemented")
+                }
                 Spacer()
             }
             .onAppear(perform: viewModel.onAppear)
@@ -27,43 +40,113 @@ struct WalksScreen: View {
 }
 
 struct WalksScreen_Previews: PreviewProvider {
+    
     static var previews: some View {
         WalksScreen()
+            .preferredColorScheme(.dark)
     }
 }
 
+extension WalksScreen {
+    func activeWalkLayout() -> some View {
+        let timer = viewModel.timer
+        return VStack {
+            WalkTimer(hours: Int(timer / 60 / 60), minutes: Int(timer / 60), seconds:         Int(Double(timer)
+                .truncatingRemainder(dividingBy: 60)))
+                .matchedGeometryEffect(id: "timer", in: namespace)
+            Spacer()
+                .frame(height: 80)
+            Text("Distance: \(viewModel.activeWalk?.distance ?? 0, specifier: "%.2f")km")
+                .font(Font.custom("Inter", size: 24))
+                .foregroundColor(Color(red: 0.93, green: 0.34, blue: 0.16))
+            Button(action: {viewModel.stopWalk()}) {
+                Text("Stop")
+            }
+            .buttonStyle(SecondaryButton(.medium, color: .accentOrange))
+            .padding(.top, 24)
+            .matchedGeometryEffect(id: "startButton", in: namespace)
+        }
+        .padding(.horizontal, 20)
+    }
+}
+
+
+extension WalksScreen {
+    func todayLayout(_ loading: Bool, _ stat: GetWalkDayActivity?) -> some View {
+        VStack {
+            HStack(alignment: .top, spacing: 60) {
+                WalkTimer(hours: stat?.hours ?? 0, minutes: stat?.minutes ?? 0, seconds: stat?.seconds ?? 0)
+                    .matchedGeometryEffect(id: "timer", in: namespace)
+                VStack(alignment: .leading, spacing: 50) {
+                    VStack(alignment: .leading) {
+                        Typography("Distance", .semibold(.seven))
+                            .foregroundColor(Color(red: 0.93, green: 0.34, blue: 0.16))
+                        Text("\(stat?.totalDistance ?? 0, specifier: "%.2f")km")
+                            .font(Font.custom("Inter", size: 32))
+                            .foregroundColor(.white)
+                    }
+                    VStack(alignment: .leading) {
+                        Typography("Avg. Speed", .semibold(.seven))
+                            .foregroundColor(Color(red: 0.93, green: 0.34, blue: 0.16))
+                        Text("\(stat?.avgSpeed ?? 0, specifier: "%.0f")km/h")
+                            .font(Font.custom("Inter", size: 32))
+                            .foregroundColor(.white)
+                    }
+                    VStack(alignment: .leading) {
+                        Typography("Avg. Pace", .semibold(.seven))
+                            .foregroundColor(Color(red: 0.93, green: 0.34, blue: 0.16))
+                        Text("\(stat?.avgPace ?? 0, specifier: "%.0f")h/km")
+                            .font(Font.custom("Inter", size: 32))
+                            .foregroundColor(.white)
+                    }
+                }
+                .padding(.top, 80)
+            }
+            Button(action: {viewModel.startWalk()}) {
+                Text("Start")
+            }
+            .buttonStyle(PrimaryButton(.large, color: .accentOrange))
+            .padding(.top, 24)
+            .matchedGeometryEffect(id: "startButton", in: namespace)
+        }
+        .padding(.horizontal, 20)
+    }
+}
+
+extension WalksScreen {
+    var filtersRow: some View {
+        HStack(alignment: .center, spacing: 20) {
+            ForEach(WalksScreenFilter.allCases, id: \.self) { _filter in
+                Button(action: {viewModel.onChangeFilter(to: _filter)}, label: {
+                    Text("\(_filter.title)")
+                        .foregroundColor(viewModel.state.filter == _filter ? .white : .white.opacity(0.42))
+                })
+                .buttonStyle(TextButton(.medium))
+
+            }
+            Spacer()
+        }
+        .padding(.bottom, 44)
+        .padding(.horizontal, 24)
+    }
+}
 
 extension WalksScreen {
     var header: some View {
         HStack {
             Button(action: { navigationController.pop() }) {
-                Image(systemName: "chevron.left")
-            }
+                Typography("Back")
+            }.buttonStyle(PrimaryButton(.small))
             Spacer()
+            Typography("Activity", .semibold(.six))
+            Spacer()
+            Button(action: {}) {
+                Typography("Back")
+            }.buttonStyle(PrimaryButton(.small))
+                .opacity(0)
         }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 20)
-    }
-}
-
-
-extension WalksScreen {
-    func today() -> some View {
-        guard viewModel.stat != nil else { return AnyView(ProgressView().progressViewStyle(.circular)) }
-        
-        return AnyView(
-            VStack {
-                if viewModel.stat != nil {
-                    Text("duration: \(viewModel.stat?.totalDuration ?? 0)")
-                        .font(.system(size: 14, weight: .medium))
-                        .foregroundColor(Color(red: 0.72, green: 0.72, blue: 0.72))
-                    Text("avg speed: \(viewModel.stat?.avgSpeed ?? 0)")
-                        .font(.system(size: 14, weight: .medium))
-                        .foregroundColor(Color(red: 0.72, green: 0.72, blue: 0.72))
-                    Text("distance: \(viewModel.stat?.totalDistance ?? 0)")
-                        .font(.system(size: 14, weight: .medium))
-                        .foregroundColor(Color(red: 0.72, green: 0.72, blue: 0.72))
-                }
-            })
+        .padding(.top, 32)
+        .padding(.bottom, 40)
+        .padding(.horizontal, 20)
     }
 }

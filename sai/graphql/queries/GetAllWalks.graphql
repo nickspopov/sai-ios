@@ -1,0 +1,18 @@
+query GetWalks {
+  getWalks {
+    id
+    startedAt
+    finishedAt
+    avgPace
+    avgSpeed
+    distance
+    duration
+    walkHistory {
+      history {
+        latitude
+        longitude
+        timestamp
+      }
+    }
+  }
+}

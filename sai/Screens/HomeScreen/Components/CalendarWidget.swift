@@ -40,7 +40,7 @@ extension CalendarWidget {
         private let calendarEventsRepository: CalendarEventsRepository = CalendarEventsRepository.shared
         @Published var date: Date = Date()
         @Published var events: [CalendarEvent] = []
-    
+        
         func onAppear() {
             Task {
                 do {

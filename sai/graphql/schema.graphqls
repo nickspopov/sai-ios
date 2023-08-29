@@ -1,0 +1,86 @@
+"""
+A directive used by the Apollo iOS client to annotate operations or fragments that should be used exclusively for generating local cache mutations instead of as standard operations.
+"""
+directive @apollo_client_ios_localCacheMutation on QUERY | MUTATION | SUBSCRIPTION | FRAGMENT_DEFINITION
+
+type Query {
+  getEvent(id: String!): CalendarEventType
+  getAllEvents: [CalendarEventType]!
+  getWalks: [WalkType!]!
+  getWalk(id: String!): WalkType
+  getWalkDayActivity(date: DateTimeType!): WalkDayActivity!
+  me: UserType!
+}
+
+type CalendarEventType {
+  id: String!
+  name: String!
+  startedAt: DateTimeType!
+}
+
+"""Date with time (isoformat)"""
+scalar DateTimeType
+
+type WalkType {
+  id: String!
+  startedAt: DateTimeType!
+  finishedAt: DateTimeType!
+  walkHistory: WalkHistoryType!
+  distance: Float!
+  duration: Float!
+  avgSpeed: Float!
+  avgPace: Float!
+}
+
+type WalkHistoryType {
+  history: [WalkHistoryItemType!]!
+}
+
+type WalkHistoryItemType {
+  latitude: Float!
+  longitude: Float!
+  timestamp: DateTimeType!
+}
+
+type WalkDayActivity {
+  totalDistance: Float!
+  totalDuration: Float!
+  avgSpeed: Float!
+  avgPace: Float!
+  date: DateTimeType!
+}
+
+type UserType {
+  id: String!
+  name: String!
+  dogs: [DogType!]!
+}
+
+type DogType {
+  id: String!
+  name: String!
+  breed: String!
+  dateOfBirth: DateTimeType!
+  sex: String!
+}
+
+type Mutation {
+  createEvent(name: String!, startedAt: DateTimeType!): CalendarEventType!
+  createWalk(input: CreateWalkInput!): WalkType!
+}
+
+input CreateWalkInput {
+  startedAt: DateTimeType!
+  finishedAt: DateTimeType!
+  walkHistory: CreateWalkHistoryType!
+}
+
+input CreateWalkHistoryType {
+  history: [CreateWalkHistoryItemType!]!
+}
+
+input CreateWalkHistoryItemType {
+  latitude: Float!
+  longitude: Float!
+  timestamp: DateTimeType!
+}

@@ -19,7 +19,7 @@ struct MapView: UIViewRepresentable {
     
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
-        mapView.setUserTrackingMode(.follow, animated: true)
+        mapView.setUserTrackingMode(.none, animated: true)
         mapView.delegate = context.coordinator
         
         mapView.region = MKCoordinateRegion(center: CLLocationCoordinate2D(

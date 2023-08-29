@@ -36,8 +36,8 @@ enum WalksScreenFilter {
 enum WalksScreenState {
     case activeWalk
     case today(loading: Bool, stat: GetWalkDayActivity?)
-    case week(loading: Bool)
-    case month(loading: Bool)
+    case week(loading: Bool, stat: GetWalkIntervalActivityByDay?, fromDate: Date, toDate: Date)
+    case month(loading: Bool, stat: GetWalkIntervalActivityByDay?, fromDate: Date, toDate: Date)
     case year(loading: Bool)
     
     var filter: WalksScreenFilter {
@@ -81,9 +81,15 @@ class WalksScreenViewModel: ObservableObject {
             self.state = .today(loading: true, stat: nil)
             getTodayData()
         case .week:
-            self.state = .week(loading: true)
+            let fromDate = Date().startOfWeek()
+            let toDate = Date().endOfWeek().endOfDay()
+            self.state = .week(loading: true, stat: nil, fromDate: fromDate, toDate: toDate)
+            getWeekData(fromDate: fromDate, toDate: toDate)
         case .month:
-            self.state = .month(loading: true)
+            let fromDate = Date().startOfMonth()
+            let toDate = Date().endOfMonth().endOfDay()
+            self.state = .month(loading: true, stat: nil, fromDate: fromDate, toDate: toDate)
+            getMonthData(fromDate: fromDate, toDate: toDate)
         case .year:
             self.state = .year(loading: true)
         default:
@@ -138,7 +144,56 @@ class WalksScreenViewModel: ObservableObject {
                 return
             }
         }
+    }
     
+    private func getMonthData(fromDate: Date, toDate: Date) {
+        Task {
+            Network.shared.apollo.fetch(query: GetWalkIntervalActivityByDayQuery(
+                fromDate: fromDate.ISO8601Format(),
+                toDate: toDate.ISO8601Format()
+            ), cachePolicy: .fetchIgnoringCacheData) { [weak self] result in
+                guard let self = self else {
+                    return
+                }
+
+                if self.state.filter != .month {
+                    return
+                }
+
+                switch result {
+                case .success(let graphQLResult):
+                    let newState: WalksScreenState = .month(loading: false, stat: graphQLResult.data?.getWalkIntervalActivityByDay.toSwift(), fromDate: fromDate, toDate: toDate)
+                    self.state = newState
+                case .failure(_):
+                    self.state = .month(loading: false, stat: nil, fromDate: fromDate, toDate: toDate)
+                }
+            }
+        }
+    }
+    
+    private func getWeekData(fromDate: Date, toDate: Date) {
+        Task {
+            Network.shared.apollo.fetch(query: GetWalkIntervalActivityByDayQuery(
+                fromDate: fromDate.ISO8601Format(),
+                toDate: toDate.ISO8601Format()
+            ), cachePolicy: .fetchIgnoringCacheData) { [weak self] result in
+                guard let self = self else {
+                    return
+                }
+
+                if self.state.filter != .week {
+                    return
+                }
+
+                switch result {
+                case .success(let graphQLResult):
+                    let newState: WalksScreenState = .week(loading: false, stat: graphQLResult.data?.getWalkIntervalActivityByDay.toSwift() ,fromDate: fromDate, toDate: toDate)
+                    self.state = newState
+                case .failure(_):
+                    self.state = .week(loading: false, stat: nil, fromDate: fromDate, toDate: toDate)
+                }
+            }
+        }
     }
     
     private func getTodayData() {

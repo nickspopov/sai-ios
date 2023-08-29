@@ -28,3 +28,15 @@ struct GetWalkDayActivity {
             .truncatingRemainder(dividingBy: 60))
     }
 }
+
+
+struct GetWalkIntervalActivityItem: Hashable {
+    public var duration: Double
+    public var date: Date
+}
+
+struct GetWalkIntervalActivityByDay {
+    public var totalDuration: Double
+    public var totalDistance: Double
+    public var items: [GetWalkIntervalActivityItem]
+}

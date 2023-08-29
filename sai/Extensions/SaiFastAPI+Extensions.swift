@@ -21,3 +21,11 @@ extension GetWalkDayActivityQuery.Data.GetWalkDayActivity {
     }
 }
 
+
+extension GetWalkIntervalActivityByDayQuery.Data.GetWalkIntervalActivityByDay {
+    func toSwift() -> GetWalkIntervalActivityByDay {
+        return GetWalkIntervalActivityByDay(totalDuration: self.totalDuration, totalDistance: self.totalDistance, items: self.items.map {
+            GetWalkIntervalActivityItem(duration: $0.duration, date: Date(fromISOString: $0.date))
+        })
+    }
+}

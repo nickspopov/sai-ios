@@ -4,7 +4,7 @@ extension Date {
     
     init(fromISOString string: String) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZ"
         self = formatter.date(from: string) ?? Date()
     }
     
@@ -53,6 +53,18 @@ extension Date {
         components.day = 1
         components.second = -1
         return Calendar.current.date(byAdding: components, to: startOfDay())!
+    }
+    
+    func startOfWeek() -> Date {
+        let gregorian = Calendar(identifier: .gregorian)
+        let sunday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))!
+        return gregorian.date(byAdding: .day, value: 1, to: sunday)!
+    }
+    
+    func endOfWeek() -> Date {
+        let gregorian = Calendar(identifier: .gregorian)
+        let sunday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))!
+        return gregorian.date(byAdding: .day, value: 7, to: sunday)!
     }
     
     func startOfMonth() -> Date {

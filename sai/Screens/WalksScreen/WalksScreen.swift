@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SaiFastAPI
+import Charts
 
 struct WalksScreen: View {
     @EnvironmentObject var navigationController: NavigationController
@@ -27,6 +28,10 @@ struct WalksScreen: View {
                     todayLayout(loading, stat)
                 case .activeWalk:
                     activeWalkLayout()
+                case .week(let loading, let stat, let fromDate, let toDate):
+                    chartByDayLayout(loading, stat, fromDate: fromDate, toDate: toDate)
+                case .month(let loading, let stat, let fromDate, let toDate):
+                    chartByDayLayout(loading, stat, fromDate: fromDate, toDate: toDate)
                 default:
                     Text("Not implemented")
                 }
@@ -44,6 +49,63 @@ struct WalksScreen_Previews: PreviewProvider {
     static var previews: some View {
         WalksScreen()
             .preferredColorScheme(.dark)
+    }
+}
+
+extension WalksScreen {
+    func chartByDayLayout(_ loading: Bool, _ stat: GetWalkIntervalActivityByDay?, fromDate: Date, toDate: Date) -> some View {
+        return VStack(alignment: .leading, spacing: 0) {
+            HStack {
+                Typography(String(format: "%.2f", (stat?.totalDuration ?? 0.0) / 60 / 60), .semibold(.one))
+                Typography("hr", .semibold(.six))
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(Color(red: 0.42, green: 0.42, blue: 0.42))
+                    .padding(.top)
+                Spacer()
+            }
+            .padding(.bottom, 2)
+            Typography("\(fromDate.format(format: "MMM dd")) - \(toDate.format(format: "MMM dd, YYYY"))", .semibold(.six))
+                .multilineTextAlignment(.center)
+                .foregroundColor(Color(red: 0.42, green: 0.42, blue: 0.42))
+            Spacer()
+                .frame(height: 57)
+            VStack {
+                Chart {
+                    ForEach(stat?.items ?? [], id: \.self) { _item in
+                        BarMark(x: .value("Day", _item.date.format(format: "d")), y: .value("Value", _item.duration))
+                            .foregroundStyle(Color.accentOrange)
+                    }
+                }
+                .chartXAxis {
+                    AxisMarks(values: .automatic) { value in
+                        AxisValueLabel {
+                            if(value.count < 10) {
+                                Text(value.as(String.self) ?? "")
+                            } else {
+                                if (value.index % 2 == 0) {
+                                    Text(value.as(String.self) ?? "")
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .frame(maxWidth: .infinity, minHeight: 187, maxHeight: 187)
+            Spacer()
+                .frame(height: 40)
+            HStack {
+                Typography("Distance", .semibold(.six))
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(Color(red: 0.42, green: 0.42, blue: 0.42))
+                Spacer()
+                Typography("\(String(format:"%.1f", stat?.totalDistance ?? 0.0))km", .semibold(.six))
+                    .multilineTextAlignment(.center)
+            }
+            .padding(20)
+            .background(Color(red: 0.13, green: 0.13, blue: 0.13))
+            .cornerRadius(16)
+        }
+        .padding(.horizontal, 20)
     }
 }
 

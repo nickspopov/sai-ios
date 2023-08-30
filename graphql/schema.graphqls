@@ -5,7 +5,7 @@ directive @apollo_client_ios_localCacheMutation on QUERY | MUTATION | SUBSCRIPTI
 
 type Query {
   getEvent(id: String!): CalendarEventType
-  getAllEvents: [CalendarEventType]!
+  getEvents(fromDate: DateTimeType!, toDate: DateTimeType!): [CalendarEventType]!
   getWalks: [WalkType!]!
   getWalk(id: String!): WalkType
   getWalkDayActivity(date: DateTimeType!): WalkDayActivity!
@@ -15,12 +15,24 @@ type Query {
 
 type CalendarEventType {
   id: String!
-  name: String!
+  title: String!
+  notes: String!
   startedAt: DateTimeType!
+  endedAt: DateTimeType!
+  type: CalendarEventTypeEnumType!
 }
 
 """Date with time (isoformat)"""
 scalar DateTimeType
+
+enum CalendarEventTypeEnumType {
+  walking
+  food
+  pills
+  grooming
+  vet
+  other
+}
 
 type WalkType {
   id: String!
@@ -77,8 +89,16 @@ type DogType {
 }
 
 type Mutation {
-  createEvent(name: String!, startedAt: DateTimeType!): CalendarEventType!
+  createEvent(input: CreateEventInput!): CalendarEventType!
   createWalk(input: CreateWalkInput!): WalkType!
+}
+
+input CreateEventInput {
+  title: String!
+  notes: String!
+  startedAt: DateTimeType!
+  endedAt: DateTimeType!
+  type: CalendarEventTypeEnumType!
 }
 
 input CreateWalkInput {

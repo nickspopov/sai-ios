@@ -26,6 +26,7 @@ public enum SchemaMetadata: ApolloAPI.SchemaMetadata {
     case "WalkType": return SaiFastAPI.Objects.WalkType
     case "WalkHistoryType": return SaiFastAPI.Objects.WalkHistoryType
     case "WalkHistoryItemType": return SaiFastAPI.Objects.WalkHistoryItemType
+    case "CalendarEventType": return SaiFastAPI.Objects.CalendarEventType
     case "Query": return SaiFastAPI.Objects.Query
     case "WalkIntervalActivity": return SaiFastAPI.Objects.WalkIntervalActivity
     case "WalkIntervalActivityItem": return SaiFastAPI.Objects.WalkIntervalActivityItem

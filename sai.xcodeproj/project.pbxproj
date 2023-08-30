@@ -118,7 +118,6 @@
 		4BC4778A2A9CB290007CCF95 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		4BC4778C2A9CB47E007CCF95 /* AuthorizationInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationInterceptor.swift; sourceTree = "<group>"; };
 		4BC4778E2A9CD187007CCF95 /* NetworkInterceptorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterceptorProvider.swift; sourceTree = "<group>"; };
-		4BC477902A9CDF6D007CCF95 /* graphql */ = {isa = PBXFileReference; lastKnownFileType = folder; name = graphql; path = sai/graphql; sourceTree = "<group>"; };
 		4BCE46722A9ED85E009142D8 /* ApolloClient+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ApolloClient+Extensions.swift"; sourceTree = "<group>"; };
 		4BCFCFB62A9DDAB8000E2802 /* GraphQLModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLModels.swift; sourceTree = "<group>"; };
 		4BCFCFB82A9DDAF8000E2802 /* SaiFastAPI+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SaiFastAPI+Extensions.swift"; sourceTree = "<group>"; };
@@ -310,7 +309,6 @@
 		4B9F4B972A93FF9700E8ECB5 = {
 			isa = PBXGroup;
 			children = (
-				4BC477902A9CDF6D007CCF95 /* graphql */,
 				4BC477822A9CB092007CCF95 /* Packages */,
 				4B2D82152A94F5F000558031 /* WalkCoreData+CoreDataProperties.swift */,
 				4B9F4BA22A93FF9700E8ECB5 /* sai */,

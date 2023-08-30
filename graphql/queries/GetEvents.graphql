@@ -1,0 +1,10 @@
+query GetEvents($fromDate: DateTimeType!, $toDate: DateTimeType!) {
+  getEvents(fromDate: $fromDate, toDate: $toDate) {
+    id
+    title
+    notes
+    startedAt
+    endedAt
+    type
+  }
+}

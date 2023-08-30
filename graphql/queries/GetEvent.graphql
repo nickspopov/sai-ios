@@ -1,0 +1,10 @@
+query GetEvent($id: String!) {
+  getEvent(id: $id) {
+    id
+    title
+    notes
+    startedAt
+    endedAt
+    type
+  }
+}

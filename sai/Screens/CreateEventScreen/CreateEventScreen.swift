@@ -30,7 +30,9 @@ struct CreateEventScreen: View {
         
         Task {
             if let result = try? await calendarRepository.save(event) {
-                presentationMode.wrappedValue.dismiss()
+                DispatchQueue.main.async {
+                    presentationMode.wrappedValue.dismiss()
+                }
             } else {
                 print("Error")
             }
@@ -45,10 +47,10 @@ struct CreateEventScreen: View {
                     TextField("Title", text: $title)
                     TextField("Notes", text: $notes, axis: .vertical)
                         .lineLimit(3...5)
-                    DatePicker(selection: $startedAt, in: ...(endedAt - 3600)) {
+                    DatePicker(selection: $startedAt, in: Date()...) {
                         Text("Start date")
                     }
-                    DatePicker(selection: $endedAt, in: ...endedAt) {
+                    DatePicker(selection: $endedAt, in: (Date() + 3600)...) {
                         Text("End date")
                     }
                     Picker("Type", selection: $type) {

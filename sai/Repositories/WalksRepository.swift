@@ -10,15 +10,7 @@ import Foundation
 
 class WalksRepository {
     
-    let walksDao: WalksDaoProtocol = WalksFirestore.shared
-    
-    func getAll() async throws -> [Walk] {
-        do {
-            return try await walksDao.getAll()
-        } catch {
-            throw RepositoryError.somethingWentWrong
-        }
-    }
+    let walksDao: WalksDaoProtocol = WalksDao.shared
     
     func get(by id: String) async throws -> Walk {
         do {

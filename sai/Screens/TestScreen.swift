@@ -80,13 +80,13 @@ extension TestScreen {
         
         
         private func getAll() {
-            Task {
-                if let _walks = try? await walksRepository.getAll() {
-                    DispatchQueue.main.async {
-                        self.walks = _walks
-                    }
-                }
-            }
+//            Task {
+//                if let _walks = try? await walksRepository.getAll() {
+//                    DispatchQueue.main.async {
+//                        self.walks = _walks
+//                    }
+//                }
+//            }
 //            let fetchRequest: NSFetchRequest<WalkCoreData> = WalkCoreData.fetchRequest()
 //            do {
 //                let result = try viewContext.fetch(fetchRequest)

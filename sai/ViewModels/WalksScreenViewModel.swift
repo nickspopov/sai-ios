@@ -155,7 +155,7 @@ class WalksScreenViewModel: ObservableObject {
             let results = Network.shared.apollo.fetch(query: GetWalkIntervalActivityByDayQuery(
                 fromDate: fromDate.ISO8601Format(),
                 toDate: toDate.ISO8601Format()
-            ), cachePolicy: .returnCacheDataAndFetch, queue: .global(qos: .userInitiated))
+            ), cachePolicy: .returnCacheDataAndFetch, queue: .main)
 
             do {
               for try await result in results {
@@ -182,7 +182,7 @@ class WalksScreenViewModel: ObservableObject {
             let results = Network.shared.apollo.fetch(query: GetWalkIntervalActivityByDayQuery(
                 fromDate: fromDate.ISO8601Format(),
                 toDate: toDate.ISO8601Format()
-            ), cachePolicy: .returnCacheDataAndFetch, queue: .global(qos: .userInitiated))
+            ), cachePolicy: .returnCacheDataAndFetch, queue: .main)
 
             do {
               for try await result in results {
@@ -229,29 +229,5 @@ class WalksScreenViewModel: ObservableObject {
               debugPrint(error)
             }
         }
-//        Task {
-//            let date = Date().startOfDay().ISO8601Format()
-//            Network.shared.apollo.fetch(query: GetWalkDayActivityQuery(
-//                date: date
-//            ), cachePolicy: .fetchIgnoringCacheData) { [weak self] result in
-//                guard let self = self else {
-//                    return
-//                }
-//
-//                if self.state.filter != .today {
-//                    return
-//                }
-//
-//                switch result {
-//                case .success(let graphQLResult):
-//                    let newStat = graphQLResult.data?.getWalkDayActivity.toSwiftModel()
-//
-//                    self.state = .today(loading: false, stat: newStat)
-//                    self.lastTodayStat = newStat
-//                case .failure(_):
-//                    self.state = .today(loading: false, stat: nil)
-//                }
-//            }
-//        }
     }
 }

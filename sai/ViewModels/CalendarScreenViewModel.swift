@@ -48,10 +48,6 @@ class CalendarScreenViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     self.events = events
                 }
-            } else {
-                DispatchQueue.main.async {
-                    self.events = []
-                }
             }
         }
     }

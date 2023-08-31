@@ -20,6 +20,7 @@ class CalendarScreenViewModel: ObservableObject {
     
     init() {
         $selectedDate.sink { selectedDate in
+            self.getCachedEvents(for: selectedDate)
             self.getEvents(for: selectedDate)
         }.store(in: &subscribers)
     }
@@ -30,6 +31,15 @@ class CalendarScreenViewModel: ObservableObject {
     
     func onDateSelected(date: Date) {
         selectedDate = date
+    }
+    
+    private func getCachedEvents(for date: Date) -> Void {
+        Task {
+            let events = await calendarEventsRepository.getCached(from: date.startOfDay(), to: date.endOfDay())
+            DispatchQueue.main.async {
+                self.events = events
+            }
+        }
     }
     
     private func getEvents(for date: Date) -> Void {

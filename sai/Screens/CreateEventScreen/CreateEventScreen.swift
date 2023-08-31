@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct CreateEventScreen: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     @State var title: String = ""
     @State var notes: String = ""
     @State var startedAt: Date = Date()
     @State var endedAt: Date = Date() + 3600
-    @State var type: CalendarEventType = .walk
+    @State var type: CalendarEventType = .walking
     
     func createEvent() {
         let calendarRepository = CalendarEventsRepository.shared
@@ -27,7 +29,11 @@ struct CreateEventScreen: View {
         )
         
         Task {
-            try? await calendarRepository.save(event)
+            if let result = try? await calendarRepository.save(event) {
+                presentationMode.wrappedValue.dismiss()
+            } else {
+                print("Error")
+            }
         }
     }
     

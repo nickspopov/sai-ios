@@ -9,7 +9,7 @@ import Foundation
 
 
 class CalendarEventsRepository {
-    let calendarEventsDao: CalendarEventsDaoProtocol = CalendarEventsFirestore.shared
+    let calendarEventsDao = CalendarEventsGraphQL()
     
     func get(by id: String) async throws -> CalendarEvent {
         do {
@@ -19,6 +19,10 @@ class CalendarEventsRepository {
         } catch {
             throw RepositoryError.somethingWentWrong
         }
+    }
+    
+    func getCached(from fromDate: Date, to toDate: Date) async -> [CalendarEvent] {
+        return await calendarEventsDao.getCached(from: fromDate, to: toDate)
     }
     
     func get(from fromDate: Date, to toDate: Date) async throws -> [CalendarEvent] {

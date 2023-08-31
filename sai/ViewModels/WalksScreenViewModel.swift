@@ -160,7 +160,7 @@ class WalksScreenViewModel: ObservableObject {
             do {
               for try await result in results {
                   if let data = result.data?.getWalkIntervalActivityByDay {
-                      let newStat = data.toSwift()
+                      let newStat = data.toSwiftModel()
                       let newState: WalksScreenState = .month(loading: false, stat: newStat, fromDate: fromDate, toDate: toDate)
                       self.lastMonthStat = newStat
                       DispatchQueue.main.async {
@@ -187,7 +187,7 @@ class WalksScreenViewModel: ObservableObject {
             do {
               for try await result in results {
                   if let data = result.data?.getWalkIntervalActivityByDay {
-                      let newStat = data.toSwift()
+                      let newStat = data.toSwiftModel()
                       let newState: WalksScreenState = .week(loading: false, stat: newStat, fromDate: fromDate, toDate: toDate)
                       self.lastWeekStat = newStat
                       DispatchQueue.main.async {

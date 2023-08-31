@@ -4,10 +4,10 @@ A directive used by the Apollo iOS client to annotate operations or fragments th
 directive @apollo_client_ios_localCacheMutation on QUERY | MUTATION | SUBSCRIPTION | FRAGMENT_DEFINITION
 
 type Query {
-  getEvent(id: String!): CalendarEventType
-  getEvents(fromDate: DateTimeType!, toDate: DateTimeType!): [CalendarEventType]!
+  getEvent(id: String!): CalendarEventType!
+  getEvents(fromDate: DateTimeType!, toDate: DateTimeType!): [CalendarEventType!]!
   getWalks: [WalkType!]!
-  getWalk(id: String!): WalkType
+  getWalk(id: String!): WalkType!
   getWalkDayActivity(date: DateTimeType!): WalkDayActivity!
   getWalkIntervalActivityByDay(fromDate: DateTimeType!, toDate: DateTimeType!): WalkIntervalActivity!
   me: UserType!

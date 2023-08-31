@@ -24,10 +24,10 @@ public class GetEventQuery: GraphQLQuery {
 
     public static var __parentType: ApolloAPI.ParentType { SaiFastAPI.Objects.Query }
     public static var __selections: [ApolloAPI.Selection] { [
-      .field("getEvent", GetEvent?.self, arguments: ["id": .variable("id")]),
+      .field("getEvent", GetEvent.self, arguments: ["id": .variable("id")]),
     ] }
 
-    public var getEvent: GetEvent? { __data["getEvent"] }
+    public var getEvent: GetEvent { __data["getEvent"] }
 
     /// GetEvent
     ///

@@ -104,13 +104,18 @@ extension CalendarWidget {
 
 //MARK: - Schedule
 extension CalendarWidget {
+    private var scheduleItems: [CalendarEvent] {
+        var sss = Array(viewModel.events.prefix(2))
+        return sss
+    }
+    
     private var schedule: some View {
         VStack(alignment: .leading, spacing: 8) {
             Spacer()
                 .frame(height: 6)
             Typography("Upcoming", .regular(.eight))
                 .foregroundColor(randomGrayColor)
-            ForEach(viewModel.events.prefix(2)) { event in
+            ForEach(scheduleItems, id: \.id) { event in
                 schedultItem(event)
             }
             Spacer()

@@ -24,10 +24,10 @@ public class GetWalkQuery: GraphQLQuery {
 
     public static var __parentType: ApolloAPI.ParentType { SaiFastAPI.Objects.Query }
     public static var __selections: [ApolloAPI.Selection] { [
-      .field("getWalk", GetWalk?.self, arguments: ["id": .variable("id")]),
+      .field("getWalk", GetWalk.self, arguments: ["id": .variable("id")]),
     ] }
 
-    public var getWalk: GetWalk? { __data["getWalk"] }
+    public var getWalk: GetWalk { __data["getWalk"] }
 
     /// GetWalk
     ///

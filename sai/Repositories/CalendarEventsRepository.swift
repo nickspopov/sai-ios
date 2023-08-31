@@ -9,11 +9,11 @@ import Foundation
 
 
 class CalendarEventsRepository {
-    let calendarEventsDao = CalendarEventsGraphQL()
+    let calendarEventsGraphQLService = CalendarEventsGraphQL()
     
     func get(by id: String) async throws -> CalendarEvent {
         do {
-            return try await calendarEventsDao.get(by: id)
+            return try await calendarEventsGraphQLService.get(by: id)
         } catch DaoError.notFound {
             throw RepositoryError.notFound
         } catch {
@@ -22,12 +22,12 @@ class CalendarEventsRepository {
     }
     
     func getCached(from fromDate: Date, to toDate: Date) async -> [CalendarEvent] {
-        return await calendarEventsDao.getCached(from: fromDate, to: toDate)
+        return await calendarEventsGraphQLService.getCached(from: fromDate, to: toDate)
     }
     
     func get(from fromDate: Date, to toDate: Date) async throws -> [CalendarEvent] {
         do {
-            return try await calendarEventsDao.get(from: fromDate, to: toDate)
+            return try await calendarEventsGraphQLService.get(from: fromDate, to: toDate)
         } catch {
             throw RepositoryError.somethingWentWrong
         }
@@ -35,7 +35,7 @@ class CalendarEventsRepository {
     
     func save(_ calendarEvent: CalendarEvent) async throws -> CalendarEvent {
         do {
-            return try await calendarEventsDao.save(calendarEvent)
+            return try await calendarEventsGraphQLService.save(calendarEvent)
         } catch DaoError.notFound {
             throw RepositoryError.notFound
         } catch {
@@ -45,7 +45,7 @@ class CalendarEventsRepository {
     
     func delete(_ calendarEvent: CalendarEvent) async throws {
         do {
-            try await calendarEventsDao.delete(calendarEvent)
+            try await calendarEventsGraphQLService.delete(calendarEvent)
         } catch DaoError.notFound {
             throw RepositoryError.notFound
         } catch {

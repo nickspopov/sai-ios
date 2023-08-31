@@ -11,6 +11,27 @@ import Foundation
 class WalksRepository {
     
     let walksDao: WalksDaoProtocol = WalksDao.shared
+    let walksGraphQLService: WalksDaoProtocol = WalksGraphQLService()
+    
+    // MARK: - Analytics
+    
+    func getIntervalAnalyticByDay(fromDate: Date, toDate: Date) async throws -> GetWalkIntervalActivityByDay {
+        return try await walksGraphQLService.getIntervalAnalyticByDay(fromDate: fromDate, toDate: toDate)
+    }
+    
+    func getIntervalAnalyticByDayCached(fromDate: Date, toDate: Date) async -> GetWalkIntervalActivityByDay? {
+        return await walksGraphQLService.getIntervalAnalyticByDayCached(fromDate: fromDate, toDate: toDate)
+    }
+    
+    func getOneDayAnalytic(for date: Date) async throws -> GetWalkDayActivity {
+        return try await walksGraphQLService.getOneDayAnalytic(for: date)
+    }
+    
+    func getOneDayAnalyticCached(for date: Date) async -> GetWalkDayActivity? {
+        return await walksGraphQLService.getOneDayAnalyticCached(for: date)
+    }
+    
+    // MARK: - CRUD
     
     func get(by id: String) async throws -> Walk {
         do {
@@ -31,13 +52,7 @@ class WalksRepository {
     }
     
     func save(_ walk: Walk) async throws -> Walk {
-        do {
-            return try await walksDao.save(walk)
-        } catch DaoError.notFound {
-            throw RepositoryError.notFound
-        } catch {
-            throw RepositoryError.somethingWentWrong
-        }
+        return try await walksGraphQLService.save(walk)
     }
     
     func delete(_ walk: Walk) async throws {

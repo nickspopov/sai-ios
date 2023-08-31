@@ -23,7 +23,7 @@ struct TestScreen: View {
                 viewModel.stop()
             }
             List(viewModel.walks) { walk in
-                Text("\(walk.id!)")
+                Text("\(walk.id)")
             }
         }.onAppear(perform: viewModel.onAppear)
     }

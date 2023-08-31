@@ -22,7 +22,7 @@ class ActiveWalkService: ObservableObject {
     func start() {
         locationService.requestPermission()
         isRunning = true
-        activeWalk = Walk(startedAt: Date(), finishedAt: Date(), walkHistory: WalkHistory(history: []))
+        activeWalk = Walk(startedAt: Date(), finishedAt: Date(), walkHistory: WalkHistoryModel(history: []))
         locationService.start()
         
         locationCancellable = locationService.currentLocationSubject

@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import Apollo
 import SaiFastAPI
 import SwiftUI
 import Combine
 
 enum WalksScreenFilter {
-     case noFilter, today, week, month, year
+    case noFilter, today, week, month, year
     
     static var allCases: [WalksScreenFilter] {
         [.today, .week, .month, .year]
@@ -64,6 +65,8 @@ class WalksScreenViewModel: ObservableObject {
     @Published var activeWalk: Walk? = nil
     @Published var timer: Int = 0
     
+    let walksRepository = WalksRepository.shared
+    
     
     init() {
         activeWalkService.$activeWalk
@@ -73,22 +76,27 @@ class WalksScreenViewModel: ObservableObject {
     }
     
     private let activeWalkService = ActiveWalkService.shared
-    private var cancelable: AnyCancellable? = nil
     
     func onChangeFilter(to newFilter: WalksScreenFilter) {
         switch newFilter {
         case .today:
-            self.state = .today(loading: true, stat: lastTodayStat)
+            withAnimation {
+                self.state = .today(loading: true, stat: lastTodayStat)
+            }
             getTodayData()
         case .week:
             let fromDate = Date().startOfWeek()
             let toDate = Date().endOfWeek().endOfDay()
-            self.state = .week(loading: true, stat: lastWeekStat, fromDate: fromDate, toDate: toDate)
+            withAnimation {
+                self.state = .week(loading: true, stat: lastWeekStat, fromDate: fromDate, toDate: toDate)
+            }
             getWeekData(fromDate: fromDate, toDate: toDate)
         case .month:
             let fromDate = Date().startOfMonth()
             let toDate = Date().endOfMonth().endOfDay() + 1
-            self.state = .month(loading: true, stat: lastMonthStat, fromDate: fromDate, toDate: toDate)
+            withAnimation {
+                self.state = .month(loading: true, stat: lastMonthStat, fromDate: fromDate, toDate: toDate)
+            }
             getMonthData(fromDate: fromDate, toDate: toDate)
         case .year:
             self.state = .year(loading: true)
@@ -111,37 +119,36 @@ class WalksScreenViewModel: ObservableObject {
     func stopWalk() {
         activeWalkService.stop()
         withAnimation(.spring()) {
-            self.state = .today(loading: true, stat: nil)
+            self.state = .today(loading: true, stat: lastTodayStat)
+        }
+        if let walk = activeWalk {
+            increaseTodayStat(with: walk)
         }
         sendLastWalk()
     }
+    
+    private func increaseTodayStat(with walk: Walk) {
+        guard case .today(let loading, var stat) = state else {
+            return
+        }
+        
+        stat?.totalDuration += walk.duration
+        stat?.totalDistance += walk.distance
+        self.state = .today(loading: loading, stat: stat)
+    }
+    
     
     private func sendLastWalk() {
         guard let walk = activeWalk else {
             return
         }
         
-        Network.shared.apollo.perform(mutation: CreateWalkMutation(
-            input: CreateWalkInput(
-                startedAt: walk.startedAt.ISO8601Format(), finishedAt: Date().ISO8601Format(), walkHistory: CreateWalkHistoryType(history: walk.walkHistory.history.map({ _historyItem in
-                    CreateWalkHistoryItemType(
-                        latitude: _historyItem.latitude,
-                        longitude: _historyItem.longitude,
-                        timestamp: _historyItem.timestamp.ISO8601Format()
-                    )
-                }))
-            )
-        )) { [weak self] result in
-            guard let self = self else {
-                return
-            }
-            
-            switch result {
-            case .success(let graphQLResult):
-                print(graphQLResult)
-                self.getTodayData()
-            case .failure(_):
-                return
+        Task {
+            do {
+                _ = try await walksRepository.save(walk)
+                getTodayData()
+            } catch {
+                print(error)
             }
         }
     }
@@ -152,82 +159,81 @@ class WalksScreenViewModel: ObservableObject {
     
     private func getMonthData(fromDate: Date, toDate: Date) {
         Task {
-            let results = Network.shared.apollo.fetch(query: GetWalkIntervalActivityByDayQuery(
-                fromDate: fromDate.ISO8601Format(),
-                toDate: toDate.ISO8601Format()
-            ), cachePolicy: .returnCacheDataAndFetch, queue: .main)
-
-            do {
-              for try await result in results {
-                  if let data = result.data?.getWalkIntervalActivityByDay {
-                      let newStat = data.toSwiftModel()
-                      let newState: WalksScreenState = .month(loading: false, stat: newStat, fromDate: fromDate, toDate: toDate)
-                      self.lastMonthStat = newStat
-                      DispatchQueue.main.async {
-                          if (self.state.filter != .month) {
-                              return
-                          }
-                          self.state = newState
-                      }
-                  }
-              }
-            } catch {
-              debugPrint(error)
+            let cached = await walksRepository.getIntervalAnalyticByDayCached(fromDate: fromDate, toDate: toDate)
+            let newState: WalksScreenState = .month(loading: false, stat: cached, fromDate: fromDate, toDate: toDate)
+            DispatchQueue.main.async {
+                if (self.state.filter != .month) {
+                    return
+                }
+                self.state = newState
             }
+            do {
+                let result = try await walksRepository.getIntervalAnalyticByDay(fromDate: fromDate, toDate: toDate)
+                
+                self.lastMonthStat = result
+                let newState: WalksScreenState = .month(loading: false, stat: result, fromDate: fromDate, toDate: toDate)
+                
+                DispatchQueue.main.async {
+                    if (self.state.filter != .month) {
+                        return
+                    }
+                    self.state = newState
+                }
+            } catch {}
         }
     }
     
     private func getWeekData(fromDate: Date, toDate: Date) {
         Task {
-            let results = Network.shared.apollo.fetch(query: GetWalkIntervalActivityByDayQuery(
-                fromDate: fromDate.ISO8601Format(),
-                toDate: toDate.ISO8601Format()
-            ), cachePolicy: .returnCacheDataAndFetch, queue: .main)
-
-            do {
-              for try await result in results {
-                  if let data = result.data?.getWalkIntervalActivityByDay {
-                      let newStat = data.toSwiftModel()
-                      let newState: WalksScreenState = .week(loading: false, stat: newStat, fromDate: fromDate, toDate: toDate)
-                      self.lastWeekStat = newStat
-                      DispatchQueue.main.async {
-                          if (self.state.filter != .week) {
-                              return
-                          }
-                          self.state = newState
-                      }
-                  }
-              }
-            } catch {
-              debugPrint(error)
+            let cached = await walksRepository.getIntervalAnalyticByDayCached(fromDate: fromDate, toDate: toDate)
+            let newState: WalksScreenState = .week(loading: false, stat: cached, fromDate: fromDate, toDate: toDate)
+            DispatchQueue.main.async {
+                if (self.state.filter != .week) {
+                    return
+                }
+                self.state = newState
             }
+            do {
+                let result = try await walksRepository.getIntervalAnalyticByDay(fromDate: fromDate, toDate: toDate)
+                
+                self.lastWeekStat = result
+                
+                let newState: WalksScreenState = .week(loading: false, stat: result, fromDate: fromDate, toDate: toDate)
+                DispatchQueue.main.async {
+                    if (self.state.filter != .week) {
+                        return
+                    }
+                    self.state = newState
+                }
+            } catch {}
         }
     }
     
     private func getTodayData() {
         Task {
-            let date = Date().startOfDay().ISO8601Format()
-            let results = Network.shared.apollo.fetch(query: GetWalkDayActivityQuery(
-                date: date
-            ), cachePolicy: .returnCacheDataAndFetch, queue: .global(qos: .userInitiated))
-
-            do {
-              for try await result in results {
-                  if let data = result.data?.getWalkDayActivity {
-                      let newStat = data.toSwiftModel()
-                      let newState: WalksScreenState = .today(loading: false, stat: newStat)
-                      self.lastTodayStat = newStat
-                      DispatchQueue.main.async {
-                          if (self.state.filter != .today) {
-                              return
-                          }
-                          self.state = newState
-                      }
-                  }
-              }
-            } catch {
-              debugPrint(error)
+            let date = Date().startOfDay()
+            let cached = await walksRepository.getOneDayAnalyticCached(for: date)
+            let newState: WalksScreenState = .today(loading: false, stat: cached)
+            DispatchQueue.main.async {
+                if (self.state.filter != .today) {
+                    return
+                }
+                self.state = newState
             }
+            do {
+                let result = try await walksRepository.getOneDayAnalytic(for: date)
+                
+                self.lastTodayStat = result
+                
+                let newState: WalksScreenState = .today(loading: false, stat: result)
+                DispatchQueue.main.async {
+                    if (self.state.filter != .today) {
+                        return
+                    }
+                    self.state = newState
+                }
+            } catch {}
+            
         }
     }
 }

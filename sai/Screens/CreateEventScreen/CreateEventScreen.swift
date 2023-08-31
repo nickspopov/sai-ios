@@ -20,7 +20,6 @@ struct CreateEventScreen: View {
         let calendarRepository = CalendarEventsRepository.shared
         
         let event = CalendarEvent(
-            id: nil,
             title: title,
             notes: notes,
             startedAt: startedAt,

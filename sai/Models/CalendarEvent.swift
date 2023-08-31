@@ -33,7 +33,7 @@ enum CalendarEventType: String, Codable, CaseIterable {
 }
 
 struct CalendarEvent: Codable, Identifiable, Hashable {
-    @DocumentID var id: String?
+    var id: String = UUID().uuidString
     var title: String
     var notes: String
     var startedAt: Date

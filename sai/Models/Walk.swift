@@ -10,10 +10,10 @@ import CoreData
 import FirebaseFirestoreSwift
 
 struct Walk: Codable, Identifiable {
-    @DocumentID var id: String?
+    var id: String = UUID().uuidString
     var startedAt: Date
     var finishedAt: Date
-    var walkHistory: WalkHistory
+    var walkHistory: WalkHistoryModel
     var user: String = "default"
     
     // MARK: - Computed properties
@@ -43,7 +43,7 @@ struct Walk: Codable, Identifiable {
     // MARK: - Core Data
     func toCoreData(context: NSManagedObjectContext) -> WalkCoreData {
         let walkCoreData = WalkCoreData(context: context)
-        walkCoreData.id = id ?? UUID().uuidString
+        walkCoreData.id = id
         walkCoreData.startedAt = startedAt
         walkCoreData.finishedAt = finishedAt
         walkCoreData.walkHistory = walkHistory.toJSON()
@@ -51,13 +51,13 @@ struct Walk: Codable, Identifiable {
     }
     
     static func fromCoreData(coreData: WalkCoreData) -> Walk {
-        let walkHistory = WalkHistory.fromJSON(coreData.walkHistory)
+        let walkHistory = WalkHistoryModel.fromJSON(coreData.walkHistory)
         return Walk(id: coreData.id, startedAt: coreData.startedAt, finishedAt: coreData.finishedAt, walkHistory: walkHistory)
     }
 }
 
 // MARK: - WalkHistory
-struct WalkHistory: Codable {
+struct WalkHistoryModel: Codable {
     var history: [Location]
     
     mutating func addLocation(_ location: Location) {
@@ -71,10 +71,10 @@ struct WalkHistory: Codable {
         return result
     }
     
-    static func fromJSON(_ json: String) -> WalkHistory {
+    static func fromJSON(_ json: String) -> WalkHistoryModel {
         let decoder = JSONDecoder()
         let data = json.data(using: .utf8)!
         let history = try! decoder.decode([Location].self, from: data)
-        return WalkHistory(history: history)
+        return WalkHistoryModel(history: history)
     }
 }

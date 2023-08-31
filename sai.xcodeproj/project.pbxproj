@@ -52,6 +52,7 @@
 		4B9F4BA82A93FF9900E8ECB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA72A93FF9900E8ECB5 /* Assets.xcassets */; };
 		4B9F4BAB2A93FF9900E8ECB5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B9F4BAA2A93FF9900E8ECB5 /* Preview Assets.xcassets */; };
 		4B9F4BB02A93FF9900E8ECB5 /* sai.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B9F4BAE2A93FF9900E8ECB5 /* sai.xcdatamodeld */; };
+		4BABA4D92AA08A80002F1880 /* WalksGraphQLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BABA4D82AA08A80002F1880 /* WalksGraphQLService.swift */; };
 		4BB6E3882A9D401300030B1E /* WalkTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB6E3872A9D401300030B1E /* WalkTimer.swift */; };
 		4BC477862A9CB0AF007CCF95 /* SaiFastAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 4BC477852A9CB0AF007CCF95 /* SaiFastAPI */; };
 		4BC4778B2A9CB290007CCF95 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4778A2A9CB290007CCF95 /* Network.swift */; };
@@ -110,6 +111,7 @@
 		4B9F4BA72A93FF9900E8ECB5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B9F4BAA2A93FF9900E8ECB5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4B9F4BAF2A93FF9900E8ECB5 /* sai.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = sai.xcdatamodel; sourceTree = "<group>"; };
+		4BABA4D82AA08A80002F1880 /* WalksGraphQLService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalksGraphQLService.swift; sourceTree = "<group>"; };
 		4BB6E3872A9D401300030B1E /* WalkTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkTimer.swift; sourceTree = "<group>"; };
 		4BC477832A9CB092007CCF95 /* SaiFastAPI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SaiFastAPI; sourceTree = "<group>"; };
 		4BC4778A2A9CB290007CCF95 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
@@ -387,6 +389,7 @@
 			isa = PBXGroup;
 			children = (
 				4BCE46752A9F55EB009142D8 /* CalendarEventsGraphQLService.swift */,
+				4BABA4D82AA08A80002F1880 /* WalksGraphQLService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 				4B2D821F2A95058500558031 /* WalksRepository.swift in Sources */,
 				4B2D82462A96352400558031 /* TripsWidget.swift in Sources */,
 				4B9F4BA42A93FF9700E8ECB5 /* saiApp.swift in Sources */,
+				4BABA4D92AA08A80002F1880 /* WalksGraphQLService.swift in Sources */,
 				4B8192532A98F2A10002D953 /* UINavigationController+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

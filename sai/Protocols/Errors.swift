@@ -14,3 +14,12 @@ enum DaoError: Error {
 enum RepositoryError: Error {
     case notFound, somethingWentWrong
 }
+
+
+enum GraphQLError: Error {
+    case somethingWentWrong
+    case responseError(firstError: String, allErrors: [String])
+}
+
+
+struct NotImplementedError: Error {}

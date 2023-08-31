@@ -16,7 +16,7 @@ extension ApolloClient {
     cachePolicy: CachePolicy = .default,
     contextIdentifier: UUID? = nil,
     queue: DispatchQueue = .global(qos: .userInitiated)
-  ) -> AsyncThrowingStream<GraphQLResult<Query.Data>, Error> {
+  ) -> AsyncThrowingStream<Query.Data, Error> {
     AsyncThrowingStream { continuation in
       let request = fetch(
         query: query,
@@ -26,12 +26,20 @@ extension ApolloClient {
       ) { response in
         switch response {
         case .success(let result):
-          continuation.yield(result)
+            if let data = result.data {
+                continuation.yield(data)
+            } else if let errors = result.errors {
+                continuation.finish(throwing: GraphQLError.responseError(firstError: errors.first?.message ?? "", allErrors: errors.map {$0.message ?? "" }))
+            } else {
+                continuation.finish(throwing: GraphQLError.somethingWentWrong)
+            }
+            
           if result.isFinalForCachePolicy(cachePolicy) {
             continuation.finish()
           }
         case .failure(let error):
-          continuation.finish(throwing: error)
+            print("GraphQL Failure \(error)")
+            continuation.finish(throwing: GraphQLError.somethingWentWrong)
         }
       }
       continuation.onTermination = { @Sendable _ in request.cancel() }
@@ -56,11 +64,14 @@ extension ApolloClient {
                 case .success(let result):
                     if let data = result.data {
                         continuation.resume(returning: data)
+                    } else if let errors = result.errors {
+                        continuation.resume(throwing: GraphQLError.responseError(firstError: errors.first?.message ?? "", allErrors: errors.map {$0.message ?? "" }))
                     } else {
-                        continuation.resume(throwing: result.errors!.first!)
+                        continuation.resume(throwing: GraphQLError.somethingWentWrong)
                     }
                 case .failure(let error):
-                    continuation.resume(throwing: error)
+                    print("GraphQL Failure \(error)")
+                    continuation.resume(throwing: GraphQLError.somethingWentWrong)
                 }
             }
         })
@@ -94,11 +105,14 @@ extension ApolloClient {
                 case .success(let result):
                     if let data = result.data {
                         continuation.resume(returning: data)
+                    } else if let errors = result.errors {
+                        continuation.resume(throwing: GraphQLError.responseError(firstError: errors.first?.message ?? "", allErrors: errors.map {$0.message ?? "" }))
                     } else {
-                        continuation.resume(throwing: result.errors!.first!)
+                        continuation.resume(throwing: GraphQLError.somethingWentWrong)
                     }
                 case .failure(let error):
-                    continuation.resume(throwing: error)
+                    print("GraphQL Failure \(error)")
+                    continuation.resume(throwing: GraphQLError.somethingWentWrong)
                 }
             }
         }

@@ -28,7 +28,7 @@ class CalendarEventsGraphQL: CalendarEventsDaoProtocol {
     func getCached(from fromDate: Date, to toDate: Date) async -> [CalendarEvent] {
         if let result = await Network.shared.apollo.getCachedQuery(query: GetEventsQuery(fromDate: fromDate.ISO8601Format(), toDate: toDate.ISO8601Format())) {
             return result.getEvents.map { graphQLItem in
-                return CalendarEvent(title: graphQLItem.title, notes: graphQLItem.notes, startedAt: Date(fromISOString: graphQLItem.startedAt), endedAt: Date(fromISOString: graphQLItem.endedAt), type: CalendarEventType.init(rawValue: graphQLItem.type.rawValue) ?? .other)
+                return CalendarEvent(id: graphQLItem.id, title: graphQLItem.title, notes: graphQLItem.notes, startedAt: Date(fromISOString: graphQLItem.startedAt), endedAt: Date(fromISOString: graphQLItem.endedAt), type: CalendarEventType.init(rawValue: graphQLItem.type.rawValue) ?? .other)
             }
         } else {
             return []

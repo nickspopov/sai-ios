@@ -29,3 +29,13 @@ extension GetWalkIntervalActivityByDayQuery.Data.GetWalkIntervalActivityByDay {
         })
     }
 }
+
+extension CreateWalkMutation.Data.CreateWalk {
+    func toSwiftModel() -> Walk {
+        let history = self.walkHistory.history.map {
+            Location(latitude: $0.latitude, longitude: $0.longitude, timestamp: Date(fromISOString: $0.timestamp))
+        }
+        return Walk(startedAt: Date(fromISOString: self.startedAt), finishedAt: Date(fromISOString: self.finishedAt), walkHistory: WalkHistoryModel(history: history)
+            )
+    }
+}

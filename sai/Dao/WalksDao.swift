@@ -9,7 +9,6 @@ import Foundation
 import CoreData
 
 class WalksDao: WalksDaoProtocol {
-    
     private let viewContext = PersistenceController.shared.container.viewContext
     
     func getAll() async throws -> [Walk] {
@@ -59,7 +58,7 @@ class WalksDao: WalksDaoProtocol {
     }
     
     func save(_ walk: Walk) async throws -> Walk {
-        let walkCoreData = walk.toCoreData(context: viewContext)
+        let _ = walk.toCoreData(context: viewContext)
         try? viewContext.save()
         return walk
     }
@@ -67,6 +66,22 @@ class WalksDao: WalksDaoProtocol {
     func delete(_ walk: Walk) async throws {
         viewContext.delete(walk.toCoreData(context: viewContext))
         try? viewContext.save()
+    }
+    
+    func getOneDayAnalytic(for date: Date) async throws -> GetWalkDayActivity {
+        throw NotImplementedError()
+    }
+    
+    func getOneDayAnalyticCached(for date: Date) async -> GetWalkDayActivity? {
+        return nil
+    }
+    
+    func getIntervalAnalyticByDay(fromDate: Date, toDate: Date) async throws -> GetWalkIntervalActivityByDay {
+        throw NotImplementedError()
+    }
+    
+    func getIntervalAnalyticByDayCached(fromDate: Date, toDate: Date) async -> GetWalkIntervalActivityByDay? {
+        return nil
     }
     
     private init() {}

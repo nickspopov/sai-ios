@@ -25,6 +25,11 @@ class CalendarScreenViewModel: ObservableObject {
         }.store(in: &subscribers)
     }
     
+    func onSheetDismiss() {
+        getEvents(for: selectedDate)
+    }
+    
+    
     func onAppear() {
         calcDatesArray()
     }
@@ -32,6 +37,8 @@ class CalendarScreenViewModel: ObservableObject {
     func onDateSelected(date: Date) {
         selectedDate = date
     }
+    
+    // MARK: - Private
     
     private func getCachedEvents(for date: Date) -> Void {
         Task {
@@ -52,7 +59,7 @@ class CalendarScreenViewModel: ObservableObject {
         }
     }
     
-    // MARK: - Private
+    
     private func calcDatesArray(direction: Int = 0) {
         // Empty case
         if(self.daysArray.isEmpty) {

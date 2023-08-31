@@ -38,14 +38,15 @@ struct CalendarScreen_Previews: PreviewProvider {
 //MARK: - Events List
 extension CalendarScreen {
     var eventsList: some View {
-        VStack {
-            ForEach(viewModel.events, id: \.self) { event in
-                eventItem(event)
-                    .padding()
-            }
-            Spacer()
+        ScrollView {
+            VStack {
+                ForEach(viewModel.events, id: \.self) { event in
+                    eventItem(event)
+                        .padding()
+                }
+                Spacer()
+            }.frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
     func eventItem(_ event: CalendarEvent) -> some View {
@@ -150,7 +151,9 @@ extension CalendarScreen {
                 Image(systemName: "plus")
                     .blendMode(.difference)
             }
-            .sheet(isPresented: $viewModel.showCreateEventScreen) {
+            .sheet(isPresented: $viewModel.showCreateEventScreen, onDismiss: {
+                viewModel.onSheetDismiss()
+            }) {
                 CreateEventScreen()
             }
         }

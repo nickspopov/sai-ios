@@ -16,6 +16,8 @@ struct CreateEventScreen: View {
     @State var endedAt: Date = Date() + 3600
     @State var type: CalendarEventType = .walking
     
+    @State var isLoading: Bool = false
+    
     func createEvent() {
         let calendarRepository = CalendarEventsRepository.shared
         
@@ -26,13 +28,18 @@ struct CreateEventScreen: View {
             endedAt: endedAt,
             type: type
         )
-        
+        isLoading = true
         Task {
-            if let result = try? await calendarRepository.save(event) {
+            if let _ = try? await calendarRepository.save(event) {
                 DispatchQueue.main.async {
+                    isLoading = false
                     presentationMode.wrappedValue.dismiss()
                 }
             } else {
+                DispatchQueue.main.async {
+                    isLoading = false
+                }
+                
                 print("Error")
             }
         }
@@ -49,7 +56,7 @@ struct CreateEventScreen: View {
                     DatePicker(selection: $startedAt, in: Date()...) {
                         Text("Start date")
                     }
-                    DatePicker(selection: $endedAt, in: (Date() + 3600)...) {
+                    DatePicker(selection: $endedAt, in: (startedAt + 600)...) {
                         Text("End date")
                     }
                     Picker("Type", selection: $type) {
@@ -70,12 +77,18 @@ struct CreateEventScreen: View {
                         Text("Cancel")
                     })
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        createEvent()
-                    }, label: {
-                        Text("Save")
-                    })
+                if isLoading {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        ProgressView()
+                    }
+                } else {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(action: {
+                            createEvent()
+                        }, label: {
+                            Text("Save")
+                        })
+                    }
                 }
             }
         }

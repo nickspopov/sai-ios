@@ -105,8 +105,7 @@ extension CalendarWidget {
 //MARK: - Schedule
 extension CalendarWidget {
     private var scheduleItems: [CalendarEvent] {
-        var sss = Array(viewModel.events.prefix(2))
-        return sss
+        Array(viewModel.events.prefix(2))
     }
     
     private var schedule: some View {

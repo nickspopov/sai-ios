@@ -41,11 +41,13 @@ extension CalendarScreen {
         ScrollView {
             VStack {
                 ForEach(viewModel.events, id: \.self) { event in
-                    eventItem(event)
-                        .padding()
+                    CalendarEventItem(event: event)
+                        .padding(.horizontal, 22)
                 }
                 Spacer()
-            }.frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+            .padding(.top, 20)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
     

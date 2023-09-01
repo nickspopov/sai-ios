@@ -48,6 +48,7 @@
 		4B8192532A98F2A10002D953 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8192522A98F2A10002D953 /* UINavigationController+Extension.swift */; };
 		4B8192562A994F530002D953 /* CreateEventScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8192552A994F530002D953 /* CreateEventScreen.swift */; };
 		4B99D9EE2AA1E3FB002392B8 /* TimeInterval+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B99D9ED2AA1E3FB002392B8 /* TimeInterval+Extensions.swift */; };
+		4B99D9F12AA20AE2002392B8 /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 4B99D9F02AA20AE2002392B8 /* SwiftUIPager */; };
 		4B9F4BA42A93FF9700E8ECB5 /* saiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA32A93FF9700E8ECB5 /* saiApp.swift */; };
 		4B9F4BA62A93FF9700E8ECB5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA52A93FF9700E8ECB5 /* ContentView.swift */; };
 		4B9F4BA82A93FF9900E8ECB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B9F4BA72A93FF9900E8ECB5 /* Assets.xcassets */; };
@@ -137,6 +138,7 @@
 				4BD94A732A9C9CB100B268CF /* Apollo in Frameworks */,
 				4B2D82322A95506300558031 /* FirebaseFirestoreCombine-Community in Frameworks */,
 				4B2D822E2A95506300558031 /* FirebaseAuth in Frameworks */,
+				4B99D9F12AA20AE2002392B8 /* SwiftUIPager in Frameworks */,
 				4B2D82302A95506300558031 /* FirebaseFirestore in Frameworks */,
 				4B2D82342A95506300558031 /* FirebaseFirestoreSwift in Frameworks */,
 				4BC477862A9CB0AF007CCF95 /* SaiFastAPI in Frameworks */,
@@ -440,6 +442,7 @@
 				4B2D82332A95506300558031 /* FirebaseFirestoreSwift */,
 				4BD94A722A9C9CB100B268CF /* Apollo */,
 				4BC477852A9CB0AF007CCF95 /* SaiFastAPI */,
+				4B99D9F02AA20AE2002392B8 /* SwiftUIPager */,
 			);
 			productName = sai;
 			productReference = 4B9F4BA02A93FF9700E8ECB5 /* sai.app */;
@@ -472,6 +475,7 @@
 			packageReferences = (
 				4B2D822C2A95506300558031 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				4BD94A712A9C9CB100B268CF /* XCRemoteSwiftPackageReference "apollo-ios" */,
+				4B99D9EF2AA20AE2002392B8 /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
 			);
 			productRefGroup = 4B9F4BA12A93FF9700E8ECB5 /* Products */;
 			projectDirPath = "";
@@ -763,6 +767,14 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		4B99D9EF2AA20AE2002392B8 /* XCRemoteSwiftPackageReference "SwiftUIPager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/fermoya/SwiftUIPager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		4BD94A712A9C9CB100B268CF /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
@@ -793,6 +805,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4B2D822C2A95506300558031 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		4B99D9F02AA20AE2002392B8 /* SwiftUIPager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4B99D9EF2AA20AE2002392B8 /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
+			productName = SwiftUIPager;
 		};
 		4BC477852A9CB0AF007CCF95 /* SaiFastAPI */ = {
 			isa = XCSwiftPackageProductDependency;

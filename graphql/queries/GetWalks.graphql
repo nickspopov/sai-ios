@@ -1,5 +1,5 @@
-query GetWalks {
-  getWalks {
+query getWalks($fromDate: DateTimeType, $toDate: DateTimeType, $limit: Int) {
+  getWalks(fromDate: $fromDate, toDate: $toDate, limit: $limit) {
     id
     startedAt
     finishedAt

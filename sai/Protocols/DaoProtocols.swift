@@ -10,7 +10,7 @@ import Foundation
 
 protocol WalksDaoProtocol {
     func get(by id: String) async throws -> Walk
-    func get(from fromDate: Date, to toDate: Date) async throws -> [Walk]
+    func get(from fromDate: Date?, to toDate: Date?, limit: Int?) async throws -> [Walk]
     func save(_ walk: Walk) async throws -> Walk
     func delete(_ walk: Walk) async throws
     

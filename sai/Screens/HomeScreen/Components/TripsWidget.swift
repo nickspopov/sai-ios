@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct TripsWidget: View {
+    
+    @StateObject var viewModel = ViewModel()
+    
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             mapView
@@ -20,25 +23,15 @@ struct TripsWidget: View {
         )
         .background(Color(red: 0.15, green: 0.15, blue: 0.15))
         .cornerRadius(8)
+        .onAppear(perform: viewModel.onAppear)
     }
 }
-
-struct TripsWidget_Previews: PreviewProvider {
-    static var previews: some View {
-        HStack(spacing: 10) {
-            TripsWidget()
-            TripsWidget()
-        }
-        .padding(.horizontal, 16)
-        .preferredColorScheme(.dark)
-    }
-}
-
 
 // MARK: - Map
 extension TripsWidget {
     var mapView: some View {
-        MapView(locationHistory: [])
+        let locationHistory = viewModel.walk?.walkHistory.toCLLocationCoordinate2DArray() ?? []
+        return MapView(locationHistory: locationHistory)
             .frame(
                 maxWidth: .infinity,
                 maxHeight: .infinity,
@@ -59,13 +52,13 @@ extension TripsWidget {
             )
             .background(
                 LinearGradient(
-                  stops: [
-                    Gradient.Stop(color: .black.opacity(0.9), location: 0.0),
-                    Gradient.Stop(color: .black.opacity(0.6), location: 0.6),
-                    Gradient.Stop(color: .black.opacity(0.3), location: 1),
-                  ],
-                  startPoint: UnitPoint(x: 0, y: 0.5),
-                  endPoint: UnitPoint(x: 1, y: 0.5)
+                    stops: [
+                        Gradient.Stop(color: .black.opacity(0.9), location: 0.0),
+                        Gradient.Stop(color: .black.opacity(0.6), location: 0.6),
+                        Gradient.Stop(color: .black.opacity(0.3), location: 1),
+                    ],
+                    startPoint: UnitPoint(x: 0, y: 0.5),
+                    endPoint: UnitPoint(x: 1, y: 0.5)
                 )
             )
     }
@@ -74,20 +67,69 @@ extension TripsWidget {
 // MARK: - Info
 extension TripsWidget {
     var info: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            VStack(alignment: .leading, spacing: 0) {
-                Typography("12.2 km", .semibold(.six))
-                Typography("Distance", .regular(.eight))
-                    .foregroundColor(Color(red: 0.64, green: 0.67, blue: 0.69))
-                
-            }
-            VStack(alignment: .leading, spacing: 0) {
-                Typography("32:12", .semibold(.six))
-                Typography("Duration", .regular(.eight))
-                    .foregroundColor(Color(red: 0.64, green: 0.67, blue: 0.69))
-                
+        guard let walk = viewModel.walk else {
+            return AnyView(EmptyView())
+        }
+        
+        return AnyView(
+            VStack(alignment: .leading, spacing: 16) {
+                VStack(alignment: .leading, spacing: 0) {
+                    Typography("\(String(format: "%.2f", walk.distance)) km", .semibold(.six))
+                    Typography("Distance", .regular(.eight))
+                        .foregroundColor(Color(red: 0.64, green: 0.67, blue: 0.69))
+                    
+                }
+                VStack(alignment: .leading, spacing: 0) {
+                    Typography(walk.duration.stringFromTimeInterval(), .semibold(.six))
+                    Typography("Duration", .regular(.eight))
+                        .foregroundColor(Color(red: 0.64, green: 0.67, blue: 0.69))
+                    
+                }
+            }.padding(10)
+        )
+    }
+}
+
+
+
+// MARK: - ViewModel
+extension TripsWidget {
+    class ViewModel: ObservableObject {
+        let walksRepository = WalksRepository.shared
+        
+        @Published var walk: Walk? = nil
+        
+        func onAppear() {
+            Task {
+                do {
+                    let _walk = try await walksRepository.get(by: "64ef8bb1e983cfe11cb53fe0")
+                    DispatchQueue.main.async {
+                        self.walk = _walk
+                    }
+
+//                    if let _walk = try await walksRepository.getLast() {
+//                        DispatchQueue.main.async {
+//                            self.walk = _walk
+//                        }
+//                    }
+                } catch {
+                    print(error)
+                }
             }
         }
-        .padding(10)
+        
+    }
+}
+
+
+// MARK: - Preview
+struct TripsWidget_Previews: PreviewProvider {
+    static var previews: some View {
+        HStack(spacing: 10) {
+            TripsWidget()
+            TripsWidget()
+        }
+        .padding(.horizontal, 16)
+        .preferredColorScheme(.dark)
     }
 }

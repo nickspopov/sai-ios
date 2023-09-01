@@ -43,11 +43,26 @@ class WalksGraphQLService: WalksDaoProtocol {
     }
     
     func get(by id: String) async throws -> Walk {
-        throw NotImplementedError()
+        let result = try await Network.shared.apollo.fetchSingle(query: GetWalkQuery(id: id), cachePolicy: .fetchIgnoringCacheData, queue: .global(qos: .userInitiated))
+        return result.getWalk.toSwiftModel()
     }
     
-    func get(from fromDate: Date, to toDate: Date) async throws -> [Walk] {
-        throw NotImplementedError()
+    func getCached(from fromDate: Date? = nil, to toDate: Date? = nil, limit: Int? = 10) async -> [Walk]? {
+        let fromFilter: GraphQLNullable<DateTimeType> = fromDate != nil ? .some(fromDate!.ISO8601Format()) : .none
+        let toFilter: GraphQLNullable<DateTimeType> = toDate != nil ? .some(toDate!.ISO8601Format()) : .none
+        let limitFilter: GraphQLNullable<Int> = limit != nil ? .some(limit!) : .none
+        
+        let result = await Network.shared.apollo.getCachedQuery(query: GetWalksQuery(fromDate: fromFilter, toDate: toFilter, limit: limitFilter))
+        return result?.getWalks.map { $0.toSwiftModel() }
+    }
+    
+    func get(from fromDate: Date? = nil, to toDate: Date? = nil, limit: Int? = 10) async throws -> [Walk] {
+        let fromFilter: GraphQLNullable<DateTimeType> = fromDate != nil ? .some(fromDate!.ISO8601Format()) : .none
+        let toFilter: GraphQLNullable<DateTimeType> = toDate != nil ? .some(toDate!.ISO8601Format()) : .none
+        let limitFilter: GraphQLNullable<Int> = limit != nil ? .some(limit!) : .none
+        
+        let result = try await Network.shared.apollo.fetchSingle(query: GetWalksQuery(fromDate: fromFilter, toDate: toFilter, limit: limitFilter), cachePolicy: .fetchIgnoringCacheData, queue: .global(qos: .userInitiated))
+        return result.getWalks.map { $0.toSwiftModel() }
     }
     
     func save(_ walk: Walk) async throws -> Walk {

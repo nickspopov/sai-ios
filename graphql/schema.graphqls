@@ -6,7 +6,7 @@ directive @apollo_client_ios_localCacheMutation on QUERY | MUTATION | SUBSCRIPTI
 type Query {
   getEvent(id: String!): CalendarEventType!
   getEvents(fromDate: DateTimeType!, toDate: DateTimeType!): [CalendarEventType!]!
-  getWalks: [WalkType!]!
+  getWalks(fromDate: DateTimeType = null, toDate: DateTimeType = null, limit: Int = 10): [WalkType!]!
   getWalk(id: String!): WalkType!
   getWalkDayActivity(date: DateTimeType!): WalkDayActivity!
   getWalkIntervalActivityByDay(fromDate: DateTimeType!, toDate: DateTimeType!): WalkIntervalActivity!

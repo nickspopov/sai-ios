@@ -5,7 +5,8 @@ extension Date {
     init(fromISOString string: String) {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZ"
-        self = formatter.date(from: string) ?? Date()
+        let stringWithTimeZone = string.contains("+00:00") ? string : string + "+00:00"
+        self = formatter.date(from: stringWithTimeZone) ?? Date()
     }
     
 

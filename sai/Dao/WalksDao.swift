@@ -39,21 +39,21 @@ class WalksDao: WalksDaoProtocol {
         }
     }
     
-    func get(from fromDate: Date, to toDate: Date) async throws -> [Walk] {
-        let fromPredicate = NSPredicate(format: "startedAt >= %@", fromDate as CVarArg)
-        let toPredicate = NSPredicate(format: "startedAt <= %@", toDate as CVarArg)
-        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
-        
-        let fetchRequest: NSFetchRequest<WalkCoreData> = WalkCoreData.fetchRequest()
-        fetchRequest.predicate = predicate
-        
-        do {
-            let result = try viewContext.fetch(fetchRequest)
-            return result.map {Walk.fromCoreData(coreData: $0)}
-        } catch {
-            print(error)
-            throw DaoError.somethingWrong
-        }
+    func get(from fromDate: Date? = nil, to toDate: Date? = nil, limit: Int? = 10) async throws -> [Walk] {
+//        let fromPredicate = NSPredicate(format: "startedAt >= %@", fromDate as CVarArg)
+//        let toPredicate = NSPredicate(format: "startedAt <= %@", toDate as CVarArg)
+//        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
+//
+//        let fetchRequest: NSFetchRequest<WalkCoreData> = WalkCoreData.fetchRequest()
+//        fetchRequest.predicate = predicate
+//
+//        do {
+//            let result = try viewContext.fetch(fetchRequest)
+//            return result.map {Walk.fromCoreData(coreData: $0)}
+//        } catch {
+//            print(error)
+            throw NotImplementedError()
+//        }
     
     }
     

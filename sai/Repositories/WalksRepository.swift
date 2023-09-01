@@ -32,23 +32,12 @@ class WalksRepository {
     }
     
     // MARK: - CRUD
-    
     func get(by id: String) async throws -> Walk {
-        do {
-            return try await walksDao.get(by: id)
-        } catch DaoError.notFound {
-            throw RepositoryError.notFound
-        } catch {
-            throw RepositoryError.somethingWentWrong
-        }
+        return try await walksGraphQLService.get(by: id)
     }
     
-    func get(from fromDate: Date, to toDate: Date) async throws -> [Walk] {
-        do {
-            return try await walksDao.get(from: fromDate, to: toDate)
-        } catch {
-            throw RepositoryError.somethingWentWrong
-        }
+    func getLast() async throws -> Walk? {
+        return try await walksGraphQLService.get(from: nil, to: nil, limit: 1).first
     }
     
     func save(_ walk: Walk) async throws -> Walk {

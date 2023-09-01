@@ -20,4 +20,9 @@ struct Location: Codable {
     func toCLLocation() -> CLLocation {
         return CLLocation(latitude: latitude, longitude: longitude)
     }
+    
+    func toCLLocationCoordinate2D() -> CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+    
 }

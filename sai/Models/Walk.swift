@@ -7,7 +7,7 @@
 
 import Foundation
 import CoreData
-import FirebaseFirestoreSwift
+import MapKit
 
 struct Walk: Codable, Identifiable {
     var id: String = UUID().uuidString
@@ -36,7 +36,7 @@ struct Walk: Codable, Identifiable {
         for i in 0..<walkHistory.history.count - 1 {
             distance += walkHistory.history[i].distance(to: walkHistory.history[i + 1])
         }
-        return distance
+        return distance / 1000
     }
     
     
@@ -62,6 +62,10 @@ struct WalkHistoryModel: Codable {
     
     mutating func addLocation(_ location: Location) {
         history.append(location)
+    }
+    
+    func toCLLocationCoordinate2DArray() -> [CLLocationCoordinate2D] {
+        return history.map {$0.toCLLocationCoordinate2D()}
     }
     
     func toJSON() -> String {

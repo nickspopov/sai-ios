@@ -4,13 +4,31 @@
 @_exported import ApolloAPI
 
 public class GetWalksQuery: GraphQLQuery {
-  public static let operationName: String = "GetWalks"
+  public static let operationName: String = "getWalks"
   public static let operationDocument: ApolloAPI.OperationDocument = .init(
     definition: .init(
-      #"query GetWalks { getWalks { __typename id startedAt finishedAt avgPace avgSpeed distance duration walkHistory { __typename history { __typename latitude longitude timestamp } } } }"#
+      #"query getWalks($fromDate: DateTimeType, $toDate: DateTimeType, $limit: Int) { getWalks(fromDate: $fromDate, toDate: $toDate, limit: $limit) { __typename id startedAt finishedAt avgPace avgSpeed distance duration walkHistory { __typename history { __typename latitude longitude timestamp } } } }"#
     ))
 
-  public init() {}
+  public var fromDate: GraphQLNullable<DateTimeType>
+  public var toDate: GraphQLNullable<DateTimeType>
+  public var limit: GraphQLNullable<Int>
+
+  public init(
+    fromDate: GraphQLNullable<DateTimeType>,
+    toDate: GraphQLNullable<DateTimeType>,
+    limit: GraphQLNullable<Int>
+  ) {
+    self.fromDate = fromDate
+    self.toDate = toDate
+    self.limit = limit
+  }
+
+  public var __variables: Variables? { [
+    "fromDate": fromDate,
+    "toDate": toDate,
+    "limit": limit
+  ] }
 
   public struct Data: SaiFastAPI.SelectionSet {
     public let __data: DataDict
@@ -18,7 +36,11 @@ public class GetWalksQuery: GraphQLQuery {
 
     public static var __parentType: ApolloAPI.ParentType { SaiFastAPI.Objects.Query }
     public static var __selections: [ApolloAPI.Selection] { [
-      .field("getWalks", [GetWalk].self),
+      .field("getWalks", [GetWalk].self, arguments: [
+        "fromDate": .variable("fromDate"),
+        "toDate": .variable("toDate"),
+        "limit": .variable("limit")
+      ]),
     ] }
 
     public var getWalks: [GetWalk] { __data["getWalks"] }

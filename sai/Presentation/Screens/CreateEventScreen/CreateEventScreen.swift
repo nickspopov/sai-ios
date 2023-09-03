@@ -19,7 +19,7 @@ struct CreateEventScreen: View {
     @State var isLoading: Bool = false
     
     func createEvent() {
-        let calendarRepository = CalendarEventsRepository.shared
+        let calendarRepository = CalendarEventsRepositoryImpl.shared
         
         let event = CalendarEvent(
             title: title,

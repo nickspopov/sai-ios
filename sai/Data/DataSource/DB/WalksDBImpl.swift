@@ -8,14 +8,14 @@
 import Foundation
 import CoreData
 
-class WalksDao: WalksDaoProtocol {
+class WalksDBImpl: WalksDataSource {
     private let viewContext = PersistenceController.shared.container.viewContext
     
     func getAll() async throws -> [Walk] {
         let fetchRequest: NSFetchRequest<WalkCoreData> = WalkCoreData.fetchRequest()
         do {
             let result = try viewContext.fetch(fetchRequest)
-            return result.map {Walk.fromCoreData(coreData: $0)}
+            return result.map {$0.toWalk()}
         } catch {
             print(error)
             throw DaoError.somethingWrong
@@ -29,7 +29,7 @@ class WalksDao: WalksDaoProtocol {
         do {
             let result = try viewContext.fetch(fetchRequest)
             if let walk = result.first {
-                return Walk.fromCoreData(coreData: walk)
+                return walk.toWalk()
             } else {
                 throw DaoError.notFound
             }
@@ -40,31 +40,31 @@ class WalksDao: WalksDaoProtocol {
     }
     
     func get(from fromDate: Date? = nil, to toDate: Date? = nil, limit: Int? = 10) async throws -> [Walk] {
-//        let fromPredicate = NSPredicate(format: "startedAt >= %@", fromDate as CVarArg)
-//        let toPredicate = NSPredicate(format: "startedAt <= %@", toDate as CVarArg)
-//        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
-//
-//        let fetchRequest: NSFetchRequest<WalkCoreData> = WalkCoreData.fetchRequest()
-//        fetchRequest.predicate = predicate
-//
-//        do {
-//            let result = try viewContext.fetch(fetchRequest)
-//            return result.map {Walk.fromCoreData(coreData: $0)}
-//        } catch {
-//            print(error)
-            throw NotImplementedError()
-//        }
-    
+        //        let fromPredicate = NSPredicate(format: "startedAt >= %@", fromDate as CVarArg)
+        //        let toPredicate = NSPredicate(format: "startedAt <= %@", toDate as CVarArg)
+        //        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
+        //
+        //        let fetchRequest: NSFetchRequest<WalkCoreData> = WalkCoreData.fetchRequest()
+        //        fetchRequest.predicate = predicate
+        //
+        //        do {
+        //            let result = try viewContext.fetch(fetchRequest)
+        //            return result.map {Walk.fromCoreData(coreData: $0)}
+        //        } catch {
+        //            print(error)
+        throw NotImplementedError()
+        //        }
+        
     }
     
     func save(_ walk: Walk) async throws -> Walk {
-        let _ = walk.toCoreData(context: viewContext)
+        let _ = WalkCoreData(context: viewContext, from: walk)
         try? viewContext.save()
         return walk
     }
     
     func delete(_ walk: Walk) async throws {
-        viewContext.delete(walk.toCoreData(context: viewContext))
+        viewContext.delete(WalkCoreData(context: viewContext, from: walk))
         try? viewContext.save()
     }
     
@@ -86,5 +86,5 @@ class WalksDao: WalksDaoProtocol {
     
     private init() {}
     
-    static let shared = WalksDao()
+    static let shared = WalksDBImpl()
 }

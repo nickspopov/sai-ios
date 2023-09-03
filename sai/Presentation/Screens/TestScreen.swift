@@ -40,7 +40,7 @@ extension TestScreen {
     class ViewModel: ObservableObject {
         private var viewContext: NSManagedObjectContext = PersistenceController.shared.container.viewContext
         private var activeWalkService = ActiveWalkService.shared
-        private var walksRepository = WalksRepository.shared
+        private var walksRepository = WalksRepositoryImpl.shared
         
         
         @Published var walks: [Walk] = []

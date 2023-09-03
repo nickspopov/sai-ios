@@ -1,8 +1,8 @@
 //
-//  GraphQLModels.swift
+//  WalkAnalytic.swift
 //  sai
 //
-//  Created by Николай Попов on 29.08.2023.
+//  Created by Николай Попов on 02.09.2023.
 //
 
 import Foundation

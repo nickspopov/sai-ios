@@ -37,7 +37,7 @@ struct CalendarWidget_Previews: PreviewProvider {
 // MARK: - ViewModel
 extension CalendarWidget {
     class ViewModel: ObservableObject {
-        private let calendarEventsRepository: CalendarEventsRepository = CalendarEventsRepository.shared
+        private let calendarEventsRepository: CalendarEventsRepositoryImpl = CalendarEventsRepositoryImpl.shared
         @Published var date: Date = Date()
         @Published var events: [CalendarEvent] = []
         

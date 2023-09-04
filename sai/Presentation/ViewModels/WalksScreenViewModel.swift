@@ -65,7 +65,7 @@ class WalksScreenViewModel: ObservableObject {
     @Published var activeWalk: Walk? = nil
     @Published var timer: Int = 0
     
-    let walksRepository = WalksRepository.shared
+    let walksRepository = WalksRepositoryImpl.shared
     
     
     init() {

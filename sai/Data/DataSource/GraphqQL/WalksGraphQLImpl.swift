@@ -9,7 +9,7 @@ import Foundation
 import SaiFastAPI
 
 
-class WalksGraphQLService: WalksDaoProtocol {
+class WalksGraphQLImpl: WalksDataSource {
     func getIntervalAnalyticByDay(fromDate: Date, toDate: Date) async throws -> GetWalkIntervalActivityByDay {
         let result = try await Network.shared.apollo.fetchSingle(query: GetWalkIntervalActivityByDayQuery(
             fromDate: fromDate.ISO8601Format(),
@@ -28,17 +28,15 @@ class WalksGraphQLService: WalksDaoProtocol {
     
     func getOneDayAnalytic(for date: Date) async throws -> GetWalkDayActivity {
         let date = date.ISO8601Format()
-        let result = try await Network.shared.apollo.fetchSingle(query: GetWalkDayActivityQuery(
-            date: date
-        ), cachePolicy: .fetchIgnoringCacheData, queue: .global(qos: .userInitiated))
+        
+        let result = try await Network.shared.apollo.fetchSingle(query: GetWalkDayActivityQuery( date: date ), cachePolicy: .fetchIgnoringCacheData, queue: .global(qos: .userInitiated))
         return result.getWalkDayActivity.toSwiftModel()
     }
     
     func getOneDayAnalyticCached(for date: Date) async -> GetWalkDayActivity? {
         let date = date.ISO8601Format()
-        let result = await Network.shared.apollo.getCachedQuery(query: GetWalkDayActivityQuery(
-            date: date
-        ))
+        
+        let result = await Network.shared.apollo.getCachedQuery(query: GetWalkDayActivityQuery( date: date ))
         return result?.getWalkDayActivity.toSwiftModel()
     }
     
@@ -66,17 +64,7 @@ class WalksGraphQLService: WalksDaoProtocol {
     }
     
     func save(_ walk: Walk) async throws -> Walk {
-        let result = try await Network.shared.apollo.perform(mutation: CreateWalkMutation(
-            input: CreateWalkInput(
-                startedAt: walk.startedAt.ISO8601Format(), finishedAt: Date().ISO8601Format(), walkHistory: CreateWalkHistoryType(history: walk.walkHistory.history.map({ _historyItem in
-                    CreateWalkHistoryItemType(
-                        latitude: _historyItem.latitude,
-                        longitude: _historyItem.longitude,
-                        timestamp: _historyItem.timestamp.ISO8601Format()
-                    )
-                }))
-            )
-        ))
+        let result = try await Network.shared.apollo.perform(mutation: CreateWalkMutation(input: CreateWalkInput(from: walk)))
         return result.createWalk.toSwiftModel()
     }
     

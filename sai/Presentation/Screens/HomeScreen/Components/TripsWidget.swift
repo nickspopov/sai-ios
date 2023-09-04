@@ -95,7 +95,7 @@ extension TripsWidget {
 // MARK: - ViewModel
 extension TripsWidget {
     class ViewModel: ObservableObject {
-        let walksRepository = WalksRepository.shared
+        let walksRepository = WalksRepositoryImpl.shared
         
         @Published var walk: Walk? = nil
         

@@ -26,8 +26,6 @@ struct Walk: Codable, Identifiable {
         return getDistance()
     }
     
-    lazy var lazyDistance: Double = {getDistance()}()
-    
     private func getDistance() -> Double {
         var distance = 0.0
         if walkHistory.history.count < 2 {
@@ -39,21 +37,6 @@ struct Walk: Codable, Identifiable {
         return distance / 1000
     }
     
-    
-    // MARK: - Core Data
-    func toCoreData(context: NSManagedObjectContext) -> WalkCoreData {
-        let walkCoreData = WalkCoreData(context: context)
-        walkCoreData.id = id
-        walkCoreData.startedAt = startedAt
-        walkCoreData.finishedAt = finishedAt
-        walkCoreData.walkHistory = walkHistory.toJSON()
-        return walkCoreData
-    }
-    
-    static func fromCoreData(coreData: WalkCoreData) -> Walk {
-        let walkHistory = WalkHistoryModel.fromJSON(coreData.walkHistory)
-        return Walk(id: coreData.id, startedAt: coreData.startedAt, finishedAt: coreData.finishedAt, walkHistory: walkHistory)
-    }
 }
 
 // MARK: - WalkHistory

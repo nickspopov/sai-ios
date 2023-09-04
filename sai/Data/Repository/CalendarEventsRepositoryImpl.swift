@@ -8,8 +8,8 @@
 import Foundation
 
 
-class CalendarEventsRepository {
-    let calendarEventsGraphQLService = CalendarEventsGraphQL()
+class CalendarEventsRepositoryImpl: CalendarEventsRepository {
+    let calendarEventsGraphQLService = CalendarEventsGraphQLImpl()
     
     func get(by id: String) async throws -> CalendarEvent {
         do {
@@ -55,5 +55,5 @@ class CalendarEventsRepository {
     
     
     private init() {}
-    static let shared = CalendarEventsRepository()
+    static let shared = CalendarEventsRepositoryImpl()
 }

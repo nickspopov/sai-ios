@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class CalendarScreenViewModel: ObservableObject {
-    private let calendarEventsRepository: CalendarEventsRepository = CalendarEventsRepository.shared
+    private let calendarEventsRepository: CalendarEventsRepositoryImpl = CalendarEventsRepositoryImpl.shared
     
     @Published var selectedDate: Date = Date().startOfDay()
     @Published var daysArray: [Date] = []

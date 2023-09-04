@@ -64,7 +64,7 @@
 		4B9F4BB02A93FF9900E8ECB5 /* sai.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B9F4BAE2A93FF9900E8ECB5 /* sai.xcdatamodeld */; };
 		4BA03AEC2AA5D15E00B15ABE /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA03AEB2AA5D15E00B15ABE /* AuthService.swift */; };
 		4BA03AEE2AA5D1FB00B15ABE /* AuthUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA03AED2AA5D1FB00B15ABE /* AuthUser.swift */; };
-		4BA03AF02AA605F600B15ABE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA03AEF2AA605F600B15ABE /* User.swift */; };
+		4BA03AF02AA605F600B15ABE /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA03AEF2AA605F600B15ABE /* UserModel.swift */; };
 		4BA03AF22AA6064C00B15ABE /* DogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA03AF12AA6064C00B15ABE /* DogModel.swift */; };
 		4BA03AF42AA606D700B15ABE /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA03AF32AA606D700B15ABE /* UserRepository.swift */; };
 		4BA03AF62AA6070100B15ABE /* UserDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA03AF52AA6070100B15ABE /* UserDataSource.swift */; };
@@ -140,7 +140,7 @@
 		4B9F4BAF2A93FF9900E8ECB5 /* sai.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = sai.xcdatamodel; sourceTree = "<group>"; };
 		4BA03AEB2AA5D15E00B15ABE /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		4BA03AED2AA5D1FB00B15ABE /* AuthUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUser.swift; sourceTree = "<group>"; };
-		4BA03AEF2AA605F600B15ABE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4BA03AEF2AA605F600B15ABE /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		4BA03AF12AA6064C00B15ABE /* DogModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogModel.swift; sourceTree = "<group>"; };
 		4BA03AF32AA606D700B15ABE /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		4BA03AF52AA6070100B15ABE /* UserDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSource.swift; sourceTree = "<group>"; };
@@ -254,7 +254,7 @@
 				4B2D81D32A94DDA000558031 /* Location.swift */,
 				4B2D82492A9899F300558031 /* CalendarEvent.swift */,
 				4B99DA082AA37271002392B8 /* WalkAnalytic.swift */,
-				4BA03AEF2AA605F600B15ABE /* User.swift */,
+				4BA03AEF2AA605F600B15ABE /* UserModel.swift */,
 				4BA03AF12AA6064C00B15ABE /* DogModel.swift */,
 			);
 			path = Models;
@@ -630,7 +630,7 @@
 				4BC4778B2A9CB290007CCF95 /* Network.swift in Sources */,
 				4B99DA092AA37271002392B8 /* WalkAnalytic.swift in Sources */,
 				4B2D81D02A94B7C200558031 /* Walk.swift in Sources */,
-				4BA03AF02AA605F600B15ABE /* User.swift in Sources */,
+				4BA03AF02AA605F600B15ABE /* UserModel.swift in Sources */,
 				4B99D9EE2AA1E3FB002392B8 /* TimeInterval+Extensions.swift in Sources */,
 				4BA03AEC2AA5D15E00B15ABE /* AuthService.swift in Sources */,
 				4BA03AFA2AA6090C00B15ABE /* UserRepositoryImpl.swift in Sources */,

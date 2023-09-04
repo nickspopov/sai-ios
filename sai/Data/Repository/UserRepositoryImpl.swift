@@ -12,7 +12,7 @@ class UserRepositoryImpl: UserRepository {
     
     private let userGraphQLSource: UserDataSource = UserGrapQLImpl()
     
-    func getMe() async throws -> User {
+    func getMe() async throws -> UserModel {
         try await userGraphQLSource.getMe()
     }
     

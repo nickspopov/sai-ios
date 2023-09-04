@@ -8,5 +8,5 @@
 import Foundation
 
 protocol UserDataSource {
-    func getMe() async throws -> User
+    func getMe() async throws -> UserModel
 }

@@ -100,8 +100,8 @@ extension GetEventsQuery.Data.GetEvent {
 
 // MARK: - User CRUD
 extension GetMeQuery.Data.Me {
-    func toSwiftModel() -> User {
+    func toSwiftModel() -> UserModel {
         let dogs: [DogModel] = self.dogs.map { DogModel(id: $0.id, name: $0.name, breed: $0.breed, sex: $0.sex, dateOfBirth: Date(fromISOString: $0.dateOfBirth)) }
-        return User(id: self.id, name: self.name, dogs: dogs)
+        return UserModel(id: self.id, name: self.name, dogs: dogs)
     }
 }

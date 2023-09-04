@@ -64,6 +64,12 @@
 		4B9F4BB02A93FF9900E8ECB5 /* sai.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B9F4BAE2A93FF9900E8ECB5 /* sai.xcdatamodeld */; };
 		4BA03AEC2AA5D15E00B15ABE /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA03AEB2AA5D15E00B15ABE /* AuthService.swift */; };
 		4BA03AEE2AA5D1FB00B15ABE /* AuthUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA03AED2AA5D1FB00B15ABE /* AuthUser.swift */; };
+		4BA03AF02AA605F600B15ABE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA03AEF2AA605F600B15ABE /* User.swift */; };
+		4BA03AF22AA6064C00B15ABE /* DogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA03AF12AA6064C00B15ABE /* DogModel.swift */; };
+		4BA03AF42AA606D700B15ABE /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA03AF32AA606D700B15ABE /* UserRepository.swift */; };
+		4BA03AF62AA6070100B15ABE /* UserDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA03AF52AA6070100B15ABE /* UserDataSource.swift */; };
+		4BA03AF82AA6072600B15ABE /* UserGraphQLImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA03AF72AA6072600B15ABE /* UserGraphQLImpl.swift */; };
+		4BA03AFA2AA6090C00B15ABE /* UserRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA03AF92AA6090C00B15ABE /* UserRepositoryImpl.swift */; };
 		4BABA4D92AA08A80002F1880 /* WalksGraphQLImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BABA4D82AA08A80002F1880 /* WalksGraphQLImpl.swift */; };
 		4BABA4DC2AA1D160002F1880 /* CalendarEventItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BABA4DB2AA1D160002F1880 /* CalendarEventItem.swift */; };
 		4BB6E3882A9D401300030B1E /* WalkTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB6E3872A9D401300030B1E /* WalkTimer.swift */; };
@@ -134,6 +140,12 @@
 		4B9F4BAF2A93FF9900E8ECB5 /* sai.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = sai.xcdatamodel; sourceTree = "<group>"; };
 		4BA03AEB2AA5D15E00B15ABE /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		4BA03AED2AA5D1FB00B15ABE /* AuthUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUser.swift; sourceTree = "<group>"; };
+		4BA03AEF2AA605F600B15ABE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4BA03AF12AA6064C00B15ABE /* DogModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogModel.swift; sourceTree = "<group>"; };
+		4BA03AF32AA606D700B15ABE /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		4BA03AF52AA6070100B15ABE /* UserDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSource.swift; sourceTree = "<group>"; };
+		4BA03AF72AA6072600B15ABE /* UserGraphQLImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGraphQLImpl.swift; sourceTree = "<group>"; };
+		4BA03AF92AA6090C00B15ABE /* UserRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryImpl.swift; sourceTree = "<group>"; };
 		4BABA4D82AA08A80002F1880 /* WalksGraphQLImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalksGraphQLImpl.swift; sourceTree = "<group>"; };
 		4BABA4DB2AA1D160002F1880 /* CalendarEventItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventItem.swift; sourceTree = "<group>"; };
 		4BB6E3872A9D401300030B1E /* WalkTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkTimer.swift; sourceTree = "<group>"; };
@@ -237,11 +249,13 @@
 		4B2D81CE2A94B7B400558031 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4BA03AED2AA5D1FB00B15ABE /* AuthUser.swift */,
 				4B2D81CF2A94B7C200558031 /* Walk.swift */,
 				4B2D81D32A94DDA000558031 /* Location.swift */,
 				4B2D82492A9899F300558031 /* CalendarEvent.swift */,
 				4B99DA082AA37271002392B8 /* WalkAnalytic.swift */,
-				4BA03AED2AA5D1FB00B15ABE /* AuthUser.swift */,
+				4BA03AEF2AA605F600B15ABE /* User.swift */,
+				4BA03AF12AA6064C00B15ABE /* DogModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -332,6 +346,7 @@
 			children = (
 				4B99D9F52AA3699D002392B8 /* CalendarEventsRepository.swift */,
 				4B99D9F72AA36B18002392B8 /* WalksRepository.swift */,
+				4BA03AF32AA606D700B15ABE /* UserRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -350,6 +365,7 @@
 			children = (
 				4B2D821E2A95058500558031 /* WalksRepositoryImpl.swift */,
 				4B2D824D2A989CC400558031 /* CalendarEventsRepositoryImpl.swift */,
+				4BA03AF92AA6090C00B15ABE /* UserRepositoryImpl.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -361,6 +377,7 @@
 				4B99D9FC2AA36BA7002392B8 /* GraphqQL */,
 				4B99D9FE2AA36BF9002392B8 /* WalksDataSource.swift */,
 				4B99DA012AA36C5C002392B8 /* CalendarEventsDataSource.swift */,
+				4BA03AF52AA6070100B15ABE /* UserDataSource.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -371,6 +388,7 @@
 				4BCE46752A9F55EB009142D8 /* CalendarEventsGraphQLService.swift */,
 				4BABA4D82AA08A80002F1880 /* WalksGraphQLImpl.swift */,
 				4BCFCFB82A9DDAF8000E2802 /* SaiFastAPI+Extensions.swift */,
+				4BA03AF72AA6072600B15ABE /* UserGraphQLImpl.swift */,
 			);
 			path = GraphqQL;
 			sourceTree = "<group>";
@@ -612,12 +630,16 @@
 				4BC4778B2A9CB290007CCF95 /* Network.swift in Sources */,
 				4B99DA092AA37271002392B8 /* WalkAnalytic.swift in Sources */,
 				4B2D81D02A94B7C200558031 /* Walk.swift in Sources */,
+				4BA03AF02AA605F600B15ABE /* User.swift in Sources */,
 				4B99D9EE2AA1E3FB002392B8 /* TimeInterval+Extensions.swift in Sources */,
 				4BA03AEC2AA5D15E00B15ABE /* AuthService.swift in Sources */,
+				4BA03AFA2AA6090C00B15ABE /* UserRepositoryImpl.swift in Sources */,
+				4BA03AF62AA6070100B15ABE /* UserDataSource.swift in Sources */,
 				4B2D82132A94F53800558031 /* Persistance.swift in Sources */,
 				4B2D824A2A9899F300558031 /* CalendarEvent.swift in Sources */,
 				4B99D9F82AA36B18002392B8 /* WalksRepository.swift in Sources */,
 				4B2D81C42A94ABA900558031 /* NavigationController.swift in Sources */,
+				4BA03AF82AA6072600B15ABE /* UserGraphQLImpl.swift in Sources */,
 				4B2D81D42A94DDA000558031 /* Location.swift in Sources */,
 				4B2D82482A96396A00558031 /* CommunityWidget.swift in Sources */,
 				4B2D81CD2A94B6BB00558031 /* LocationService.swift in Sources */,
@@ -639,11 +661,13 @@
 				4B2D81BF2A94AA9B00558031 /* ButtonStyles.swift in Sources */,
 				4B2D81BD2A94AA6F00558031 /* Typography.swift in Sources */,
 				4BC4778D2A9CB47E007CCF95 /* AuthorizationInterceptor.swift in Sources */,
+				4BA03AF42AA606D700B15ABE /* UserRepository.swift in Sources */,
 				4B2D82532A98A4DE00558031 /* CalendarScreen.swift in Sources */,
 				4B2D82402A961BC300558031 /* HomeScreenViewModel.swift in Sources */,
 				4B2D821F2A95058500558031 /* WalksRepositoryImpl.swift in Sources */,
 				4B2D82462A96352400558031 /* TripsWidget.swift in Sources */,
 				4B9F4BA42A93FF9700E8ECB5 /* saiApp.swift in Sources */,
+				4BA03AF22AA6064C00B15ABE /* DogModel.swift in Sources */,
 				4B8906402AA5C5D4002E7BCB /* SignInScreen.swift in Sources */,
 				4BABA4D92AA08A80002F1880 /* WalksGraphQLImpl.swift in Sources */,
 				4B8192532A98F2A10002D953 /* UINavigationController+Extension.swift in Sources */,

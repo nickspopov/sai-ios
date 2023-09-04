@@ -10,8 +10,8 @@ import Foundation
 
 class WalksRepositoryImpl: WalksRepository {
     
-    let walksDao: WalksDataSource = WalksDBImpl.shared
-    let walksGraphQLService: WalksDataSource = WalksGraphQLImpl()
+    private let walksDao: WalksDataSource = WalksDBImpl.shared
+    private let walksGraphQLService: WalksDataSource = WalksGraphQLImpl()
     
     // MARK: - Analytics
     

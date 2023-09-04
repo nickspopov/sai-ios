@@ -9,11 +9,11 @@ import Foundation
 
 
 class CalendarEventsRepositoryImpl: CalendarEventsRepository {
-    let calendarEventsGraphQLService = CalendarEventsGraphQLImpl()
+    let calendarEventsGraphQLSource = CalendarEventsGraphQLImpl()
     
     func get(by id: String) async throws -> CalendarEvent {
         do {
-            return try await calendarEventsGraphQLService.get(by: id)
+            return try await calendarEventsGraphQLSource.get(by: id)
         } catch DaoError.notFound {
             throw RepositoryError.notFound
         } catch {
@@ -22,12 +22,12 @@ class CalendarEventsRepositoryImpl: CalendarEventsRepository {
     }
     
     func getCached(from fromDate: Date, to toDate: Date) async -> [CalendarEvent] {
-        return await calendarEventsGraphQLService.getCached(from: fromDate, to: toDate)
+        return await calendarEventsGraphQLSource.getCached(from: fromDate, to: toDate)
     }
     
     func get(from fromDate: Date, to toDate: Date) async throws -> [CalendarEvent] {
         do {
-            return try await calendarEventsGraphQLService.get(from: fromDate, to: toDate)
+            return try await calendarEventsGraphQLSource.get(from: fromDate, to: toDate)
         } catch {
             throw RepositoryError.somethingWentWrong
         }
@@ -35,7 +35,7 @@ class CalendarEventsRepositoryImpl: CalendarEventsRepository {
     
     func save(_ calendarEvent: CalendarEvent) async throws -> CalendarEvent {
         do {
-            return try await calendarEventsGraphQLService.save(calendarEvent)
+            return try await calendarEventsGraphQLSource.save(calendarEvent)
         } catch DaoError.notFound {
             throw RepositoryError.notFound
         } catch {
@@ -45,7 +45,7 @@ class CalendarEventsRepositoryImpl: CalendarEventsRepository {
     
     func delete(_ calendarEvent: CalendarEvent) async throws {
         do {
-            try await calendarEventsGraphQLService.delete(calendarEvent)
+            try await calendarEventsGraphQLSource.delete(calendarEvent)
         } catch DaoError.notFound {
             throw RepositoryError.notFound
         } catch {

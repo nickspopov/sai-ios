@@ -96,3 +96,12 @@ extension GetEventsQuery.Data.GetEvent {
         return CalendarEvent(id: self.id, title: self.title, notes: self.notes, startedAt: Date(fromISOString: self.startedAt), endedAt: Date(fromISOString: self.endedAt), type: CalendarEventType(rawValue: self.type.rawValue) ?? .other)
     }
 }
+
+
+// MARK: - User CRUD
+extension GetMeQuery.Data.Me {
+    func toSwiftModel() -> User {
+        let dogs: [DogModel] = self.dogs.map { DogModel(id: $0.id, name: $0.name, breed: $0.breed, sex: $0.sex, dateOfBirth: Date(fromISOString: $0.dateOfBirth)) }
+        return User(id: self.id, name: self.name, dogs: dogs)
+    }
+}

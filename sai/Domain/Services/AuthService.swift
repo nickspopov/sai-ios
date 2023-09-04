@@ -81,8 +81,9 @@ class AuthServiceFirebaseImpl: AuthService {
                     continuation.resume(returning: nil)
                 } else if let token = token {
                     continuation.resume(returning: token)
+                } else {
+                    continuation.resume(returning: nil)
                 }
-                continuation.resume(returning: nil)
             }
         }
     }

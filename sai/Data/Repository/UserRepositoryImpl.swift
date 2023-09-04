@@ -16,6 +16,9 @@ class UserRepositoryImpl: UserRepository {
         try await userGraphQLSource.getMe()
     }
     
+    func getMeCached() async -> UserModel? {
+        await userGraphQLSource.getMeCached()
+    }
     
     private init() {}
     static let shared = UserRepositoryImpl()

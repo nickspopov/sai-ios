@@ -13,4 +13,9 @@ class UserGrapQLImpl: UserDataSource {
         let result = try await Network.shared.apollo.fetchSingle(query: GetMeQuery(), cachePolicy: .fetchIgnoringCacheData, queue: .global(qos: .userInitiated))
         return result.me.toSwiftModel()
     }
+    
+    func getMeCached() async -> UserModel? {
+        let result = await Network.shared.apollo.getCachedQuery(query: GetMeQuery())
+        return result?.me.toSwiftModel()
+    }
 }

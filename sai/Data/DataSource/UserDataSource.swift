@@ -9,4 +9,5 @@ import Foundation
 
 protocol UserDataSource {
     func getMe() async throws -> UserModel
+    func getMeCached() async -> UserModel?
 }

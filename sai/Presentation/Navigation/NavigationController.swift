@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 enum Route: Hashable {
-    case testScreen, calendarScreen, walksScreen
+    case signInScreen, homeScreen, calendarScreen, walksScreen, testScreen
 }
 
 
@@ -23,5 +23,13 @@ class NavigationController: ObservableObject {
     
     func pop() {
         stack.removeLast()
+    }
+    
+    func replace(to routes: [Route]) {
+        stack = routes
+    }
+    
+    func replace(to route: Route) {
+        stack = [route]
     }
 }

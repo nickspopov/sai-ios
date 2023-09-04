@@ -18,11 +18,14 @@ class AuthorizationInterceptor: ApolloInterceptor {
         response: HTTPResponse<Operation>?,
         completion: @escaping (Result<GraphQLResult<Operation.Data>, Error>) -> Void
     ) where Operation : GraphQLOperation {
-        request.addHeader(name: "Authorization", value: "64eb42c7b7c18dad6bc17185")
-        
-        chain.proceedAsync(request: request,
-                            response: response,
-                            completion: completion)
+        Task {
+            if let token = await AuthServiceFirebaseImpl.shared.getToken() {
+                request.addHeader(name: "Authorization", value: token)
+            }
+            chain.proceedAsync(request: request,
+                                response: response,
+                                completion: completion)
+        }
     }
     
 }

@@ -6,24 +6,36 @@
 //
 
 import SwiftUI
-import CoreData
+import FirebaseAuth
 
 struct ContentView: View {
-    @ObservedObject var navigationController = NavigationController()
-
+    @ObservedObject var navigationController: NavigationController
+    @StateObject var viewModel: ViewModel
+    
+    init() {
+        let navigationController = NavigationController()
+        let viewModel = ViewModel(navigationController: navigationController)
+        _viewModel = StateObject(wrappedValue: viewModel)
+        _navigationController = ObservedObject(wrappedValue: navigationController)
+    }
+    
     var body: some View {
         NavigationStack(path: $navigationController.stack) {
             ZStack {
-                HomeScreen()
-                    .environmentObject(navigationController)
+                LoadingAppView()
             }
             .navigationDestination(for: Route.self) { currentRoute in
                 switch currentRoute {
-                case .testScreen: TestScreen()
+                case .signInScreen: SignInScreen().environmentObject(navigationController)
+                case .homeScreen: HomeScreen().environmentObject(navigationController)
                 case .calendarScreen: CalendarScreen().environmentObject(navigationController)
                 case .walksScreen: WalksScreen().environmentObject(navigationController)
+                case .testScreen: TestScreen()
                 }
             }
+        }
+        .onAppear() {
+            viewModel.onAppear()
         }
     }
 }
@@ -31,5 +43,26 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+extension ContentView {
+    class ViewModel: ObservableObject {
+        var navigationController: NavigationController
+        @Published var isLoggedIn: Bool? = nil
+        
+        init(navigationController: NavigationController) {
+            self.navigationController = navigationController
+        }
+        
+        func onAppear() {
+            if (AuthServiceFirebaseImpl.shared.checkAuthStatusOptimistic() == true) {
+                self.navigationController.push(to: .homeScreen)
+                self.isLoggedIn = true
+            } else {
+                self.navigationController.push(to: .signInScreen)
+                self.isLoggedIn = false
+            }
+        }
     }
 }

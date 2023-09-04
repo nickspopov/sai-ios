@@ -102,16 +102,11 @@ extension TripsWidget {
         func onAppear() {
             Task {
                 do {
-                    let _walk = try await walksRepository.get(by: "64ef8bb1e983cfe11cb53fe0")
-                    DispatchQueue.main.async {
-                        self.walk = _walk
+                    if let _walk = try await walksRepository.getLast() {
+                        DispatchQueue.main.async {
+                            self.walk = _walk
+                        }
                     }
-
-//                    if let _walk = try await walksRepository.getLast() {
-//                        DispatchQueue.main.async {
-//                            self.walk = _walk
-//                        }
-//                    }
                 } catch {
                     print(error)
                 }

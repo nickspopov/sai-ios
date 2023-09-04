@@ -12,30 +12,36 @@ struct HomeScreen: View {
     
     
     var body: some View {
-        VStack{
-            Group {
-                header
-                Spacer()
-                    .frame(height: 40)
-            }
-            VStack(spacing: 10) {
-                CalendarWidget()
-                    .pressable {
-                        navigationController.push(to: .calendarScreen)
-                    }
-                HStack(spacing: 10) {
-                    TripsWidget()
-                        .pressable {
-                            navigationController.push(to: .walksScreen)
-                        }
-                    CommunityWidget()
+        NavigationView {
+            VStack{
+                Group {
+                    header
+                    Spacer()
+                        .frame(height: 40)
                 }
-                Spacer()
+                VStack(spacing: 10) {
+                    CalendarWidget()
+                        .pressable {
+                            navigationController.push(to: .calendarScreen)
+                        }
+                    HStack(spacing: 10) {
+                        TripsWidget()
+                            .pressable {
+                                navigationController.push(to: .walksScreen)
+                            }
+                        CommunityWidget()
+                    }
+                    Spacer()
+                    Button(action: AuthServiceFirebaseImpl.shared.signOut) {
+                        Text("Logout")
+                    }
+                }
             }
+            .padding(.horizontal, 16)
+            .padding(.top, 36)
+            .screenContainer()
         }
-        .padding(.horizontal, 16)
-        .padding(.top, 36)
-        .screenContainer()
+        .toolbar(.hidden, for: .navigationBar)
     }
 }
 

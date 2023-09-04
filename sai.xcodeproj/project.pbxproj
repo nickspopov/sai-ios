@@ -217,7 +217,6 @@
 			children = (
 				4B2D81CC2A94B6BB00558031 /* LocationService.swift */,
 				4B2D81D52A94E57400558031 /* ActiveWalkService.swift */,
-				4B2D82122A94F53800558031 /* Persistance.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -290,6 +289,7 @@
 		4B99D9F22AA27EB0002392B8 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				4BC477892A9CB254007CCF95 /* Network */,
 				4B2D81AB2A94A9DF00558031 /* Fonts */,
 			);
 			path = Core;
@@ -298,6 +298,7 @@
 		4B99D9F32AA27F14002392B8 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				4B2D81CB2A94B6AE00558031 /* Services */,
 				4B2D81CE2A94B7B400558031 /* Models */,
 				4B99D9F42AA28A62002392B8 /* Repository */,
 			);
@@ -357,6 +358,7 @@
 			children = (
 				4B99DA052AA37006002392B8 /* Entity */,
 				4B2D821C2A94FFAF00558031 /* WalksDBImpl.swift */,
+				4B2D82122A94F53800558031 /* Persistance.swift */,
 			);
 			path = DB;
 			sourceTree = "<group>";
@@ -407,9 +409,7 @@
 				4B99D9F32AA27F14002392B8 /* Domain */,
 				4B99D9F22AA27EB0002392B8 /* Core */,
 				4B2D82352A960A7800558031 /* Protocols */,
-				4B2D81CB2A94B6AE00558031 /* Services */,
 				4B2D81AA2A94A9D800558031 /* Extensions */,
-				4BC477892A9CB254007CCF95 /* Network */,
 				4B9F4BA32A93FF9700E8ECB5 /* saiApp.swift */,
 				4B9F4BA52A93FF9700E8ECB5 /* ContentView.swift */,
 				4B2D81A92A94A8E200558031 /* Info.plist */,

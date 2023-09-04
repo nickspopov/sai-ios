@@ -1,0 +1,13 @@
+query GetMe {
+  me {
+    id
+    name
+    dogs {
+      id
+      name
+      breed
+      dateOfBirth
+      sex
+    }
+  }
+}

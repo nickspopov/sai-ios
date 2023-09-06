@@ -90,3 +90,20 @@ extension View {
         self.onTapGesture(perform: action)
     }
 }
+
+
+extension View {
+    @ViewBuilder
+    func screenPositionYChangePreference(completion: @escaping (CGFloat) -> ()) -> some View {
+        self
+            .overlay {
+                GeometryReader(content: { geometry in
+                    Color.clear
+                        .preference(key: ScreenPositionKey.self, value: geometry.frame(in: .global).minY)
+                        .onPreferenceChange(ScreenPositionKey.self, perform: { value in
+                            completion(value)
+                        })
+                })
+            }
+    }
+}

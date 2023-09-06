@@ -22,7 +22,7 @@ struct CalendarWidget: View {
         .frame(maxWidth: .infinity, minHeight: 152, maxHeight: 152, alignment: .leading)
         .background(Color(red: 0.15, green: 0.15, blue: 0.15))
         .cornerRadius(12)
-        .onAppear(perform: viewModel.onAppear)
+//        .onAppear(perform: viewModel.onAppear)
     }
 }
 

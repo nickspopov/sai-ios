@@ -27,7 +27,7 @@ struct ContentView: View {
             .navigationDestination(for: Route.self) { currentRoute in
                 switch currentRoute {
                 case .signInScreen: SignInScreen().environmentObject(navigationController)
-                case .homeScreen: HomeScreen().environmentObject(navigationController)
+                case .homeScreen: HomeScreenV3().environmentObject(navigationController)
                 case .calendarScreen: CalendarScreen().environmentObject(navigationController)
                 case .walksScreen: WalksScreen().environmentObject(navigationController)
                 case .testScreen: TestScreen()

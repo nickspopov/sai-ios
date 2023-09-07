@@ -23,7 +23,10 @@ struct HomeScreen: View {
     @State var isSheetPresented = true
     
     var animatedProgress: CGFloat {
-        bottomSheetY.interpolate([openedPosition, closedPosition], [1.0, 0.0])
+        if (bottomSheetY < 0) {
+            return 0
+        }
+        return bottomSheetY.interpolate([openedPosition, closedPosition], [1.0, 0.0])
     }
     
     var body: some View {

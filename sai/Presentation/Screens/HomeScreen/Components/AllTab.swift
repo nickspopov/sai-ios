@@ -31,6 +31,7 @@ struct AllTab: View {
                             }
                         MealPlanWidget()
                     }
+                    CheckFeelingWidget()
                 }
             }
             

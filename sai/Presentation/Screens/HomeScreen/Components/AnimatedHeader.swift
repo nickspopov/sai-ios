@@ -12,7 +12,7 @@ struct AnimatedHeader: View {
     var animationProgress: CGFloat // from 0 to 1
     
     func getOffestY() -> Double {
-        return animationProgress.interpolate([0, 1], [0, -400])
+        return animationProgress.interpolate([0, 1], [0, -500])
     }
     
     func getOffestX() -> Double {
@@ -20,7 +20,7 @@ struct AnimatedHeader: View {
     }
     
     func getScale() -> Double {
-        return animationProgress.interpolate([0, 1], [1, 0.5])
+        return animationProgress.interpolate([0, 1], [1, 0.35])
     }
     
     func getOpacity() -> Double {
@@ -28,7 +28,7 @@ struct AnimatedHeader: View {
     }
     
     var body: some View {
-        VStack{
+        VStack(spacing: 0){
             Spacer()
                 .frame(height: 54)
             Header()
@@ -56,7 +56,7 @@ struct AnimatedHeader_Previews: PreviewProvider {
 //                .preferredColorScheme(.dark)
 //            AnimatedHeader(animationProgress: .constant(0.5))
 //                .preferredColorScheme(.dark)
-            AnimatedHeader(animationProgress: 1)
+            AnimatedHeader(animationProgress: 0)
                 .preferredColorScheme(.dark)
             Spacer()
         }
@@ -85,10 +85,11 @@ fileprivate struct DateViewPicker: View {
 fileprivate struct DateViewPickerDescription: View {
     var body: some View {
         VStack(alignment: .leading) {
-            Typography("To access the summary for different days, just click on the date at the top.", .regular(.six))
+            Typography("Click on the date and check history", .regular(.six))
                 .foregroundColor(Color(red: 0.69, green: 0.68, blue: 0.68))
                 .frame( alignment: .leading)
         }
+        .padding(.top, 2)
         .padding(.leading, 16)
         .padding(.trailing, 32)
         .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -104,15 +105,9 @@ fileprivate struct Header: View {
                 .frame(width: 50, height: 50)
                 .foregroundColor(Color(red: 55, green: 55, blue: 55))
             Spacer()
-            HStack(alignment: .center, spacing: 16) {
-                Typography("Community", .regular(.five))
-            }
-            .padding(.horizontal, 20)
-            .padding(.vertical, 12)
-            .background(Color(red: 0.32, green: 0.32, blue: 0.32))
-            .cornerRadius(200)
-            .onTapGesture {
-                print("Community pressed")
+            Button(action: {print("Pet-time pressed")}) {
+                Typography("Pet-time", .regular(.five))
+                    .foregroundColor(.white)
             }
         }
         .padding(.horizontal, 16)

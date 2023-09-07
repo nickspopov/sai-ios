@@ -31,21 +31,7 @@ struct HomeScreen: View {
             AnimatedHeader(animationProgress: animatedProgress)
             Spacer()
                 .sheet(isPresented: $isSheetPresented) {
-                    VStack {
-                        EmptyView()
-                    }
-                    .introspect(.sheet, on: .iOS(.v16, .v17), customize: { (_sheet: UISheetPresentationController) in
-                        _sheet.containerView.map { _view in
-                            _view.subviews.forEach { _subView in
-                                _subView.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0)
-                            }
-                        }
-                    })
-                    .screenPositionYChangePreference { _bottomSheetY in
-                        withAnimation {
-                            self.bottomSheetY = _bottomSheetY
-                        }
-                    }
+                    sheetTuningAndHeightHandler
                     FiltersRow(activeIndex: $pageIndex)
                     Spacer()
                         .frame(height: 38)
@@ -54,25 +40,8 @@ struct HomeScreen: View {
                                              itemScrollableSide: UIScreen.main.bounds.width,
                                              itemPadding: 0,
                                              visibleContentLength: UIScreen.main.bounds.width) {
-                        
                         AllTab(navigationController: navigationController)
-                        ScrollView {
-                            VStack {
-                                ForEach(0..<100) { index in
-                                    Text("Row \(index)")
-                                        .padding()
-                                        .frame(maxWidth: .infinity)
-                                        .background(.background)
-                                        .cornerRadius(10)
-                                        .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 0)
-                                        .padding()
-                                        .onTapGesture {
-                                            print("Tap 222: \(index)")
-                                        }
-                                }
-                            }
-                        }
-                        .frame(width: 375)
+                        TasksTab()
                     }
                                              .interactiveDismissDisabled()
                                              .presentationDetents([.height(400), .height(UIScreen.main.bounds.height - 160)])
@@ -100,11 +69,12 @@ struct HomeScreen: View {
 struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
         HomeScreen()
+            .environmentObject(NavigationController())
             .preferredColorScheme(.dark)
     }
 }
 
-
+// MARK: - Background
 extension HomeScreen {
     @ViewBuilder var bgGradient: some View {
         VStack {
@@ -121,8 +91,8 @@ extension HomeScreen {
             } else {
                 LinearGradient(
                     stops: [
-                        Gradient.Stop(color: Color(red: 0, green: 0.27, blue: 0.98), location: 0.00),
-                        Gradient.Stop(color: Color(red: 0.07, green: 0.1, blue: 0.16), location: 1.00),
+                        Gradient.Stop(color: Color(red: 0.03, green: 0.82, blue: 0.78), location: 0.00),
+                        Gradient.Stop(color: Color(red: 0, green: 0.2, blue: 0.19), location: 1.00),
                     ],
                     startPoint: UnitPoint(x: 0.5, y: 0),
                     endPoint: UnitPoint(x: 0.5, y: 1)
@@ -130,5 +100,26 @@ extension HomeScreen {
             }
         }
         .animation(.easeIn(duration: 0.2), value: pageIndex)
+    }
+}
+
+// MARK: - Sheet height handler + Sheet tuning
+extension HomeScreen {
+    @ViewBuilder var sheetTuningAndHeightHandler: some View {
+        VStack {
+            EmptyView()
+        }
+        .introspect(.sheet, on: .iOS(.v16, .v17), customize: { (_sheet: UISheetPresentationController) in
+            _sheet.containerView.map { _view in
+                _view.subviews.forEach { _subView in
+                    _subView.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0)
+                }
+            }
+        })
+        .screenPositionYChangePreference { _bottomSheetY in
+            withAnimation {
+                self.bottomSheetY = _bottomSheetY
+            }
+        }
     }
 }

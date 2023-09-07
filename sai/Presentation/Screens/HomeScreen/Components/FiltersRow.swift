@@ -25,12 +25,16 @@ struct FiltersRow: View {
     
     func filterItem(name:String, isActive: Bool, onPress: @escaping () -> Void) -> some View {
         return HStack(alignment: .center, spacing: 16) {
-            Typography(name, .regular(.five))
+            Typography(name, .medium(.five))
                 .foregroundColor(isActive ? .black : .white)
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 12)
-        .background(isActive ? .white : Color(red: 0.15, green: 0.15, blue: 0.15))
+        .background(isActive ? .white : .clear)
+        .overlay(content: {
+            RoundedRectangle(cornerRadius: 200)
+                .stroke(Color.white, lineWidth: 1)
+        })
         .cornerRadius(200)
         .onTapGesture {
             onPress()

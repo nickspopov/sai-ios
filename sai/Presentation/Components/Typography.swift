@@ -36,7 +36,7 @@ enum TypographySizeVariant {
 }
 
 enum TypographyFontVariant {
-    case regular(TypographySizeVariant = .seven), bold(TypographySizeVariant = .seven), semibold(TypographySizeVariant = .seven)
+    case regular(TypographySizeVariant = .seven), bold(TypographySizeVariant = .seven), semibold(TypographySizeVariant = .seven), medium(TypographySizeVariant = .seven)
     
     var font: Font {
         switch self {
@@ -46,6 +46,8 @@ enum TypographyFontVariant {
             return .custom("Inter-Bold", size: size.size)
         case let .semibold(size):
             return .custom("Inter-SemiBold", size: size.size)
+        case let .medium(size):
+            return .custom("Inter-Medium", size: size.size)
         }
     }
 }

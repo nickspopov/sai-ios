@@ -27,7 +27,7 @@ struct ContentView: View {
             .navigationDestination(for: Route.self) { currentRoute in
                 switch currentRoute {
                 case .signInScreen: SignInScreen().environmentObject(navigationController)
-                case .homeScreen: HomeScreenV3().environmentObject(navigationController)
+                case .homeScreen: HomeScreen().environmentObject(navigationController)
                 case .calendarScreen: CalendarScreen().environmentObject(navigationController)
                 case .walksScreen: WalksScreen().environmentObject(navigationController)
                 case .testScreen: TestScreen()
@@ -36,6 +36,10 @@ struct ContentView: View {
         }
         .onAppear() {
             viewModel.onAppear()
+        }
+        .onChange(of: navigationController.stack) { newValue in
+            print(newValue)
+            let sss = 2
         }
     }
 }
@@ -56,12 +60,16 @@ extension ContentView {
         }
         
         func onAppear() {
-            if (AuthServiceFirebaseImpl.shared.checkAuthStatusOptimistic() == true) {
-                self.navigationController.push(to: .homeScreen)
-                self.isLoggedIn = true
-            } else {
-                self.navigationController.push(to: .signInScreen)
-                self.isLoggedIn = false
+            DispatchQueue.main.async {
+                
+                
+                if (AuthServiceFirebaseImpl.shared.checkAuthStatusOptimistic() == true) {
+                    self.navigationController.push(to: .homeScreen)
+                    self.isLoggedIn = true
+                } else {
+                    self.navigationController.push(to: .signInScreen)
+                    self.isLoggedIn = false
+                }
             }
         }
     }

@@ -1,208 +1,134 @@
 //
-//  HomeScreen.swift
+//  HomeScreenV2.swift
 //  sai
 //
 //  Created by Николай Попов on 05.09.2023.
 //
 
 import SwiftUI
+import UIKit
 import Combine
 @_spi(Advanced) import SwiftUIIntrospect
 
+fileprivate let closedPosition: CGFloat = UIScreen.main.bounds.height - 460
+fileprivate let openedPosition: CGFloat = 180.0
 
-class ScrollViewDelegate: NSObject, UIScrollViewDelegate {
-    
-    public var scrollPosition = PassthroughSubject<Double, Never>()
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(scrollView.contentOffset.y)
-        scrollPosition.send(scrollView.contentOffset.y)
-    }
-}
 
 struct HomeScreen: View {
+    @Environment(\.safeAreaInsets) private var safeAreaInsets
+    @EnvironmentObject var navigationController: NavigationController
     
-    @Weak var uiScrollView: UIScrollView?
+    @State var pageIndex = 0
+    @State var bottomSheetY: CGFloat = closedPosition
+    @State var isSheetPresented = true
     
-    let scrollViewDelegate: ScrollViewDelegate = ScrollViewDelegate()
-    
-    @State var scrollPosition: Double = 0.0
-    
-    @State var cancellables: Set<AnyCancellable> = []
-
-    func addDelegateToScrollView() {
-        self.uiScrollView?.delegate = scrollViewDelegate
+    var animatedProgress: CGFloat {
+        bottomSheetY.interpolate([openedPosition, closedPosition], [1.0, 0.0])
     }
-    
-    func getHeaderHeight() -> CGFloat {
-        let val = scrollPosition.interpolated(fromLowerBound: 0.0, fromUpperBound: 350, toLowerBound: 200, toUpperBound: 30)
-        if val < 0 {
-            return 0
-        }
-        return val
-    }
-    
-    func getHeaderPadding() -> CGFloat {
-        let val = scrollPosition.interpolated(fromLowerBound: 0.0, fromUpperBound: 350, toLowerBound: 350, toUpperBound: 30)
-        if val < 0 {
-            return 0
-        }
-        return val
-    }
-    
-    
     
     var body: some View {
-//        NavigationView {
-            HStack {
-                ZStack(alignment: .topTrailing) {
-                    VStack{
-                        Group {
-                            Spacer()
-                                .frame(height: 54)
-                            Header()
-                            Spacer()
-                                .frame(height: 80)
-                            DateView()
-                            Spacer()
-                                .frame(height: 64)
-                        }
-                    }
-                    .frame(height: getHeaderHeight())
+        VStack {
+            AnimatedHeader(animationProgress: animatedProgress)
+            Spacer()
+                .sheet(isPresented: $isSheetPresented) {
                     VStack {
-                        FiltersRow()
-                        ScrollView(.vertical) {
-                            CalendarWidget()
-                            CalendarWidget()
-                            CalendarWidget()
-                            CalendarWidget()
-                            CalendarWidget()
-                            CalendarWidget()
-                            CalendarWidget()
-                            CalendarWidget()
-                        }
-                        .introspect(.scrollView, on: .iOS(.v16, .v17)) { _scrollView in
-                            if self.uiScrollView == nil {
-                                self.uiScrollView = _scrollView
-                                addDelegateToScrollView()
+                        EmptyView()
+                    }
+                    .introspect(.sheet, on: .iOS(.v16, .v17), customize: { (_sheet: UISheetPresentationController) in
+                        _sheet.containerView.map { _view in
+                            _view.subviews.forEach { _subView in
+                                _subView.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0)
                             }
                         }
-                    }
-                    .padding(.top, getHeaderPadding())
-                }
-            }
-            .onAppear() {
-                scrollViewDelegate.scrollPosition
-                    .map({ v in
-                        return v
                     })
-                    .sink { value in
-                        self.scrollPosition = value
+                    .screenPositionYChangePreference { _bottomSheetY in
+                        withAnimation {
+                            self.bottomSheetY = _bottomSheetY
+                        }
                     }
-                    .store(in: &cancellables)
-            }
-            .screenContainer()
-            .toolbar(.hidden, for: .navigationBar)
-//        }.toolbar(.hidden, for: .navigationBar)
+                    FiltersRow(activeIndex: $pageIndex)
+                    Spacer()
+                        .frame(height: 38)
+                    AdaptivePagingScrollView(currentPageIndex: $pageIndex,
+                                             itemsAmount: 1,
+                                             itemScrollableSide: UIScreen.main.bounds.width,
+                                             itemPadding: 0,
+                                             visibleContentLength: UIScreen.main.bounds.width) {
+                        
+                        AllTab(navigationController: navigationController)
+                        ScrollView {
+                            VStack {
+                                ForEach(0..<100) { index in
+                                    Text("Row \(index)")
+                                        .padding()
+                                        .frame(maxWidth: .infinity)
+                                        .background(.background)
+                                        .cornerRadius(10)
+                                        .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 0)
+                                        .padding()
+                                        .onTapGesture {
+                                            print("Tap 222: \(index)")
+                                        }
+                                }
+                            }
+                        }
+                        .frame(width: 375)
+                    }
+                                             .interactiveDismissDisabled()
+                                             .presentationDetents([.height(400), .height(UIScreen.main.bounds.height - 160)])
+                                             .presentationBackgroundInteraction(.enabled)
+                                             .presentationDragIndicator(.hidden)
+                                             .presentationBackground(.clear)
+                                             .presentationCornerRadius(0)
+                }
+        }
+        .padding(.top, safeAreaInsets.top)
+        .screenContainer(
+            background: bgGradient
+        )
+        .ignoresSafeArea(.all)
+        .toolbar(.hidden, for: .navigationBar)
+        .onWillDisappear {
+            isSheetPresented = false
+        }
+        .onAppear {
+            isSheetPresented = true
+        }
     }
 }
 
 struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
         HomeScreen()
+            .preferredColorScheme(.dark)
     }
 }
 
 
-// MARK: - Filters Row
-fileprivate struct FiltersRow: View {
-    var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 10) {
-                filterItem(name: "All", isActive: true, onPress: {})
-                filterItem(name: "Tasks", isActive: false, onPress: {})
-                filterItem(name: "Activity", isActive: false, onPress: {})
-                filterItem(name: "Meals", isActive: false, onPress: {})
-            }
-        }
-    }
-    
-    func filterItem(name:String, isActive: Bool, onPress: @escaping () -> Void) -> some View {
-        return HStack(alignment: .center, spacing: 16) {
-            Typography(name, .regular(.five))
-                .foregroundColor(isActive ? .black : .white)
-        }
-        .padding(.horizontal, 20)
-        .padding(.vertical, 12)
-        .background(isActive ? .white : Color(red: 0.15, green: 0.15, blue: 0.15))
-        .cornerRadius(200)
-        .onTapGesture {
-            onPress()
-        }
-    }
-}
-
-
-// MARK: - DateView
-fileprivate struct DateView: View {
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text("Sep 3, 2023")
-                .font(
-                    Font.custom("Inter-SemiBold", size: 48)
-                        .weight(.semibold)
+extension HomeScreen {
+    @ViewBuilder var bgGradient: some View {
+        VStack {
+            if(pageIndex == 0) {
+                LinearGradient(
+                    stops: [
+                        Gradient.Stop(color: Color(red: 0.74, green: 0.69, blue: 0.65), location: 0.00),
+                        Gradient.Stop(color: Color(red: 0.85, green: 0.85, blue: 0.85).opacity(0), location: 1.00),
+                        Gradient.Stop(color: Color(red: 0.28, green: 0.25, blue: 0.31), location: 1.00),
+                    ],
+                    startPoint: UnitPoint(x: 0.5, y: 0),
+                    endPoint: UnitPoint(x: 0.5, y: 1)
                 )
-                .foregroundColor(.white)
-            Typography("To access the summary for different days, just click on the date at the top.", .regular(.six))
-                .foregroundColor(Color(red: 0.69, green: 0.68, blue: 0.68))
-                .frame( alignment: .leading)
-        }
-        .padding(.leading, 16)
-        .padding(.trailing, 32)
-        .frame(maxWidth: .infinity, alignment: .topLeading)
-    }
-}
-
-
-// MARK: - Header
-fileprivate struct Header: View {
-    var body: some View {
-        HStack(alignment: .center) {
-            Circle()
-                .frame(width: 50, height: 50)
-                .foregroundColor(Color(red: 55, green: 55, blue: 55))
-            Spacer()
-            HStack(alignment: .center, spacing: 16) {
-                Typography("Community", .regular(.five))
+            } else {
+                LinearGradient(
+                    stops: [
+                        Gradient.Stop(color: Color(red: 0, green: 0.27, blue: 0.98), location: 0.00),
+                        Gradient.Stop(color: Color(red: 0.07, green: 0.1, blue: 0.16), location: 1.00),
+                    ],
+                    startPoint: UnitPoint(x: 0.5, y: 0),
+                    endPoint: UnitPoint(x: 0.5, y: 1)
+                )
             }
-            .padding(.horizontal, 20)
-            .padding(.vertical, 12)
-            .background(Color(red: 0.32, green: 0.32, blue: 0.32))
-            .cornerRadius(200)
         }
-        .padding(.horizontal, 16)
+        .animation(.easeIn(duration: 0.2), value: pageIndex)
     }
-}
-
-
-extension FloatingPoint {
-  /// Allows mapping between reverse ranges, which are illegal to construct (e.g. `10..<0`).
-  func interpolated(
-    fromLowerBound: Self,
-    fromUpperBound: Self,
-    toLowerBound: Self,
-    toUpperBound: Self) -> Self
-  {
-    let positionInRange = (self - fromLowerBound) / (fromUpperBound - fromLowerBound)
-    let result = (positionInRange * (toUpperBound - toLowerBound)) + toLowerBound
-    return result < toLowerBound ? toLowerBound : result > toUpperBound ? toUpperBound : result
-  }
-
-  func interpolated(from: ClosedRange<Self>, to: ClosedRange<Self>) -> Self {
-    interpolated(
-      fromLowerBound: from.lowerBound,
-      fromUpperBound: from.upperBound,
-      toLowerBound: to.lowerBound,
-      toUpperBound: to.upperBound)
-  }
 }

@@ -9,10 +9,14 @@ import SwiftUI
 
 struct AnimatedHeader: View {
     
-    @Binding var animationProgress: CGFloat // from 0 to 1
+    var animationProgress: CGFloat // from 0 to 1
     
-    func getOffest() -> Double {
+    func getOffestY() -> Double {
         return animationProgress.interpolate([0, 1], [0, -400])
+    }
+    
+    func getOffestX() -> Double {
+        return animationProgress.interpolate([0, 1], [0, 50])
     }
     
     func getScale() -> Double {
@@ -32,7 +36,7 @@ struct AnimatedHeader: View {
             Spacer()
                 .frame(height: 80)
             DateViewPicker()
-                .offset(y: getOffest())
+                .offset(x: getOffestX(), y: getOffestY())
                 .scaleEffect(getScale())
                 .onTapGesture {
                     print("Date Picker")
@@ -52,7 +56,7 @@ struct AnimatedHeader_Previews: PreviewProvider {
 //                .preferredColorScheme(.dark)
 //            AnimatedHeader(animationProgress: .constant(0.5))
 //                .preferredColorScheme(.dark)
-            AnimatedHeader(animationProgress: .constant(1))
+            AnimatedHeader(animationProgress: 1)
                 .preferredColorScheme(.dark)
             Spacer()
         }

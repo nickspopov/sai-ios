@@ -41,6 +41,7 @@
 		4B2D82532A98A4DE00558031 /* CalendarScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82522A98A4DE00558031 /* CalendarScreen.swift */; };
 		4B2D82552A98EA5A00558031 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82542A98EA5A00558031 /* UIApplication+Extension.swift */; };
 		4B2D82572A98EED300558031 /* CalendarScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82562A98EED300558031 /* CalendarScreenViewModel.swift */; };
+		4B5562B62AAA1D5A005017CA /* ActivityTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5562B52AAA1D5A005017CA /* ActivityTab.swift */; };
 		4B7001C02AA73A8E0039A5C2 /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 4B7001BF2AA73A8E0039A5C2 /* BottomSheet */; };
 		4B8192532A98F2A10002D953 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8192522A98F2A10002D953 /* UINavigationController+Extension.swift */; };
 		4B8192562A994F530002D953 /* CreateEventScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8192552A994F530002D953 /* CreateEventScreen.swift */; };
@@ -57,6 +58,7 @@
 		4B8906422AA5C884002E7BCB /* LoadingAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8906412AA5C884002E7BCB /* LoadingAppView.swift */; };
 		4B8B80162AA9BA0000642FB5 /* TasksTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8B80152AA9BA0000642FB5 /* TasksTab.swift */; };
 		4B8B80182AA9BF5B00642FB5 /* CheckFeelingWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8B80172AA9BF5B00642FB5 /* CheckFeelingWidget.swift */; };
+		4B8B801B2AAA0ACF00642FB5 /* Popovers in Frameworks */ = {isa = PBXBuildFile; productRef = 4B8B801A2AAA0ACF00642FB5 /* Popovers */; };
 		4B99D9EE2AA1E3FB002392B8 /* TimeInterval+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B99D9ED2AA1E3FB002392B8 /* TimeInterval+Extensions.swift */; };
 		4B99D9F12AA20AE2002392B8 /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 4B99D9F02AA20AE2002392B8 /* SwiftUIPager */; };
 		4B99D9F62AA3699D002392B8 /* CalendarEventsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B99D9F52AA3699D002392B8 /* CalendarEventsRepository.swift */; };
@@ -131,6 +133,7 @@
 		4B2D82522A98A4DE00558031 /* CalendarScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarScreen.swift; sourceTree = "<group>"; };
 		4B2D82542A98EA5A00558031 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		4B2D82562A98EED300558031 /* CalendarScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarScreenViewModel.swift; sourceTree = "<group>"; };
+		4B5562B52AAA1D5A005017CA /* ActivityTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTab.swift; sourceTree = "<group>"; };
 		4B8192522A98F2A10002D953 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 		4B8192552A994F530002D953 /* CreateEventScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventScreen.swift; sourceTree = "<group>"; };
 		4B82BE1E2AA8B0B3005383B6 /* FiltersRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersRow.swift; sourceTree = "<group>"; };
@@ -191,6 +194,7 @@
 				4B89063B2AA5C53C002E7BCB /* FirebaseMessaging in Frameworks */,
 				4BC477862A9CB0AF007CCF95 /* SaiFastAPI in Frameworks */,
 				4B8906372AA5C53C002E7BCB /* FirebaseFirestore in Frameworks */,
+				4B8B801B2AAA0ACF00642FB5 /* Popovers in Frameworks */,
 				4B8906352AA5C53C002E7BCB /* FirebaseAuth in Frameworks */,
 				4B8906392AA5C53C002E7BCB /* FirebaseFirestoreSwift in Frameworks */,
 				4B1BA26C2AA71EF50086A30A /* SwiftUIIntrospect in Frameworks */,
@@ -319,6 +323,7 @@
 				4B8B80152AA9BA0000642FB5 /* TasksTab.swift */,
 				4BDE42652AA89992002F5BF2 /* AnimatedHeader.swift */,
 				4B82BE1E2AA8B0B3005383B6 /* FiltersRow.swift */,
+				4B5562B52AAA1D5A005017CA /* ActivityTab.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -593,6 +598,7 @@
 				4B89063A2AA5C53C002E7BCB /* FirebaseMessaging */,
 				4B1BA26B2AA71EF50086A30A /* SwiftUIIntrospect */,
 				4B7001BF2AA73A8E0039A5C2 /* BottomSheet */,
+				4B8B801A2AAA0ACF00642FB5 /* Popovers */,
 			);
 			productName = sai;
 			productReference = 4B9F4BA02A93FF9700E8ECB5 /* sai.app */;
@@ -628,6 +634,7 @@
 				4B8906332AA5C53C002E7BCB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				4B1BA26A2AA71EF50086A30A /* XCRemoteSwiftPackageReference "swiftui-introspect" */,
 				4B7001BE2AA73A8D0039A5C2 /* XCRemoteSwiftPackageReference "BottomSheet" */,
+				4B8B80192AAA0ACF00642FB5 /* XCRemoteSwiftPackageReference "Popovers" */,
 			);
 			productRefGroup = 4B9F4BA12A93FF9700E8ECB5 /* Products */;
 			projectDirPath = "";
@@ -685,6 +692,7 @@
 				4B2D81D02A94B7C200558031 /* Walk.swift in Sources */,
 				4BA03AF02AA605F600B15ABE /* UserModel.swift in Sources */,
 				4B99D9EE2AA1E3FB002392B8 /* TimeInterval+Extensions.swift in Sources */,
+				4B5562B62AAA1D5A005017CA /* ActivityTab.swift in Sources */,
 				4B82BE1F2AA8B0B3005383B6 /* FiltersRow.swift in Sources */,
 				4BA03AEC2AA5D15E00B15ABE /* AuthService.swift in Sources */,
 				4BA03AFA2AA6090C00B15ABE /* UserRepositoryImpl.swift in Sources */,
@@ -959,6 +967,14 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		4B8B80192AAA0ACF00642FB5 /* XCRemoteSwiftPackageReference "Popovers" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aheze/Popovers";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		4B99D9EF2AA20AE2002392B8 /* XCRemoteSwiftPackageReference "SwiftUIPager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/fermoya/SwiftUIPager.git";
@@ -1007,6 +1023,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4B8906332AA5C53C002E7BCB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
+		};
+		4B8B801A2AAA0ACF00642FB5 /* Popovers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4B8B80192AAA0ACF00642FB5 /* XCRemoteSwiftPackageReference "Popovers" */;
+			productName = Popovers;
 		};
 		4B99D9F02AA20AE2002392B8 /* SwiftUIPager */ = {
 			isa = XCSwiftPackageProductDependency;

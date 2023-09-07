@@ -21,6 +21,7 @@ struct HomeScreen: View {
     @State var pageIndex = 0
     @State var bottomSheetY: CGFloat = closedPosition
     @State var isSheetPresented = true
+    @State var selectedDate: Date = Date()
     
     var animatedProgress: CGFloat {
         if (bottomSheetY < 0) {
@@ -31,20 +32,22 @@ struct HomeScreen: View {
     
     var body: some View {
         VStack {
-            AnimatedHeader(animationProgress: animatedProgress)
+            AnimatedHeader(animationProgress: animatedProgress, selectedDate: $selectedDate)
             Spacer()
                 .sheet(isPresented: $isSheetPresented) {
                     sheetTuningAndHeightHandler
                     FiltersRow(activeIndex: $pageIndex)
+                        .padding(.leading, UIScreen.main.bounds.width * 0.25)
                     Spacer()
                         .frame(height: 38)
                     AdaptivePagingScrollView(currentPageIndex: $pageIndex,
-                                             itemsAmount: 1,
+                                             itemsAmount: 3,
                                              itemScrollableSide: UIScreen.main.bounds.width,
                                              itemPadding: 0,
-                                             visibleContentLength: UIScreen.main.bounds.width) {
+                                             visibleContentLength: UIScreen.main.bounds.width * 1.5) {
                         AllTab(navigationController: navigationController)
                         TasksTab()
+                        ActivityTab()
                     }
                                              .interactiveDismissDisabled()
                                              .presentationDetents([.height(400), .height(UIScreen.main.bounds.height - 160)])

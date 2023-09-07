@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import Popovers
 
 struct AnimatedHeader: View {
     
     var animationProgress: CGFloat // from 0 to 1
+    
+    @Binding var selectedDate: Date
     
     func getOffestY() -> Double {
         return animationProgress.interpolate([0, 1], [0, -500])
@@ -35,12 +38,9 @@ struct AnimatedHeader: View {
                 .opacity(getOpacity())
             Spacer()
                 .frame(height: 80)
-            DateViewPicker()
+            DateViewPicker(selectedDate: $selectedDate)
                 .offset(x: getOffestX(), y: getOffestY())
                 .scaleEffect(getScale())
-                .onTapGesture {
-                    print("Date Picker")
-                }
             DateViewPickerDescription()
                 .opacity(getOpacity())
             Spacer()
@@ -51,12 +51,9 @@ struct AnimatedHeader: View {
 
 struct AnimatedHeader_Previews: PreviewProvider {
     static var previews: some View {
+        let date: Binding<Date> = .constant(Date())
         VStack{
-//            AnimatedHeader(animationProgress: .constant(0))
-//                .preferredColorScheme(.dark)
-//            AnimatedHeader(animationProgress: .constant(0.5))
-//                .preferredColorScheme(.dark)
-            AnimatedHeader(animationProgress: 0)
+            AnimatedHeader(animationProgress: 0, selectedDate: date)
                 .preferredColorScheme(.dark)
             Spacer()
         }
@@ -67,18 +64,39 @@ struct AnimatedHeader_Previews: PreviewProvider {
 
 // MARK: - DateView
 fileprivate struct DateViewPicker: View {
+    
+    @Binding var selectedDate: Date
+    @State var present = false
+    
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Sep 3, 2023")
+            Text(selectedDate.format(format: "MMM d, YYYY"))
                 .font(
                     Font.custom("Inter-SemiBold", size: 48)
                         .weight(.semibold)
                 )
                 .foregroundColor(.white)
+                .onTapGesture {
+                    present = true
+                }
         }
         .padding(.leading, 16)
         .padding(.trailing, 32)
         .frame(maxWidth: .infinity, alignment: .topLeading)
+        .popover(present: $present) {
+            VStack {
+                DatePicker("Enter your birthday", selection: $selectedDate, displayedComponents: [.date])
+                    .datePickerStyle(GraphicalDatePickerStyle())
+                    .frame(maxHeight: 400)
+            }
+            .background(
+                RoundedRectangle(cornerRadius: 24)
+                    .foregroundColor(.gray)
+            )
+        }
+        .onChange(of: selectedDate) { newValue in
+            present = false
+        }
     }
 }
 

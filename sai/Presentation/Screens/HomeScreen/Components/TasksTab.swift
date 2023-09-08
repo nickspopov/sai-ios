@@ -26,6 +26,8 @@ struct TasksTab: View {
                     CreateEventScreen()
                 }
             ScrollView(showsIndicators: false) {
+                // To prevent collaps width animation
+                VStack{}.frame(maxWidth: .infinity)
                 VStack(spacing: 4) {
                     ForEach(Array(zip(viewModel.tasksList.indices, viewModel.tasksList)), id: \.1.id) { index, _taskItem in
                         TasksTabItem(task: _taskItem, color: .init(fromIndex: index))
@@ -64,7 +66,7 @@ extension TasksTab{
         func onSheetDismiss() {
             getEvents(for: parentViewModel.selectedDate)
         }
-
+        
         // MARK: - Private
         private let calendarEventsRepository: CalendarEventsRepositoryImpl = CalendarEventsRepositoryImpl.shared
         private var subscribers: Set<AnyCancellable> = []
@@ -73,16 +75,20 @@ extension TasksTab{
             Task {
                 let events = await calendarEventsRepository.getCached(from: date.startOfDay(), to: date.endOfDay())
                 DispatchQueue.main.async {
-                    self.tasksList = events
+                    withAnimation {
+                        self.tasksList = events
+                    }
                 }
             }
         }
-
+        
         private func getEvents(for date: Date) -> Void {
             Task {
                 if let events = try? await calendarEventsRepository.get(from: date.startOfDay(), to: date.endOfDay()) {
                     DispatchQueue.main.async {
-                        self.tasksList = events
+                        withAnimation {
+                            self.tasksList = events
+                        }
                     }
                 }
             }

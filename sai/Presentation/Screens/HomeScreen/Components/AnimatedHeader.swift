@@ -93,7 +93,11 @@ fileprivate struct DateViewPicker: View {
         .padding(.leading, 16)
         .padding(.trailing, 32)
         .frame(maxWidth: .infinity, alignment: .topLeading)
-        .popover(present: $present) {
+        .popover(present: $present, attributes: {
+            $0.presentation.animation = .spring(response: 0.5, dampingFraction: 0.7, blendDuration: 0.1)
+            $0.presentation.transition = .move(edge: .top)
+            $0.dismissal.transition = .move(edge: .top)
+        }) {
             VStack {
                 DatePicker("", selection: $selectedDate, displayedComponents: [.date])
                     .datePickerStyle(GraphicalDatePickerStyle())

@@ -61,12 +61,11 @@ struct TasksTabItem: View {
             Spacer()
                 .frame(height: 17)
             HStack(alignment: .bottom) {
-                Typography(task.startedAt.timeIn24HourFormat(), .regular(.eight))
+                Typography("\(task.startedAt.timeIn24HourFormat()) - \(task.endedAt.timeIn24HourFormat())", .regular(.eight))
                 Spacer()
                 VStack(alignment: .center) {
                     Image(systemName: "party.popper")
                         .foregroundColor(.black)
-                    
                 }
                 .frame(width: 32,height: 32)
                 .background(.white)

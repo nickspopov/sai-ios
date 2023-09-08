@@ -77,7 +77,7 @@ struct HomeScreen_Previews: PreviewProvider {
 extension HomeScreen {
     @ViewBuilder var bgGradient: some View {
         VStack {
-            if(pageIndex == 0) {
+            if(pageIndex == 0 || pageIndex == 1) {
                 LinearGradient(
                     stops: [
                         Gradient.Stop(color: Color(red: 0.74, green: 0.69, blue: 0.65), location: 0.00),

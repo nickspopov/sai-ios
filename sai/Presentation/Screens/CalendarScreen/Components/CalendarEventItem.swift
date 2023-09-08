@@ -92,7 +92,7 @@ extension CalendarEventItem {
 extension CalendarEventItem {
     var verticalLine: some View {
         Rectangle()
-            .frame(width: 2, height: .infinity)
+            .frame(maxWidth: 2, maxHeight: .infinity)
             .foregroundColor(Color(uiColor: UIColor(red: 0.89, green: 0.59, blue: 0.2, alpha: 1)))
     }
 }

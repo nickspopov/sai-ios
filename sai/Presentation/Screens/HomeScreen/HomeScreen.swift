@@ -77,7 +77,16 @@ struct HomeScreen_Previews: PreviewProvider {
 extension HomeScreen {
     @ViewBuilder var bgGradient: some View {
         VStack {
-            if(pageIndex == 0 || pageIndex == 1) {
+            if(pageIndex == 0 ) {
+                LinearGradient(
+                    stops: [
+                        Gradient.Stop(color: Color(red: 0.24, green: 0.24, blue: 0.24), location: 0.00),
+                        Gradient.Stop(color: Color(red: 0.74, green: 0.69, blue: 0.65), location: 1.00),
+                    ],
+                    startPoint: UnitPoint(x: 0.5, y: 0),
+                    endPoint: UnitPoint(x: 0.5, y: 1)
+                )
+            } else if pageIndex == 1 {
                 LinearGradient(
                     stops: [
                         Gradient.Stop(color: Color(red: 0.74, green: 0.69, blue: 0.65), location: 0.00),
@@ -87,18 +96,28 @@ extension HomeScreen {
                     startPoint: UnitPoint(x: 0.5, y: 0),
                     endPoint: UnitPoint(x: 0.5, y: 1)
                 )
-            } else {
+            } else if pageIndex == 2 {
                 LinearGradient(
                     stops: [
-                        Gradient.Stop(color: Color(red: 0.03, green: 0.82, blue: 0.78), location: 0.00),
-                        Gradient.Stop(color: Color(red: 0, green: 0.2, blue: 0.19), location: 1.00),
+                        Gradient.Stop(color: Color(red: 0.26, green: 0.26, blue: 0.26), location: 0.00),
+                        Gradient.Stop(color: Color(red: 0.08, green: 0.08, blue: 0.08), location: 1.00),
+                    ],
+                    startPoint: UnitPoint(x: 0.5, y: 0),
+                    endPoint: UnitPoint(x: 0.5, y: 1)
+                )
+            } else if pageIndex == 3 {
+                LinearGradient(
+                    stops: [
+                        Gradient.Stop(color: Color(red: 0, green: 0.27, blue: 0.98), location: 0.00),
+                        Gradient.Stop(color: Color(red: 0.07, green: 0.1, blue: 0.16), location: 1.00),
                     ],
                     startPoint: UnitPoint(x: 0.5, y: 0),
                     endPoint: UnitPoint(x: 0.5, y: 1)
                 )
             }
         }
-        .animation(.easeIn(duration: 0.2), value: pageIndex)
+        .animation(.easeIn(duration: 0.35), value: pageIndex)
+        .transition(.scale)
     }
 }
 

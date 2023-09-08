@@ -17,13 +17,14 @@ struct HomeScreen: View {
     @State var pageIndex = 0
     @State var bottomSheetY: CGFloat = SheetState.closed.topPosition
     @State var isSheetPresented = true
-    @State var selectedDate: Date = Date()
+    
+    @StateObject var viewModel = HomeScreenViewModel()
     
     var animatedProgress: CGFloat { SheetState.interpolateSheetTopPoisition(bottomSheetY) }
     
     var body: some View {
         VStack {
-            AnimatedHeader(animationProgress: animatedProgress, selectedDate: $selectedDate)
+            AnimatedHeader(animationProgress: animatedProgress, selectedDate: $viewModel.selectedDate)
             Spacer()
                 .sheet(isPresented: $isSheetPresented) {
                     sheetTuningAndHeightHandler
@@ -37,7 +38,7 @@ struct HomeScreen: View {
                                              itemPadding: 0,
                                              visibleContentLength: UIScreen.main.bounds.width * 1.5) {
                         AllTab(navigationController: navigationController)
-                        TasksTab()
+                        TasksTab(homeScreenViewModel: viewModel)
                         ActivityTab()
                     }
                                              .interactiveDismissDisabled()
@@ -70,6 +71,7 @@ struct HomeScreen_Previews: PreviewProvider {
             .preferredColorScheme(.dark)
     }
 }
+
 
 // MARK: - Background
 extension HomeScreen {

@@ -42,6 +42,8 @@
 		4B2D82552A98EA5A00558031 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82542A98EA5A00558031 /* UIApplication+Extension.swift */; };
 		4B2D82572A98EED300558031 /* CalendarScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82562A98EED300558031 /* CalendarScreenViewModel.swift */; };
 		4B5562B62AAA1D5A005017CA /* ActivityTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5562B52AAA1D5A005017CA /* ActivityTab.swift */; };
+		4B5562B82AAB215A005017CA /* CreateNewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5562B72AAB215A005017CA /* CreateNewButton.swift */; };
+		4B5562BB2AAB2496005017CA /* TasksTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5562BA2AAB2496005017CA /* TasksTabItem.swift */; };
 		4B7001C02AA73A8E0039A5C2 /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 4B7001BF2AA73A8E0039A5C2 /* BottomSheet */; };
 		4B8192532A98F2A10002D953 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8192522A98F2A10002D953 /* UINavigationController+Extension.swift */; };
 		4B8192562A994F530002D953 /* CreateEventScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8192552A994F530002D953 /* CreateEventScreen.swift */; };
@@ -134,6 +136,8 @@
 		4B2D82542A98EA5A00558031 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		4B2D82562A98EED300558031 /* CalendarScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarScreenViewModel.swift; sourceTree = "<group>"; };
 		4B5562B52AAA1D5A005017CA /* ActivityTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTab.swift; sourceTree = "<group>"; };
+		4B5562B72AAB215A005017CA /* CreateNewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewButton.swift; sourceTree = "<group>"; };
+		4B5562BA2AAB2496005017CA /* TasksTabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTabItem.swift; sourceTree = "<group>"; };
 		4B8192522A98F2A10002D953 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 		4B8192552A994F530002D953 /* CreateEventScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventScreen.swift; sourceTree = "<group>"; };
 		4B82BE1E2AA8B0B3005383B6 /* FiltersRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersRow.swift; sourceTree = "<group>"; };
@@ -318,12 +322,14 @@
 		4B2D82422A9629E100558031 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				4B5562B92AAB2485005017CA /* TasksTab */,
 				4B82BE242AA9148C005383B6 /* AllTab */,
 				4B82BE212AA8ECAF005383B6 /* AllTab.swift */,
 				4B8B80152AA9BA0000642FB5 /* TasksTab.swift */,
 				4BDE42652AA89992002F5BF2 /* AnimatedHeader.swift */,
 				4B82BE1E2AA8B0B3005383B6 /* FiltersRow.swift */,
 				4B5562B52AAA1D5A005017CA /* ActivityTab.swift */,
+				4B5562B72AAB215A005017CA /* CreateNewButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -335,6 +341,14 @@
 				4B2D82522A98A4DE00558031 /* CalendarScreen.swift */,
 			);
 			path = CalendarScreen;
+			sourceTree = "<group>";
+		};
+		4B5562B92AAB2485005017CA /* TasksTab */ = {
+			isa = PBXGroup;
+			children = (
+				4B5562BA2AAB2496005017CA /* TasksTabItem.swift */,
+			);
+			path = TasksTab;
 			sourceTree = "<group>";
 		};
 		4B8192542A994F320002D953 /* CreateEventScreen */ = {
@@ -670,6 +684,7 @@
 			files = (
 				4B2D81B12A94AA1900558031 /* Color+HEX.swift in Sources */,
 				4B99DA072AA37017002392B8 /* WalkCoreData+Extension.swift in Sources */,
+				4B5562B82AAB215A005017CA /* CreateNewButton.swift in Sources */,
 				4B2D82172A94F5F000558031 /* WalkCoreData+CoreDataProperties.swift in Sources */,
 				4BD94A6E2A9A257A00B268CF /* WalksScreen.swift in Sources */,
 				4B2D81C12A94AAE800558031 /* MapView.swift in Sources */,
@@ -726,6 +741,7 @@
 				4B2D81BF2A94AA9B00558031 /* ButtonStyles.swift in Sources */,
 				4B2D81BD2A94AA6F00558031 /* Typography.swift in Sources */,
 				4BC4778D2A9CB47E007CCF95 /* AuthorizationInterceptor.swift in Sources */,
+				4B5562BB2AAB2496005017CA /* TasksTabItem.swift in Sources */,
 				4BA03AF42AA606D700B15ABE /* UserRepository.swift in Sources */,
 				4B2D82532A98A4DE00558031 /* CalendarScreen.swift in Sources */,
 				4B2D82402A961BC300558031 /* HomeScreenViewModel.swift in Sources */,

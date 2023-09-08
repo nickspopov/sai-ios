@@ -36,7 +36,7 @@ struct AllTab: View {
             }
             
         }
-        .padding(.horizontal, 16)
+        .padding(.horizontal, 12)
     }
 }
 

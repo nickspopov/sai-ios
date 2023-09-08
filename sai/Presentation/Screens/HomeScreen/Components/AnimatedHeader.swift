@@ -15,7 +15,7 @@ struct AnimatedHeader: View {
     @Binding var selectedDate: Date
     
     func getOffestY() -> Double {
-        return animationProgress.interpolate([0, 1], [0, -500])
+        return animationProgress.interpolate([0, 0.7, 1], [0, -300, -550])
     }
     
     func getOffestX() -> Double {
@@ -23,15 +23,25 @@ struct AnimatedHeader: View {
     }
     
     func getScale() -> Double {
-        return animationProgress.interpolate([0, 1], [1, 0.35])
+        return animationProgress.interpolate([0, 0.7, 1], [1, 0.5, 0.35])
     }
     
     func getOpacity() -> Double {
         return animationProgress.interpolate([0, 1], [1, 0])
     }
     
+    func getDividerOpacity() -> Double {
+        return animationProgress.interpolate([0, 0.8, 1], [0, 0, 1])
+    }
+    
     var body: some View {
         VStack(spacing: 0){
+            Rectangle()
+                .foregroundColor(.clear)
+                .frame(width: UIScreen.main.bounds.width, height: 0.33)
+                .background(.white.opacity(0.8))
+                .offset(y: 44)
+                .opacity(getDividerOpacity())
             Spacer()
                 .frame(height: 54)
             Header()
@@ -85,7 +95,7 @@ fileprivate struct DateViewPicker: View {
         .frame(maxWidth: .infinity, alignment: .topLeading)
         .popover(present: $present) {
             VStack {
-                DatePicker("Enter your birthday", selection: $selectedDate, displayedComponents: [.date])
+                DatePicker("", selection: $selectedDate, displayedComponents: [.date])
                     .datePickerStyle(GraphicalDatePickerStyle())
                     .frame(maxHeight: 400)
             }

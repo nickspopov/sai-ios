@@ -10,25 +10,16 @@ import UIKit
 import Combine
 @_spi(Advanced) import SwiftUIIntrospect
 
-fileprivate let closedPosition: CGFloat = UIScreen.main.bounds.height - 460
-fileprivate let openedPosition: CGFloat = 180.0
-
-
 struct HomeScreen: View {
     @Environment(\.safeAreaInsets) private var safeAreaInsets
     @EnvironmentObject var navigationController: NavigationController
     
     @State var pageIndex = 0
-    @State var bottomSheetY: CGFloat = closedPosition
+    @State var bottomSheetY: CGFloat = SheetState.closed.topPosition
     @State var isSheetPresented = true
     @State var selectedDate: Date = Date()
     
-    var animatedProgress: CGFloat {
-        if (bottomSheetY < 0) {
-            return 0
-        }
-        return bottomSheetY.interpolate([openedPosition, closedPosition], [1.0, 0.0])
-    }
+    var animatedProgress: CGFloat { SheetState.interpolateSheetTopPoisition(bottomSheetY) }
     
     var body: some View {
         VStack {
@@ -50,7 +41,7 @@ struct HomeScreen: View {
                         ActivityTab()
                     }
                                              .interactiveDismissDisabled()
-                                             .presentationDetents([.height(400), .height(UIScreen.main.bounds.height - 160)])
+                                             .presentationDetents(SheetState.presentationDetents)
                                              .presentationBackgroundInteraction(.enabled)
                                              .presentationDragIndicator(.hidden)
                                              .presentationBackground(.clear)
@@ -128,4 +119,41 @@ extension HomeScreen {
             }
         }
     }
+}
+
+
+// MARK: - Sheet calculations
+fileprivate enum SheetState: CGFloat {
+    case opened = 1.0
+    case closed = 0.0
+    
+    var topPosition: CGFloat {
+        switch self {
+        case .opened:
+            return 180.0
+        case .closed:
+            return SheetState.calculatedValues.topPosition
+        }
+    }
+    
+    static var presentationDetents: Set<PresentationDetent> {
+        return [ .height(SheetState.calculatedValues.detent), .height(UIScreen.main.bounds.height - 123 - safeArea.top) ]
+    }
+    
+    static func interpolateSheetTopPoisition(_ bottomSheetY: CGFloat) -> CGFloat {
+        if (bottomSheetY < 0) {
+            return 0
+        }
+        return bottomSheetY.interpolate([SheetState.opened.topPosition, SheetState.closed.topPosition], [SheetState.opened.rawValue, SheetState.closed.rawValue])
+    }
+    
+    private static let safeArea: (bottom: CGFloat, top: CGFloat) = (bottom: 34, top: 50)
+    
+    private static var calculatedValues: (detent: CGFloat, topPosition: CGFloat) = {
+        let headerHeight = 324.0
+        let detent = UIScreen.main.bounds.height - headerHeight - safeArea.top - safeArea.bottom
+        let topPosition = UIScreen.main.bounds.height - detent - 40
+        
+        return (detent: detent, topPosition: topPosition)
+    }()
 }

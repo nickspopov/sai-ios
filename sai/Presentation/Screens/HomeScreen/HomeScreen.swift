@@ -39,7 +39,7 @@ struct HomeScreen: View {
                                              visibleContentLength: UIScreen.main.bounds.width * 1.5) {
                         AllTab(navigationController: navigationController, homeScreenViewModel: viewModel)
                         TasksTab(homeScreenViewModel: viewModel)
-                        ActivityTab()
+                        ActivityTab(homeScreenViewModel: viewModel)
                     }
                                              .interactiveDismissDisabled()
                                              .presentationDetents(SheetState.presentationDetents)

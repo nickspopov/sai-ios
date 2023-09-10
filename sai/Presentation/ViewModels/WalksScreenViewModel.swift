@@ -67,12 +67,26 @@ class WalksScreenViewModel: ObservableObject {
     
     let walksRepository = WalksRepositoryImpl.shared
     
+    private var subscribers: Set<AnyCancellable> = []
     
     init() {
         activeWalkService.$activeWalk
             .assign(to: &$activeWalk)
         activeWalkService.$timer
             .assign(to: &$timer)
+        
+        activeWalkService.$isRunning.sink{ _isRunning in
+            DispatchQueue.main.async {
+                withAnimation {
+                    if _isRunning {
+                        self.state = .activeWalk
+                    } else {
+                        self.state = .today(loading: true, stat: self.lastTodayStat)
+                        self.getTodayData()
+                    }
+                }
+            }
+        }.store(in: &subscribers)
     }
     
     private let activeWalkService = ActiveWalkService.shared

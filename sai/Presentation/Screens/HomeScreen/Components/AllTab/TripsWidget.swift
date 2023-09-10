@@ -69,7 +69,7 @@ extension TripsWidget {
         func onAppear() {
             Task {
                 do {
-                    let _statistic = try await walksRepository.getOneDayAnalytic(for: self.date)
+                    let _statistic = try await walksRepository.getOneDayAnalytic(for: self.date.startOfDay())
                         DispatchQueue.main.async {
                             self.statistic = _statistic
                         }

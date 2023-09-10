@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4B1BA26C2AA71EF50086A30A /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = 4B1BA26B2AA71EF50086A30A /* SwiftUIIntrospect */; };
-		4B2380E02AA8AC5800D4D181 /* CGFloar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2380DF2AA8AC5800D4D181 /* CGFloar+Extension.swift */; };
+		4B2380E02AA8AC5800D4D181 /* CGFloat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2380DF2AA8AC5800D4D181 /* CGFloat+Extension.swift */; };
 		4B2380E22AA8ADC500D4D181 /* AdaptivePagingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2380E12AA8ADC500D4D181 /* AdaptivePagingScrollView.swift */; };
 		4B2D81AF2A94A9FA00558031 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D81AE2A94A9FA00558031 /* View+Extensions.swift */; };
 		4B2D81B12A94AA1900558031 /* Color+HEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D81B02A94AA1900558031 /* Color+HEX.swift */; };
@@ -101,7 +101,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4B2380DF2AA8AC5800D4D181 /* CGFloar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloar+Extension.swift"; sourceTree = "<group>"; };
+		4B2380DF2AA8AC5800D4D181 /* CGFloat+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extension.swift"; sourceTree = "<group>"; };
 		4B2380E12AA8ADC500D4D181 /* AdaptivePagingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptivePagingScrollView.swift; sourceTree = "<group>"; };
 		4B2D81A92A94A8E200558031 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4B2D81AE2A94A9FA00558031 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
@@ -208,21 +208,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4B2D81AA2A94A9D800558031 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				4B2D81AE2A94A9FA00558031 /* View+Extensions.swift */,
-				4B2D81B02A94AA1900558031 /* Color+HEX.swift */,
-				4B2D824F2A98A20A00558031 /* Date+Extension.swift */,
-				4B2D82542A98EA5A00558031 /* UIApplication+Extension.swift */,
-				4B8192522A98F2A10002D953 /* UINavigationController+Extension.swift */,
-				4BCE46722A9ED85E009142D8 /* ApolloClient+Extensions.swift */,
-				4B99D9ED2AA1E3FB002392B8 /* TimeInterval+Extensions.swift */,
-				4B2380DF2AA8AC5800D4D181 /* CGFloar+Extension.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		4B2D81AB2A94A9DF00558031 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -382,6 +367,7 @@
 		4B99D9F22AA27EB0002392B8 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				4BF70B572AADEB52008B70F6 /* Utils */,
 				4BC477892A9CB254007CCF95 /* Network */,
 				4B2D81AB2A94A9DF00558031 /* Fonts */,
 			);
@@ -442,6 +428,7 @@
 		4B99D9FC2AA36BA7002392B8 /* GraphqQL */ = {
 			isa = PBXGroup;
 			children = (
+				4BF70B562AADEB35008B70F6 /* Utils */,
 				4BCE46752A9F55EB009142D8 /* CalendarEventsGraphQLService.swift */,
 				4BABA4D82AA08A80002F1880 /* WalksGraphQLImpl.swift */,
 				4BCFCFB82A9DDAF8000E2802 /* SaiFastAPI+Extensions.swift */,
@@ -507,7 +494,6 @@
 				4B99D9F32AA27F14002392B8 /* Domain */,
 				4B99D9F22AA27EB0002392B8 /* Core */,
 				4B2D82352A960A7800558031 /* Protocols */,
-				4B2D81AA2A94A9D800558031 /* Extensions */,
 				4B9F4BA32A93FF9700E8ECB5 /* saiApp.swift */,
 				4B9F4BA52A93FF9700E8ECB5 /* ContentView.swift */,
 				4B2D81A92A94A8E200558031 /* Info.plist */,
@@ -582,6 +568,28 @@
 			isa = PBXGroup;
 			children = (
 				4BDE42632AA7C7AF002F5BF2 /* ScreenPositionKey.swift */,
+				4B2380DF2AA8AC5800D4D181 /* CGFloat+Extension.swift */,
+				4B2D82542A98EA5A00558031 /* UIApplication+Extension.swift */,
+				4B8192522A98F2A10002D953 /* UINavigationController+Extension.swift */,
+				4B2D81B02A94AA1900558031 /* Color+HEX.swift */,
+				4B2D81AE2A94A9FA00558031 /* View+Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		4BF70B562AADEB35008B70F6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4BCE46722A9ED85E009142D8 /* ApolloClient+Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		4BF70B572AADEB52008B70F6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4B2D824F2A98A20A00558031 /* Date+Extension.swift */,
+				4B99D9ED2AA1E3FB002392B8 /* TimeInterval+Extensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -691,7 +699,7 @@
 				4B2D82192A94F77A00558031 /* TestScreen.swift in Sources */,
 				4B82BE262AA918D1005383B6 /* YourPetWidget.swift in Sources */,
 				4BCFCFB92A9DDAF8000E2802 /* SaiFastAPI+Extensions.swift in Sources */,
-				4B2380E02AA8AC5800D4D181 /* CGFloar+Extension.swift in Sources */,
+				4B2380E02AA8AC5800D4D181 /* CGFloat+Extension.swift in Sources */,
 				4B2D82502A98A20A00558031 /* Date+Extension.swift in Sources */,
 				4B8192562A994F530002D953 /* CreateEventScreen.swift in Sources */,
 				4B8906422AA5C884002E7BCB /* LoadingAppView.swift in Sources */,

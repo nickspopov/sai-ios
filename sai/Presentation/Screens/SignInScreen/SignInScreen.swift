@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SignInScreen: View {
+    @EnvironmentObject var navigationController: NavigationController
+    
     @State var email: String = ""
     @State var password: String = ""
     
@@ -19,7 +21,7 @@ struct SignInScreen: View {
             let result = await AuthServiceFirebaseImpl.shared.signIn(email:email, password:password)
             
             switch result {
-            case .success(_): print("success")
+            case .success(_): navigationController.replace(to: [.homeScreen])
             case .failure(let error): print(error)
             }
             
@@ -32,11 +34,8 @@ struct SignInScreen: View {
     
     var body: some View {
         Form {
-            Section(header: Text("Email")) {
+            Section {
                 TextField("Email", text: $email)
-            }
-            
-            Section(header: Text("Password")) {
                 SecureField("Password", text: $password)
             }
             

@@ -64,6 +64,7 @@ struct HomeScreen: View {
     }
 }
 
+// MARK: - Preview
 struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
         HomeScreen()
@@ -76,7 +77,7 @@ struct HomeScreen_Previews: PreviewProvider {
 // MARK: - Background
 extension HomeScreen {
     @ViewBuilder var bgGradient: some View {
-        VStack {
+        ZStack {
             if(pageIndex == 0 ) {
                 LinearGradient(
                     stops: [

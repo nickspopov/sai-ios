@@ -37,10 +37,6 @@ struct ContentView: View {
         .onAppear() {
             viewModel.onAppear()
         }
-        .onChange(of: navigationController.stack) { newValue in
-            print(newValue)
-            let sss = 2
-        }
     }
 }
 
@@ -61,8 +57,6 @@ extension ContentView {
         
         func onAppear() {
             DispatchQueue.main.async {
-                
-                
                 if (AuthServiceFirebaseImpl.shared.checkAuthStatusOptimistic() == true) {
                     self.navigationController.push(to: .homeScreen)
                     self.isLoggedIn = true

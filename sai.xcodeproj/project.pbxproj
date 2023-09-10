@@ -98,6 +98,10 @@
 		4BD94A732A9C9CB100B268CF /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 4BD94A722A9C9CB100B268CF /* Apollo */; };
 		4BDE42642AA7C7AF002F5BF2 /* ScreenPositionKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDE42632AA7C7AF002F5BF2 /* ScreenPositionKey.swift */; };
 		4BDE42662AA89992002F5BF2 /* AnimatedHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDE42652AA89992002F5BF2 /* AnimatedHeader.swift */; };
+		4BF70B5A2AADEC75008B70F6 /* DebugFrameModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF70B592AADEC75008B70F6 /* DebugFrameModifier.swift */; };
+		4BF70B5C2AADED2A008B70F6 /* WillDisappearModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF70B5B2AADED2A008B70F6 /* WillDisappearModifier.swift */; };
+		4BF70B5E2AADED97008B70F6 /* RoundedCornerShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF70B5D2AADED97008B70F6 /* RoundedCornerShape.swift */; };
+		4BF70B602AADEE2F008B70F6 /* IsVisibleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF70B5F2AADEE2F008B70F6 /* IsVisibleModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -185,6 +189,10 @@
 		4BD94A6F2A9A285800B268CF /* WalksScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalksScreenViewModel.swift; sourceTree = "<group>"; };
 		4BDE42632AA7C7AF002F5BF2 /* ScreenPositionKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenPositionKey.swift; sourceTree = "<group>"; };
 		4BDE42652AA89992002F5BF2 /* AnimatedHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedHeader.swift; sourceTree = "<group>"; };
+		4BF70B592AADEC75008B70F6 /* DebugFrameModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugFrameModifier.swift; sourceTree = "<group>"; };
+		4BF70B5B2AADED2A008B70F6 /* WillDisappearModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WillDisappearModifier.swift; sourceTree = "<group>"; };
+		4BF70B5D2AADED97008B70F6 /* RoundedCornerShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerShape.swift; sourceTree = "<group>"; };
+		4BF70B5F2AADEE2F008B70F6 /* IsVisibleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsVisibleModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -567,7 +575,11 @@
 		4BDE42622AA7C77F002F5BF2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				4BF70B592AADEC75008B70F6 /* DebugFrameModifier.swift */,
 				4BDE42632AA7C7AF002F5BF2 /* ScreenPositionKey.swift */,
+				4BF70B5B2AADED2A008B70F6 /* WillDisappearModifier.swift */,
+				4BF70B5D2AADED97008B70F6 /* RoundedCornerShape.swift */,
+				4BF70B5F2AADEE2F008B70F6 /* IsVisibleModifier.swift */,
 				4B2380DF2AA8AC5800D4D181 /* CGFloat+Extension.swift */,
 				4B2D82542A98EA5A00558031 /* UIApplication+Extension.swift */,
 				4B8192522A98F2A10002D953 /* UINavigationController+Extension.swift */,
@@ -692,6 +704,7 @@
 			files = (
 				4B2D81B12A94AA1900558031 /* Color+HEX.swift in Sources */,
 				4B99DA072AA37017002392B8 /* WalkCoreData+Extension.swift in Sources */,
+				4BF70B5C2AADED2A008B70F6 /* WillDisappearModifier.swift in Sources */,
 				4B5562B82AAB215A005017CA /* CreateNewButton.swift in Sources */,
 				4B2D82172A94F5F000558031 /* WalkCoreData+CoreDataProperties.swift in Sources */,
 				4BD94A6E2A9A257A00B268CF /* WalksScreen.swift in Sources */,
@@ -725,6 +738,8 @@
 				4B2D824A2A9899F300558031 /* CalendarEvent.swift in Sources */,
 				4B99D9F82AA36B18002392B8 /* WalksRepository.swift in Sources */,
 				4B2D81C42A94ABA900558031 /* NavigationController.swift in Sources */,
+				4BF70B5E2AADED97008B70F6 /* RoundedCornerShape.swift in Sources */,
+				4BF70B5A2AADEC75008B70F6 /* DebugFrameModifier.swift in Sources */,
 				4BA03AF82AA6072600B15ABE /* UserGraphQLImpl.swift in Sources */,
 				4BCC39D62AA7BBB400306629 /* HomeScreen.swift in Sources */,
 				4B2D81D42A94DDA000558031 /* Location.swift in Sources */,
@@ -746,6 +761,7 @@
 				4B2D821D2A94FFAF00558031 /* WalksDBImpl.swift in Sources */,
 				4B2380E22AA8ADC500D4D181 /* AdaptivePagingScrollView.swift in Sources */,
 				4B2D81D62A94E57400558031 /* ActiveWalkService.swift in Sources */,
+				4BF70B602AADEE2F008B70F6 /* IsVisibleModifier.swift in Sources */,
 				4B2D81BF2A94AA9B00558031 /* ButtonStyles.swift in Sources */,
 				4B2D81BD2A94AA6F00558031 /* Typography.swift in Sources */,
 				4BC4778D2A9CB47E007CCF95 /* AuthorizationInterceptor.swift in Sources */,

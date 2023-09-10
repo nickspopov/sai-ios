@@ -37,7 +37,7 @@ struct HomeScreen: View {
                                              itemScrollableSide: UIScreen.main.bounds.width,
                                              itemPadding: 0,
                                              visibleContentLength: UIScreen.main.bounds.width * 1.5) {
-                        AllTab(navigationController: navigationController)
+                        AllTab(navigationController: navigationController, homeScreenViewModel: viewModel)
                         TasksTab(homeScreenViewModel: viewModel)
                         ActivityTab()
                     }
@@ -77,7 +77,7 @@ struct HomeScreen_Previews: PreviewProvider {
 // MARK: - Background
 extension HomeScreen {
     @ViewBuilder var bgGradient: some View {
-        ZStack {
+        ZStack(alignment: .bottom) {
             if(pageIndex == 0 ) {
                 LinearGradient(
                     stops: [
@@ -98,14 +98,26 @@ extension HomeScreen {
                     endPoint: UnitPoint(x: 0.5, y: 1)
                 )
             } else if pageIndex == 2 {
-                LinearGradient(
-                    stops: [
-                        Gradient.Stop(color: Color(red: 0.26, green: 0.26, blue: 0.26), location: 0.00),
-                        Gradient.Stop(color: Color(red: 0.08, green: 0.08, blue: 0.08), location: 1.00),
-                    ],
-                    startPoint: UnitPoint(x: 0.5, y: 0),
-                    endPoint: UnitPoint(x: 0.5, y: 1)
-                )
+
+                GeometryReader { geometry in
+                    
+                    let chartHeight = geometry.size.height * 0.64
+                    let chartWidth = geometry.size.width + 90
+                    
+                    LinearGradient(
+                        stops: [
+                            Gradient.Stop(color: Color(red: 0.26, green: 0.26, blue: 0.26), location: 0.00),
+                            Gradient.Stop(color: Color(red: 0.08, green: 0.08, blue: 0.08), location: 1.00),
+                        ],
+                        startPoint: UnitPoint(x: 0.5, y: 0),
+                        endPoint: UnitPoint(x: 0.5, y: 1)
+                    )
+                    TripBackgroundShape()
+                        .fill(.white)
+                        .opacity(0.04)
+                        .offset(y: geometry.size.height - chartHeight + 30)
+                        .frame(width: chartWidth, height: chartHeight)
+                }
             } else if pageIndex == 3 {
                 LinearGradient(
                     stops: [

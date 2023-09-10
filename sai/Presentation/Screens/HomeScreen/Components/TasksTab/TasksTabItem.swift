@@ -64,8 +64,9 @@ struct TasksTabItem: View {
                 Typography("\(task.startedAt.timeIn24HourFormat()) - \(task.endedAt.timeIn24HourFormat())", .regular(.eight))
                 Spacer()
                 VStack(alignment: .center) {
-                    Image(systemName: "party.popper")
+                    NorthEastIcon()
                         .foregroundColor(.black)
+                        .frame(width: 19, height: 19)
                 }
                 .frame(width: 32,height: 32)
                 .background(.white)

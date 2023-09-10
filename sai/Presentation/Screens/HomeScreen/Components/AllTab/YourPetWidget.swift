@@ -14,9 +14,11 @@ struct YourPetWidget: View {
                 .foregroundColor(.black)
                 .frame(height: 26)
             Spacer()
-            Circle()
-                .foregroundColor(.gray)
+            Image("dog")
+                .resizable()
                 .frame(width: 84, height: 84)
+                .background(Color.gray)
+                .clipShape(Circle())
         }
         .padding(.top, 10)
         .padding(.bottom, 18)

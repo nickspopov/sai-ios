@@ -19,7 +19,7 @@ struct AnimatedHeader: View {
     }
     
     func getOffestX() -> Double {
-        return animationProgress.interpolate([0, 1], [0, 50])
+        return animationProgress.interpolate([0, 1], [0, 35])
     }
     
     func getScale() -> Double {
@@ -34,27 +34,38 @@ struct AnimatedHeader: View {
         return animationProgress.interpolate([0, 0.8, 1], [0, 0, 1])
     }
     
+    func getChevronOpacity() -> Double {
+        return animationProgress.interpolate([0, 0.9, 1], [0, 0, 1])
+    }
+    
     var body: some View {
-        VStack(spacing: 0){
+        ZStack(alignment: .top) {
+            VStack(spacing: 0){
+                Spacer()
+                    .frame(height: 54)
+                Header()
+                    .opacity(getOpacity())
+                Spacer()
+                    .frame(height: 80)
+                DateViewPicker(selectedDate: $selectedDate)
+                    .offset(x: getOffestX(), y: getOffestY())
+                    .scaleEffect(getScale())
+                DateViewPickerDescription()
+                    .opacity(getOpacity())
+                Spacer()
+                    .frame(height: 64)
+            }
             Rectangle()
                 .foregroundColor(.clear)
                 .frame(width: UIScreen.main.bounds.width, height: 0.33)
                 .background(.white.opacity(0.8))
                 .offset(y: 44)
                 .opacity(getDividerOpacity())
-            Spacer()
-                .frame(height: 54)
-            Header()
-                .opacity(getOpacity())
-            Spacer()
-                .frame(height: 80)
-            DateViewPicker(selectedDate: $selectedDate)
-                .offset(x: getOffestX(), y: getOffestY())
-                .scaleEffect(getScale())
-            DateViewPickerDescription()
-                .opacity(getOpacity())
-            Spacer()
-                .frame(height: 64)
+            ChevronDownIcon()
+                .frame(width: 20, height: 20)
+                .foregroundColor(.white)
+                .offset(x: 65, y: 10)
+                .opacity(getDividerOpacity())
         }
     }
 }
@@ -63,7 +74,7 @@ struct AnimatedHeader_Previews: PreviewProvider {
     static var previews: some View {
         let date: Binding<Date> = .constant(Date())
         VStack{
-            AnimatedHeader(animationProgress: 0, selectedDate: date)
+            AnimatedHeader(animationProgress: 1, selectedDate: date)
                 .preferredColorScheme(.dark)
             Spacer()
         }
@@ -133,9 +144,12 @@ fileprivate struct DateViewPickerDescription: View {
 fileprivate struct Header: View {
     var body: some View {
         HStack(alignment: .center) {
-            Circle()
+            Image("profile")
+                .resizable()
                 .frame(width: 50, height: 50)
-                .foregroundColor(Color(red: 55, green: 55, blue: 55))
+                .background(Color(red: 55, green: 55, blue: 55))
+                .clipShape(Circle())
+                .overlay(Circle().stroke(Color.white, lineWidth: 1))
             Spacer()
             Button(action: {print("Pet-time pressed")}) {
                 Typography("Pet-time", .regular(.five))

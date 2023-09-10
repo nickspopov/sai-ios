@@ -6,11 +6,19 @@
 //
 
 import SwiftUI
+import Combine
 
 var randomGrayColor = Color(uiColor: UIColor(red: 0.72, green: 0.72, blue: 0.72, alpha: 1))
 
 struct CalendarWidget: View {
-    @StateObject var viewModel = ViewModel()
+    var homeScreenViewModel: HomeScreenViewModel
+    @StateObject private var viewModel: ViewModel
+    
+    
+    init(homeScreenViewModel: HomeScreenViewModel) {
+        self._viewModel = StateObject(wrappedValue: ViewModel(parentViewModel: homeScreenViewModel))
+        self.homeScreenViewModel = homeScreenViewModel
+    }
     
     
     var body: some View {
@@ -42,7 +50,7 @@ struct CalendarWidget_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader { geometry in
             HStack {
-                CalendarWidget()
+                CalendarWidget(homeScreenViewModel: HomeScreenViewModel())
                     .preferredColorScheme(.dark)
                     .padding(16)
                     .frame(width: geometry.size.width * 0.66)
@@ -54,11 +62,28 @@ struct CalendarWidget_Previews: PreviewProvider {
 // MARK: - ViewModel
 extension CalendarWidget {
     class ViewModel: ObservableObject {
+        var parentViewModel: HomeScreenViewModel
+        
         private let calendarEventsRepository: CalendarEventsRepositoryImpl = CalendarEventsRepositoryImpl.shared
-        @Published var date: Date = Date()
+        
         @Published var events: [CalendarEvent] = []
         
+        private var subscribers: Set<AnyCancellable> = []
+        private var date: Date = Date()
+        
+        init(parentViewModel: HomeScreenViewModel) {
+            self.parentViewModel = parentViewModel
+            parentViewModel.$selectedDate.sink { selectedDate in
+                self.date = selectedDate
+                self.updateEventsList()
+            }.store(in: &subscribers)
+        }
+        
         func onAppear() {
+            updateEventsList()
+        }
+        
+        private func updateEventsList() {
             Task {
                 do {
                     let _events = try await getEvents()

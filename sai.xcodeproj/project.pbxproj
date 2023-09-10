@@ -102,6 +102,9 @@
 		4BF70B5C2AADED2A008B70F6 /* WillDisappearModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF70B5B2AADED2A008B70F6 /* WillDisappearModifier.swift */; };
 		4BF70B5E2AADED97008B70F6 /* RoundedCornerShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF70B5D2AADED97008B70F6 /* RoundedCornerShape.swift */; };
 		4BF70B602AADEE2F008B70F6 /* IsVisibleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF70B5F2AADEE2F008B70F6 /* IsVisibleModifier.swift */; };
+		4BF70B642AADF121008B70F6 /* NorthEastIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF70B632AADF121008B70F6 /* NorthEastIcon.swift */; };
+		4BF70B672AADF538008B70F6 /* TripBackgroundShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF70B662AADF538008B70F6 /* TripBackgroundShape.swift */; };
+		4BF70B692AADF99B008B70F6 /* ChevronDownIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF70B682AADF99B008B70F6 /* ChevronDownIcon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -193,6 +196,9 @@
 		4BF70B5B2AADED2A008B70F6 /* WillDisappearModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WillDisappearModifier.swift; sourceTree = "<group>"; };
 		4BF70B5D2AADED97008B70F6 /* RoundedCornerShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerShape.swift; sourceTree = "<group>"; };
 		4BF70B5F2AADEE2F008B70F6 /* IsVisibleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsVisibleModifier.swift; sourceTree = "<group>"; };
+		4BF70B632AADF121008B70F6 /* NorthEastIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NorthEastIcon.swift; sourceTree = "<group>"; };
+		4BF70B662AADF538008B70F6 /* TripBackgroundShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripBackgroundShape.swift; sourceTree = "<group>"; };
+		4BF70B682AADF99B008B70F6 /* ChevronDownIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChevronDownIcon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +237,7 @@
 		4B2D81AC2A94A9E600558031 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				4BF70B652AADF293008B70F6 /* Shape */,
 				4B2D81BC2A94AA6F00558031 /* Typography.swift */,
 				4B2D81BE2A94AA9B00558031 /* ButtonStyles.swift */,
 				4B2D81C02A94AAE800558031 /* MapView.swift */,
@@ -578,7 +585,6 @@
 				4BF70B592AADEC75008B70F6 /* DebugFrameModifier.swift */,
 				4BDE42632AA7C7AF002F5BF2 /* ScreenPositionKey.swift */,
 				4BF70B5B2AADED2A008B70F6 /* WillDisappearModifier.swift */,
-				4BF70B5D2AADED97008B70F6 /* RoundedCornerShape.swift */,
 				4BF70B5F2AADEE2F008B70F6 /* IsVisibleModifier.swift */,
 				4B2380DF2AA8AC5800D4D181 /* CGFloat+Extension.swift */,
 				4B2D82542A98EA5A00558031 /* UIApplication+Extension.swift */,
@@ -604,6 +610,25 @@
 				4B99D9ED2AA1E3FB002392B8 /* TimeInterval+Extensions.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		4BF70B612AADF104008B70F6 /* Icon */ = {
+			isa = PBXGroup;
+			children = (
+				4BF70B632AADF121008B70F6 /* NorthEastIcon.swift */,
+				4BF70B682AADF99B008B70F6 /* ChevronDownIcon.swift */,
+			);
+			path = Icon;
+			sourceTree = "<group>";
+		};
+		4BF70B652AADF293008B70F6 /* Shape */ = {
+			isa = PBXGroup;
+			children = (
+				4BF70B5D2AADED97008B70F6 /* RoundedCornerShape.swift */,
+				4BF70B662AADF538008B70F6 /* TripBackgroundShape.swift */,
+				4BF70B612AADF104008B70F6 /* Icon */,
+			);
+			path = Shape;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -740,6 +765,7 @@
 				4B2D81C42A94ABA900558031 /* NavigationController.swift in Sources */,
 				4BF70B5E2AADED97008B70F6 /* RoundedCornerShape.swift in Sources */,
 				4BF70B5A2AADEC75008B70F6 /* DebugFrameModifier.swift in Sources */,
+				4BF70B692AADF99B008B70F6 /* ChevronDownIcon.swift in Sources */,
 				4BA03AF82AA6072600B15ABE /* UserGraphQLImpl.swift in Sources */,
 				4BCC39D62AA7BBB400306629 /* HomeScreen.swift in Sources */,
 				4B2D81D42A94DDA000558031 /* Location.swift in Sources */,
@@ -754,6 +780,7 @@
 				4BB6E3882A9D401300030B1E /* WalkTimer.swift in Sources */,
 				4B2D824E2A989CC400558031 /* CalendarEventsRepositoryImpl.swift in Sources */,
 				4B2D81AF2A94A9FA00558031 /* View+Extensions.swift in Sources */,
+				4BF70B672AADF538008B70F6 /* TripBackgroundShape.swift in Sources */,
 				4BA03AEE2AA5D1FB00B15ABE /* AuthUser.swift in Sources */,
 				4B2D82442A9629F200558031 /* CalendarWidget.swift in Sources */,
 				4BCE46762A9F55EB009142D8 /* CalendarEventsGraphQLService.swift in Sources */,
@@ -767,6 +794,7 @@
 				4BC4778D2A9CB47E007CCF95 /* AuthorizationInterceptor.swift in Sources */,
 				4B5562BB2AAB2496005017CA /* TasksTabItem.swift in Sources */,
 				4BA03AF42AA606D700B15ABE /* UserRepository.swift in Sources */,
+				4BF70B642AADF121008B70F6 /* NorthEastIcon.swift in Sources */,
 				4B2D82532A98A4DE00558031 /* CalendarScreen.swift in Sources */,
 				4B2D82402A961BC300558031 /* HomeScreenViewModel.swift in Sources */,
 				4B2D821F2A95058500558031 /* WalksRepositoryImpl.swift in Sources */,

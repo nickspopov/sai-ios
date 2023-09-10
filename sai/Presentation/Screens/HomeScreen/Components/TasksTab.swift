@@ -55,6 +55,8 @@ extension TasksTab{
         @Published var tasksList: [CalendarEvent] = []
         @Published var showCreateEventScreen: Bool = false
         
+        private var subscribers: Set<AnyCancellable> = []
+        
         init(parentViewModel: HomeScreenViewModel) {
             self.parentViewModel = parentViewModel
             parentViewModel.$selectedDate.sink { selectedDate in
@@ -69,7 +71,6 @@ extension TasksTab{
         
         // MARK: - Private
         private let calendarEventsRepository: CalendarEventsRepositoryImpl = CalendarEventsRepositoryImpl.shared
-        private var subscribers: Set<AnyCancellable> = []
         
         private func getCachedEvents(for date: Date) -> Void {
             Task {

@@ -10,13 +10,14 @@ import SwiftUI
 struct AllTab: View {
     
     var navigationController: NavigationController
+    var homeScreenViewModel: HomeScreenViewModel
     
     var body: some View {
         ScrollView(showsIndicators: false) {
             GeometryReader { geometry in
                 VStack(spacing: 4) {
                     HStack(spacing: 4) {
-                        CalendarWidget()
+                        CalendarWidget(homeScreenViewModel: homeScreenViewModel)
                             .frame(width: geometry.size.width * 0.66)
                             .pressable {
                                 navigationController.push(to: .calendarScreen)
@@ -24,7 +25,7 @@ struct AllTab: View {
                         YourPetWidget()
                     }
                     HStack(spacing: 4) {
-                        TripsWidget()
+                        TripsWidget(homeScreenViewModel: homeScreenViewModel)
                             .frame(width: geometry.size.width * 0.66)
                             .pressable {
                                 navigationController.push(to: .walksScreen)
@@ -42,7 +43,7 @@ struct AllTab: View {
 
 struct AllTab_Previews: PreviewProvider {
     static var previews: some View {
-        AllTab(navigationController: NavigationController())
+        AllTab(navigationController: NavigationController(), homeScreenViewModel: HomeScreenViewModel())
             .preferredColorScheme(.dark)
     }
 }

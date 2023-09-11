@@ -9,12 +9,12 @@ import SwiftUI
 import Combine
 
 struct TasksTab: View {
-    var homeScreenViewModel: HomeScreenViewModel
+    var homeScreenTasksViewModel: HomeScreenTasksViewModel
     @StateObject private var viewModel: ViewModel
     
-    init(homeScreenViewModel: HomeScreenViewModel) {
-        self._viewModel = StateObject(wrappedValue: ViewModel(parentViewModel: homeScreenViewModel))
-        self.homeScreenViewModel = homeScreenViewModel
+    init(homeScreenTasksViewModel: HomeScreenTasksViewModel) {
+        self._viewModel = StateObject(wrappedValue: ViewModel(parentViewModel: homeScreenTasksViewModel))
+        self.homeScreenTasksViewModel = homeScreenTasksViewModel
     }
     
     var body: some View {
@@ -42,7 +42,7 @@ struct TasksTab: View {
 
 struct TasksTab_Previews: PreviewProvider {
     static var previews: some View {
-        TasksTab(homeScreenViewModel: HomeScreenViewModel())
+        TasksTab(homeScreenTasksViewModel: HomeScreenTasksViewModel(parentViewModel: HomeScreenViewModel()))
             .preferredColorScheme(.dark)
     }
 }
@@ -50,49 +50,22 @@ struct TasksTab_Previews: PreviewProvider {
 
 extension TasksTab{
     class ViewModel: ObservableObject {
-        var parentViewModel: HomeScreenViewModel
+        var parentViewModel: HomeScreenTasksViewModel
         
         @Published var tasksList: [CalendarEvent] = []
         @Published var showCreateEventScreen: Bool = false
         
         private var subscribers: Set<AnyCancellable> = []
         
-        init(parentViewModel: HomeScreenViewModel) {
+        init(parentViewModel: HomeScreenTasksViewModel) {
             self.parentViewModel = parentViewModel
-            parentViewModel.$selectedDate.sink { selectedDate in
-                self.getCachedEvents(for: selectedDate)
-                self.getEvents(for: selectedDate)
+            parentViewModel.$events.sink { newEvents in
+                self.tasksList = newEvents
             }.store(in: &subscribers)
         }
         
         func onSheetDismiss() {
-            getEvents(for: parentViewModel.selectedDate)
-        }
-        
-        // MARK: - Private
-        private let calendarEventsRepository: CalendarEventsRepositoryImpl = CalendarEventsRepositoryImpl.shared
-        
-        private func getCachedEvents(for date: Date) -> Void {
-            Task {
-                let events = await calendarEventsRepository.getCached(from: date.startOfDay(), to: date.endOfDay())
-                DispatchQueue.main.async {
-                    withAnimation {
-                        self.tasksList = events
-                    }
-                }
-            }
-        }
-        
-        private func getEvents(for date: Date) -> Void {
-            Task {
-                if let events = try? await calendarEventsRepository.get(from: date.startOfDay(), to: date.endOfDay()) {
-                    DispatchQueue.main.async {
-                        withAnimation {
-                            self.tasksList = events
-                        }
-                    }
-                }
-            }
+            parentViewModel.updateEventsList()
         }
     }
 }

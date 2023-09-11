@@ -18,7 +18,17 @@ struct HomeScreen: View {
     @State var bottomSheetY: CGFloat = SheetState.closed.topPosition
     @State var isSheetPresented = true
     
-    @StateObject var viewModel = HomeScreenViewModel()
+    @StateObject var viewModel: HomeScreenViewModel
+    var homeScreenTasksViewModel: HomeScreenTasksViewModel
+    
+    
+    init() {
+        let _viewModel = HomeScreenViewModel()
+        let _homeScreenTasksViewModel = HomeScreenTasksViewModel(parentViewModel: _viewModel)
+        self._viewModel = StateObject(wrappedValue: _viewModel)
+        self.homeScreenTasksViewModel = _homeScreenTasksViewModel
+        
+    }
     
     var animatedProgress: CGFloat { SheetState.interpolateSheetTopPoisition(bottomSheetY) }
     
@@ -37,8 +47,8 @@ struct HomeScreen: View {
                                              itemScrollableSide: UIScreen.main.bounds.width,
                                              itemPadding: 0,
                                              visibleContentLength: UIScreen.main.bounds.width * 1.5) {
-                        AllTab(navigationController: navigationController, homeScreenViewModel: viewModel)
-                        TasksTab(homeScreenViewModel: viewModel)
+                        AllTab(navigationController: navigationController, homeScreenViewModel: viewModel, homeScreenTasksViewModel: homeScreenTasksViewModel)
+                        TasksTab(homeScreenTasksViewModel: homeScreenTasksViewModel)
                         ActivityTab(homeScreenViewModel: viewModel)
                     }
                                              .interactiveDismissDisabled()

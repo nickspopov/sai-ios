@@ -105,6 +105,8 @@
 		4BF70B642AADF121008B70F6 /* NorthEastIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF70B632AADF121008B70F6 /* NorthEastIcon.swift */; };
 		4BF70B672AADF538008B70F6 /* TripBackgroundShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF70B662AADF538008B70F6 /* TripBackgroundShape.swift */; };
 		4BF70B692AADF99B008B70F6 /* ChevronDownIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF70B682AADF99B008B70F6 /* ChevronDownIcon.swift */; };
+		4BF70B6B2AAF20FF008B70F6 /* HomeScreenTasksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF70B6A2AAF20FF008B70F6 /* HomeScreenTasksViewModel.swift */; };
+		4BF70B6E2AAF3CCD008B70F6 /* HomeScreenTripsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF70B6D2AAF3CCD008B70F6 /* HomeScreenTripsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -199,6 +201,8 @@
 		4BF70B632AADF121008B70F6 /* NorthEastIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NorthEastIcon.swift; sourceTree = "<group>"; };
 		4BF70B662AADF538008B70F6 /* TripBackgroundShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripBackgroundShape.swift; sourceTree = "<group>"; };
 		4BF70B682AADF99B008B70F6 /* ChevronDownIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChevronDownIcon.swift; sourceTree = "<group>"; };
+		4BF70B6A2AAF20FF008B70F6 /* HomeScreenTasksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenTasksViewModel.swift; sourceTree = "<group>"; };
+		4BF70B6D2AAF3CCD008B70F6 /* HomeScreenTripsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenTripsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -303,7 +307,7 @@
 		4B2D823E2A961BB000558031 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				4B2D823F2A961BC300558031 /* HomeScreenViewModel.swift */,
+				4BF70B6C2AAF3CB3008B70F6 /* HomeScreen */,
 				4B2D82562A98EED300558031 /* CalendarScreenViewModel.swift */,
 				4BD94A6F2A9A285800B268CF /* WalksScreenViewModel.swift */,
 			);
@@ -631,6 +635,16 @@
 			path = Shape;
 			sourceTree = "<group>";
 		};
+		4BF70B6C2AAF3CB3008B70F6 /* HomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4B2D823F2A961BC300558031 /* HomeScreenViewModel.swift */,
+				4BF70B6A2AAF20FF008B70F6 /* HomeScreenTasksViewModel.swift */,
+				4BF70B6D2AAF3CCD008B70F6 /* HomeScreenTripsViewModel.swift */,
+			);
+			path = HomeScreen;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -753,6 +767,7 @@
 				4B2D81D02A94B7C200558031 /* Walk.swift in Sources */,
 				4BA03AF02AA605F600B15ABE /* UserModel.swift in Sources */,
 				4B99D9EE2AA1E3FB002392B8 /* TimeInterval+Extensions.swift in Sources */,
+				4BF70B6B2AAF20FF008B70F6 /* HomeScreenTasksViewModel.swift in Sources */,
 				4B5562B62AAA1D5A005017CA /* ActivityTab.swift in Sources */,
 				4B82BE1F2AA8B0B3005383B6 /* FiltersRow.swift in Sources */,
 				4BA03AEC2AA5D15E00B15ABE /* AuthService.swift in Sources */,
@@ -782,6 +797,7 @@
 				4B2D81AF2A94A9FA00558031 /* View+Extensions.swift in Sources */,
 				4BF70B672AADF538008B70F6 /* TripBackgroundShape.swift in Sources */,
 				4BA03AEE2AA5D1FB00B15ABE /* AuthUser.swift in Sources */,
+				4BF70B6E2AAF3CCD008B70F6 /* HomeScreenTripsViewModel.swift in Sources */,
 				4B2D82442A9629F200558031 /* CalendarWidget.swift in Sources */,
 				4BCE46762A9F55EB009142D8 /* CalendarEventsGraphQLService.swift in Sources */,
 				4B2D82572A98EED300558031 /* CalendarScreenViewModel.swift in Sources */,

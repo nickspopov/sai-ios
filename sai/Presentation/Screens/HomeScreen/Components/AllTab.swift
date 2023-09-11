@@ -11,13 +11,14 @@ struct AllTab: View {
     
     var navigationController: NavigationController
     var homeScreenViewModel: HomeScreenViewModel
+    var homeScreenTasksViewModel: HomeScreenTasksViewModel
     
     var body: some View {
         ScrollView(showsIndicators: false) {
             GeometryReader { geometry in
                 VStack(spacing: 4) {
                     HStack(spacing: 4) {
-                        CalendarWidget(homeScreenViewModel: homeScreenViewModel)
+                        CalendarWidget(parentViewModel: homeScreenTasksViewModel)
                             .frame(width: geometry.size.width * 0.66)
                             .pressable {
                                 navigationController.push(to: .calendarScreen)
@@ -43,7 +44,7 @@ struct AllTab: View {
 
 struct AllTab_Previews: PreviewProvider {
     static var previews: some View {
-        AllTab(navigationController: NavigationController(), homeScreenViewModel: HomeScreenViewModel())
+        AllTab(navigationController: NavigationController(), homeScreenViewModel: HomeScreenViewModel(), homeScreenTasksViewModel: HomeScreenTasksViewModel(parentViewModel: HomeScreenViewModel()))
             .preferredColorScheme(.dark)
     }
 }

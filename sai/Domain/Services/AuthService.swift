@@ -80,9 +80,6 @@ class AuthServiceFirebaseImpl: AuthService {
                 if let _ = error {
                     continuation.resume(returning: nil)
                 } else if let token = token {
-#if DEBUG
-                    print("Auth_token \(token)")
-#endif
                     continuation.resume(returning: token)
                 } else {
                     continuation.resume(returning: nil)

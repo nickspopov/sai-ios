@@ -90,6 +90,8 @@
 		4BCC39D62AA7BBB400306629 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCC39D52AA7BBB400306629 /* HomeScreen.swift */; };
 		4BCD3D592AB0553600275CDA /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = 4BCD3D582AB0553600275CDA /* Resolver */; };
 		4BCD3D5C2AB055CA00275CDA /* AppDelegate+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCD3D5B2AB055CA00275CDA /* AppDelegate+Injection.swift */; };
+		4BCD3D5F2AB0A16700275CDA /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BCD3D5E2AB0A16700275CDA /* UserNotifications.framework */; };
+		4BCD3D612AB0A82600275CDA /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCD3D602AB0A82600275CDA /* NotificationService.swift */; };
 		4BCE46732A9ED85E009142D8 /* ApolloClient+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE46722A9ED85E009142D8 /* ApolloClient+Extensions.swift */; };
 		4BCE46762A9F55EB009142D8 /* CalendarEventsGraphQLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE46752A9F55EB009142D8 /* CalendarEventsGraphQLService.swift */; };
 		4BCFCFB92A9DDAF8000E2802 /* SaiFastAPI+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCFCFB82A9DDAF8000E2802 /* SaiFastAPI+Extensions.swift */; };
@@ -188,6 +190,9 @@
 		4BC4778E2A9CD187007CCF95 /* NetworkInterceptorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterceptorProvider.swift; sourceTree = "<group>"; };
 		4BCC39D52AA7BBB400306629 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		4BCD3D5B2AB055CA00275CDA /* AppDelegate+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Injection.swift"; sourceTree = "<group>"; };
+		4BCD3D5D2AB0A0FC00275CDA /* sai.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = sai.entitlements; sourceTree = "<group>"; };
+		4BCD3D5E2AB0A16700275CDA /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		4BCD3D602AB0A82600275CDA /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		4BCE46722A9ED85E009142D8 /* ApolloClient+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ApolloClient+Extensions.swift"; sourceTree = "<group>"; };
 		4BCE46752A9F55EB009142D8 /* CalendarEventsGraphQLService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventsGraphQLService.swift; sourceTree = "<group>"; };
 		4BCFCFB82A9DDAF8000E2802 /* SaiFastAPI+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SaiFastAPI+Extensions.swift"; sourceTree = "<group>"; };
@@ -211,6 +216,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BCD3D5F2AB0A16700275CDA /* UserNotifications.framework in Frameworks */,
 				4BCD3D592AB0553600275CDA /* Resolver in Frameworks */,
 				4BD94A732A9C9CB100B268CF /* Apollo in Frameworks */,
 				4B89063B2AA5C53C002E7BCB /* FirebaseMessaging in Frameworks */,
@@ -278,6 +284,7 @@
 				4B2D81CC2A94B6BB00558031 /* LocationService.swift */,
 				4B2D81D52A94E57400558031 /* ActiveWalkService.swift */,
 				4BA03AEB2AA5D15E00B15ABE /* AuthService.swift */,
+				4BCD3D602AB0A82600275CDA /* NotificationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -509,6 +516,7 @@
 		4B9F4BA22A93FF9700E8ECB5 /* sai */ = {
 			isa = PBXGroup;
 			children = (
+				4BCD3D5D2AB0A0FC00275CDA /* sai.entitlements */,
 				4B99DA032AA36D3F002392B8 /* Presentation */,
 				4B99D9F92AA36B57002392B8 /* Data */,
 				4B99D9F32AA27F14002392B8 /* Domain */,
@@ -516,12 +524,12 @@
 				4B2D82352A960A7800558031 /* Protocols */,
 				4B9F4BA32A93FF9700E8ECB5 /* saiApp.swift */,
 				4B9F4BA52A93FF9700E8ECB5 /* ContentView.swift */,
+				4B89063C2AA5C554002E7BCB /* AppDelegate.swift */,
 				4B2D81A92A94A8E200558031 /* Info.plist */,
 				4B9F4BA72A93FF9900E8ECB5 /* Assets.xcassets */,
 				4B9F4BAE2A93FF9900E8ECB5 /* sai.xcdatamodeld */,
 				4B2D82202A95475E00558031 /* GoogleService-Info.plist */,
 				4B9F4BA92A93FF9900E8ECB5 /* Preview Content */,
-				4B89063C2AA5C554002E7BCB /* AppDelegate.swift */,
 			);
 			path = sai;
 			sourceTree = "<group>";
@@ -561,6 +569,7 @@
 		4BC477842A9CB0AF007CCF95 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4BCD3D5E2AB0A16700275CDA /* UserNotifications.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -764,6 +773,7 @@
 				4B8906422AA5C884002E7BCB /* LoadingAppView.swift in Sources */,
 				4BABA4DC2AA1D160002F1880 /* CalendarEventItem.swift in Sources */,
 				4B99D9FF2AA36BF9002392B8 /* WalksDataSource.swift in Sources */,
+				4BCD3D612AB0A82600275CDA /* NotificationService.swift in Sources */,
 				4B9F4BB02A93FF9900E8ECB5 /* sai.xcdatamodeld in Sources */,
 				4BD94A702A9A285800B268CF /* WalksScreenViewModel.swift in Sources */,
 				4B9F4BA62A93FF9700E8ECB5 /* ContentView.swift in Sources */,
@@ -956,6 +966,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = sai/sai.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"sai/Preview Content\"";
@@ -989,6 +1000,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = sai/sai.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"sai/Preview Content\"";

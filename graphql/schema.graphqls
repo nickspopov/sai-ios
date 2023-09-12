@@ -91,6 +91,7 @@ type DogType {
 type Mutation {
   createEvent(input: CreateEventInput!): CalendarEventType!
   createWalk(input: CreateWalkInput!): WalkType!
+  setPushToken(token: String!): UserType!
 }
 
 input CreateEventInput {

@@ -42,7 +42,7 @@ struct TasksTab: View {
 
 struct TasksTab_Previews: PreviewProvider {
     static var previews: some View {
-        TasksTab(homeScreenTasksViewModel: HomeScreenTasksViewModel(parentViewModel: HomeScreenViewModel()))
+        TasksTab(homeScreenTasksViewModel: HomeScreenTasksViewModel(homeScreenProvider: HomeScreenProvider()))
             .preferredColorScheme(.dark)
     }
 }

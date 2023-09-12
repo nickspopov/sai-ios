@@ -7,6 +7,6 @@
 
 import Foundation
 
-class HomeScreenViewModel: ObservableObject {
+class HomeScreenProvider: ObservableObject {
     @Published var selectedDate: Date = Date()
 }

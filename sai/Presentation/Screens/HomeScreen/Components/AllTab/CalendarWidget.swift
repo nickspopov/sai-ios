@@ -50,7 +50,7 @@ struct CalendarWidget_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader { geometry in
             HStack {
-                CalendarWidget(parentViewModel: HomeScreenTasksViewModel(parentViewModel: HomeScreenViewModel()))
+                CalendarWidget(parentViewModel: HomeScreenTasksViewModel(homeScreenProvider: HomeScreenProvider()))
                     .preferredColorScheme(.dark)
                     .padding(16)
                     .frame(width: geometry.size.width * 0.66)

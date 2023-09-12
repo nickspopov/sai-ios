@@ -10,7 +10,7 @@ import Combine
 import SwiftUI
 
 class HomeScreenTasksViewModel: ObservableObject {
-    var parentViewModel: HomeScreenViewModel
+    var homeScreenProvider: HomeScreenProvider
     
     private let calendarEventsRepository: CalendarEventsRepositoryImpl = CalendarEventsRepositoryImpl.shared
     
@@ -19,9 +19,9 @@ class HomeScreenTasksViewModel: ObservableObject {
     private var subscribers: Set<AnyCancellable> = []
     private var date: Date = Date()
     
-    init(parentViewModel: HomeScreenViewModel) {
-        self.parentViewModel = parentViewModel
-        parentViewModel.$selectedDate.sink { selectedDate in
+    init(homeScreenProvider: HomeScreenProvider) {
+        self.homeScreenProvider = homeScreenProvider
+        homeScreenProvider.$selectedDate.sink { selectedDate in
             self.date = selectedDate
             self.updateEventsList()
         }.store(in: &subscribers)

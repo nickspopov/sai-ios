@@ -11,13 +11,13 @@ import SaiFastAPI
 
 struct TripsWidget: View {
     
-    var homeScreenViewModel: HomeScreenViewModel
+    var parentViewModel: HomeScreenTripsViewModel
     @StateObject private var viewModel: ViewModel
     
     
-    init(homeScreenViewModel: HomeScreenViewModel) {
-        self._viewModel = StateObject(wrappedValue: ViewModel(parentViewModel: homeScreenViewModel))
-        self.homeScreenViewModel = homeScreenViewModel
+    init(parentViewModel: HomeScreenTripsViewModel) {
+        self._viewModel = StateObject(wrappedValue: ViewModel(parentViewModel: parentViewModel))
+        self.parentViewModel = parentViewModel
     }
     
     var body: some View {
@@ -42,14 +42,13 @@ struct TripsWidget: View {
         )
         .background(Color(red: 0.15, green: 0.15, blue: 0.15))
         .cornerRadius(24)
-        .onAppear(perform: viewModel.onAppear)
     }
 }
 
 // MARK: - ViewModel
 extension TripsWidget {
     class ViewModel: ObservableObject {
-        var parentViewModel: HomeScreenViewModel
+        var parentViewModel: HomeScreenTripsViewModel
         
         let walksRepository = WalksRepositoryImpl.shared
         
@@ -58,26 +57,26 @@ extension TripsWidget {
         private var subscribers: Set<AnyCancellable> = []
         private var date: Date = Date()
         
-        init(parentViewModel: HomeScreenViewModel) {
+        init(parentViewModel: HomeScreenTripsViewModel) {
             self.parentViewModel = parentViewModel
-            parentViewModel.$selectedDate.sink { selectedDate in
-                self.date = selectedDate
-                self.onAppear()
-            }.store(in: &subscribers)
-        }
-        
-        func onAppear() {
-            Task {
-                do {
-                    let _statistic = try await walksRepository.getOneDayAnalytic(for: self.date.startOfDay())
-                        DispatchQueue.main.async {
-                            self.statistic = _statistic
-                        }
-                } catch {
-                    print(error)
-                }
+            parentViewModel.$statistic.sink { newStat in
+                self.statistic = newStat
             }
+            .store(in: &subscribers)
         }
+//
+//        func onAppear() {
+//            Task {
+//                do {
+//                    let _statistic = try await walksRepository.getOneDayAnalytic(for: self.date.startOfDay())
+//                        DispatchQueue.main.async {
+//                            self.statistic = _statistic
+//                        }
+//                } catch {
+//                    print(error)
+//                }
+//            }
+//        }
         
     }
 }
@@ -87,8 +86,8 @@ extension TripsWidget {
 struct TripsWidget_Previews: PreviewProvider {
     static var previews: some View {
         HStack(spacing: 10) {
-            TripsWidget(homeScreenViewModel: HomeScreenViewModel())
-            TripsWidget(homeScreenViewModel: HomeScreenViewModel())
+            TripsWidget(parentViewModel: HomeScreenTripsViewModel(homeScreenProvider: HomeScreenProvider()))
+            TripsWidget(parentViewModel: HomeScreenTripsViewModel(homeScreenProvider: HomeScreenProvider()))
         }
         .padding(.horizontal, 16)
         .preferredColorScheme(.dark)

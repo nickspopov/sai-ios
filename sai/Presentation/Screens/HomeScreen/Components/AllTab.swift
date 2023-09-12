@@ -10,7 +10,7 @@ import SwiftUI
 struct AllTab: View {
     
     var navigationController: NavigationController
-    var homeScreenViewModel: HomeScreenViewModel
+    var homeScreenTripsViewModel: HomeScreenTripsViewModel
     var homeScreenTasksViewModel: HomeScreenTasksViewModel
     
     var body: some View {
@@ -26,7 +26,7 @@ struct AllTab: View {
                         YourPetWidget()
                     }
                     HStack(spacing: 4) {
-                        TripsWidget(homeScreenViewModel: homeScreenViewModel)
+                        TripsWidget(parentViewModel: homeScreenTripsViewModel)
                             .frame(width: geometry.size.width * 0.66)
                             .pressable {
                                 navigationController.push(to: .walksScreen)
@@ -44,7 +44,7 @@ struct AllTab: View {
 
 struct AllTab_Previews: PreviewProvider {
     static var previews: some View {
-        AllTab(navigationController: NavigationController(), homeScreenViewModel: HomeScreenViewModel(), homeScreenTasksViewModel: HomeScreenTasksViewModel(parentViewModel: HomeScreenViewModel()))
+        AllTab(navigationController: NavigationController(), homeScreenTripsViewModel: HomeScreenTripsViewModel(homeScreenProvider: HomeScreenProvider()), homeScreenTasksViewModel: HomeScreenTasksViewModel(homeScreenProvider: HomeScreenProvider()))
             .preferredColorScheme(.dark)
     }
 }

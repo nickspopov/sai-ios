@@ -7,7 +7,6 @@
 
 import SwiftUI
 import UIKit
-import Combine
 @_spi(Advanced) import SwiftUIIntrospect
 
 struct HomeScreen: View {
@@ -18,16 +17,17 @@ struct HomeScreen: View {
     @State var bottomSheetY: CGFloat = SheetState.closed.topPosition
     @State var isSheetPresented = true
     
-    @StateObject var viewModel: HomeScreenViewModel
+    @StateObject var viewModel: HomeScreenProvider
     var homeScreenTasksViewModel: HomeScreenTasksViewModel
-    
+    var homeScreenTripsViewModel: HomeScreenTripsViewModel
     
     init() {
-        let _viewModel = HomeScreenViewModel()
-        let _homeScreenTasksViewModel = HomeScreenTasksViewModel(parentViewModel: _viewModel)
+        let _viewModel: HomeScreenProvider = HomeScreenProvider()
+        let _homeScreenTasksViewModel = HomeScreenTasksViewModel(homeScreenProvider: _viewModel)
+        let _homeScreenTripsViewModel = HomeScreenTripsViewModel(homeScreenProvider: _viewModel)
         self._viewModel = StateObject(wrappedValue: _viewModel)
         self.homeScreenTasksViewModel = _homeScreenTasksViewModel
-        
+        self.homeScreenTripsViewModel = _homeScreenTripsViewModel
     }
     
     var animatedProgress: CGFloat { SheetState.interpolateSheetTopPoisition(bottomSheetY) }
@@ -47,9 +47,9 @@ struct HomeScreen: View {
                                              itemScrollableSide: UIScreen.main.bounds.width,
                                              itemPadding: 0,
                                              visibleContentLength: UIScreen.main.bounds.width * 1.5) {
-                        AllTab(navigationController: navigationController, homeScreenViewModel: viewModel, homeScreenTasksViewModel: homeScreenTasksViewModel)
+                        AllTab(navigationController: navigationController, homeScreenTripsViewModel: homeScreenTripsViewModel, homeScreenTasksViewModel: homeScreenTasksViewModel)
                         TasksTab(homeScreenTasksViewModel: homeScreenTasksViewModel)
-                        ActivityTab(homeScreenViewModel: viewModel)
+                        ActivityTab(homeScreenTripsViewModel: homeScreenTripsViewModel)
                     }
                                              .interactiveDismissDisabled()
                                              .presentationDetents(SheetState.presentationDetents)
@@ -108,9 +108,7 @@ extension HomeScreen {
                     endPoint: UnitPoint(x: 0.5, y: 1)
                 )
             } else if pageIndex == 2 {
-
                 GeometryReader { geometry in
-                    
                     let chartHeight = geometry.size.height * 0.64
                     let chartWidth = geometry.size.width + 90
                     

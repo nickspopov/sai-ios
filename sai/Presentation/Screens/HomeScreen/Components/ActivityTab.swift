@@ -10,12 +10,12 @@ import Combine
 
 struct ActivityTab: View {
     
-    var homeScreenViewModel: HomeScreenViewModel
+    var homeScreenTripsViewModel: HomeScreenTripsViewModel
     @StateObject private var viewModel: ViewModel
     
-    init(homeScreenViewModel: HomeScreenViewModel) {
-        self._viewModel = StateObject(wrappedValue: ViewModel(parentViewModel: homeScreenViewModel))
-        self.homeScreenViewModel = homeScreenViewModel
+    init(homeScreenTripsViewModel: HomeScreenTripsViewModel) {
+        self._viewModel = StateObject(wrappedValue: ViewModel(parentViewModel: homeScreenTripsViewModel))
+        self.homeScreenTripsViewModel = homeScreenTripsViewModel
     }
     
     @Namespace var namespace
@@ -35,7 +35,7 @@ struct ActivityTab: View {
 
 struct ActivityTab_Previews: PreviewProvider {
     static var previews: some View {
-        ActivityTab(homeScreenViewModel: HomeScreenViewModel())
+        ActivityTab(homeScreenTripsViewModel: HomeScreenTripsViewModel(homeScreenProvider: HomeScreenProvider()))
             .preferredColorScheme(.dark)
     }
 }
@@ -45,7 +45,7 @@ extension ActivityTab {
     func activeWalkLayout() -> some View {
         let timer = viewModel.timer
         return VStack {
-            WalkTimer(hours: Int(timer / 60 / 60), minutes: Int(timer / 60), seconds:         Int(Double(timer)
+            WalkTimer(hours: Int(timer / 60 / 60), minutes: Int(timer / 60), seconds: Int(Double(timer)
                 .truncatingRemainder(dividingBy: 60)))
             .matchedGeometryEffect(id: "timer", in: namespace)
             Spacer()
@@ -104,14 +104,13 @@ extension ActivityTab {
             .padding(.top, 24)
             .matchedGeometryEffect(id: "startButton", in: namespace)
         }
-        .onAppear(perform: viewModel.getStatistic)
         .padding(.horizontal, 20)
     }
 }
 
 extension ActivityTab {
     class ViewModel: ObservableObject {
-        var parentViewModel: HomeScreenViewModel
+        var parentViewModel: HomeScreenTripsViewModel
         
         @Published var activeWalk: Walk? = nil
         @Published var timer: Int = 0
@@ -122,21 +121,17 @@ extension ActivityTab {
         private let activeWalkService = ActiveWalkService.shared
         
         private var subscribers: Set<AnyCancellable> = []
-        private var date: Date = Date()
         
-        init(parentViewModel: HomeScreenViewModel) {
+        init(parentViewModel: HomeScreenTripsViewModel) {
             self.parentViewModel = parentViewModel
-            parentViewModel.$selectedDate.sink { selectedDate in
-                self.date = selectedDate
-                self.getStatistic()
-            }.store(in: &subscribers)
             
-            activeWalkService.$activeWalk
-                .assign(to: &$activeWalk)
-            activeWalkService.$timer
-                .assign(to: &$timer)
+            parentViewModel.$activeWalk
+                            .assign(to: &$activeWalk)
+            parentViewModel.$timer
+                            .assign(to: &$timer)
+            parentViewModel.$statistic.assign(to: &$statistic)
             
-            activeWalkService.$isRunning.sink{ _isRunning in
+            parentViewModel.$running.sink{ _isRunning in
                 DispatchQueue.main.async {
                     withAnimation {
                         self.running = _isRunning
@@ -161,24 +156,6 @@ extension ActivityTab {
             sendLastWalk()
         }
         
-        func getStatistic() {
-            Task {
-                let date = date.startOfDay()
-                let cached = await walksRepository.getOneDayAnalyticCached(for: date)
-                DispatchQueue.main.async {
-                    self.statistic = cached
-                }
-                do {
-                    let result = try await walksRepository.getOneDayAnalytic(for: date)
-                    
-                    DispatchQueue.main.async {
-                        self.statistic = result
-                    }
-                } catch {}
-                
-            }
-        }
-        
         private func sendLastWalk() {
             guard let walk = activeWalk else {
                 return
@@ -186,7 +163,7 @@ extension ActivityTab {
             Task {
                 do {
                     _ = try await walksRepository.save(walk)
-                    getStatistic()
+                    parentViewModel.updateStatistic()
                 } catch {
                     print(error)
                 }

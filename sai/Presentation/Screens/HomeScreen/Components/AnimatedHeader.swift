@@ -77,6 +77,9 @@ struct AnimatedHeader_Previews: PreviewProvider {
             AnimatedHeader(animationProgress: 1, selectedDate: date)
                 .preferredColorScheme(.dark)
             Spacer()
+            AnimatedHeader(animationProgress: 0, selectedDate: date)
+                .preferredColorScheme(.dark)
+            Spacer()
         }
     }
 }
@@ -91,15 +94,14 @@ fileprivate struct DateViewPicker: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(selectedDate.format(format: "MMM d, YYYY"))
-                .font(
-                    Font.custom("Inter-SemiBold", size: 48)
-                        .weight(.semibold)
-                )
-                .foregroundColor(.white)
-                .onTapGesture {
-                    present = true
-                }
+            Button(action: {present = true}) {
+                Text(selectedDate.format(format: "MMM d, YYYY"))
+                    .font(
+                        Font.custom("Inter-SemiBold", size: 48)
+                            .weight(.semibold)
+                    )
+                    .foregroundColor(.white)
+            }.buttonStyle(PlainButtonStyle())
         }
         .padding(.leading, 16)
         .padding(.trailing, 32)

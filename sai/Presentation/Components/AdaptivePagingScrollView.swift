@@ -25,6 +25,8 @@ struct AdaptivePagingScrollView: View {
     @State private var currentScrollOffset: CGFloat = 0
     @State private var gestureDragOffset: CGFloat = 0
     
+    @GestureState private var dragGestureActive: Bool = false
+    
     private func countOffset(for pageIndex: Int) -> CGFloat {
         
         let activePageOffset = CGFloat(pageIndex) * (itemScrollableSide + itemPadding)
@@ -114,6 +116,9 @@ struct AdaptivePagingScrollView: View {
         .frameModifier(visibleContentLength, currentScrollOffset, orientation)
         .highPriorityGesture(
             DragGesture(minimumDistance: 30, coordinateSpace: .local)
+                .updating($dragGestureActive) { value, state, transaction in
+                    state = true
+                }
                 .onChanged { value in
                     switch orientation {
                     case .horizontal:
@@ -124,6 +129,7 @@ struct AdaptivePagingScrollView: View {
                     currentScrollOffset = countCurrentScrollOffset()
                 }
                 .onEnded { value in
+                    print("OnEnded")
                     let cleanOffset: CGFloat
                     switch orientation {
                     case .horizontal:
@@ -149,12 +155,23 @@ struct AdaptivePagingScrollView: View {
                                                        damping: 1.5,
                                                        initialVelocity: 0)) {
                         self.currentPageIndex = newPageIndex
-                        self.currentScrollOffset = self.countCurrentScrollOffset()
                     }
                 }
         )
         .contentShape(Rectangle())
         .onChange(of: currentPageIndex, perform: { _ in changeFocus() })
+        .onChange(of: dragGestureActive) { newValue in
+            // This is a hack to prevent animation stuck when ScrollView cancel this DragGesture
+            if(newValue == false) {
+                gestureDragOffset = 0
+                withAnimation(.interpolatingSpring(mass: 0.1,
+                                                   stiffness: 20,
+                                                   damping: 1.5,
+                                                   initialVelocity: 0)) {
+                    self.currentScrollOffset = self.countCurrentScrollOffset()
+                }
+            }
+        }
     }
 }
 

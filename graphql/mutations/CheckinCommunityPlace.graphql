@@ -1,0 +1,29 @@
+mutation CheckinCommunityPlace($communityId: String!, $placeId: String!, $date: DateTimeType!) {
+  checkinCommunityPlace(communityId:$communityId, placeId:$placeId, date:$date) {
+    id
+    name
+    owner {
+      id
+      name
+    }
+    places {
+      id
+      name
+      lat
+      lon
+    }
+    members {
+      user {
+        id
+      	name
+      }
+      lastCheckin {
+        date
+        place {
+          id
+          name
+        }
+      }
+    }
+  }
+}

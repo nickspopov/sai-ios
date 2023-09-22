@@ -1,0 +1,29 @@
+query GetCommunities {
+  getCommunities {
+    id
+    name
+    owner {
+      id
+      name
+    }
+    places {
+      id
+      name
+      lat
+      lon
+    }
+    members {
+      user {
+        id
+      	name
+      }
+      lastCheckin {
+        date
+        place {
+          id
+          name
+        }
+      }
+    }
+  }
+}

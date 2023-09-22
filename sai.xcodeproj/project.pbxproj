@@ -95,6 +95,7 @@
 		4BCE46732A9ED85E009142D8 /* ApolloClient+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE46722A9ED85E009142D8 /* ApolloClient+Extensions.swift */; };
 		4BCE46762A9F55EB009142D8 /* CalendarEventsGraphQLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE46752A9F55EB009142D8 /* CalendarEventsGraphQLService.swift */; };
 		4BCFCFB92A9DDAF8000E2802 /* SaiFastAPI+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCFCFB82A9DDAF8000E2802 /* SaiFastAPI+Extensions.swift */; };
+		4BD05FA52ABB235800C57791 /* PetTimeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD05FA42ABB235800C57791 /* PetTimeScreen.swift */; };
 		4BD94A6E2A9A257A00B268CF /* WalksScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD94A6D2A9A257A00B268CF /* WalksScreen.swift */; };
 		4BD94A702A9A285800B268CF /* WalksScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD94A6F2A9A285800B268CF /* WalksScreenViewModel.swift */; };
 		4BD94A732A9C9CB100B268CF /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 4BD94A722A9C9CB100B268CF /* Apollo */; };
@@ -196,6 +197,7 @@
 		4BCE46722A9ED85E009142D8 /* ApolloClient+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ApolloClient+Extensions.swift"; sourceTree = "<group>"; };
 		4BCE46752A9F55EB009142D8 /* CalendarEventsGraphQLService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventsGraphQLService.swift; sourceTree = "<group>"; };
 		4BCFCFB82A9DDAF8000E2802 /* SaiFastAPI+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SaiFastAPI+Extensions.swift"; sourceTree = "<group>"; };
+		4BD05FA42ABB235800C57791 /* PetTimeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetTimeScreen.swift; sourceTree = "<group>"; };
 		4BD94A6D2A9A257A00B268CF /* WalksScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalksScreen.swift; sourceTree = "<group>"; };
 		4BD94A6F2A9A285800B268CF /* WalksScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalksScreenViewModel.swift; sourceTree = "<group>"; };
 		4BDE42632AA7C7AF002F5BF2 /* ScreenPositionKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenPositionKey.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 		4B2D81AD2A94A9ED00558031 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				4BD05FA32ABB232E00C57791 /* PetTimeScreen */,
 				4B89063E2AA5C5C5002E7BCB /* SignInScreen */,
 				4BD94A6C2A9A256D00B268CF /* WalksScreen */,
 				4B8192542A994F320002D953 /* CreateEventScreen */,
@@ -592,6 +595,14 @@
 			path = DI;
 			sourceTree = "<group>";
 		};
+		4BD05FA32ABB232E00C57791 /* PetTimeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4BD05FA42ABB235800C57791 /* PetTimeScreen.swift */,
+			);
+			path = PetTimeScreen;
+			sourceTree = "<group>";
+		};
 		4BD94A6C2A9A256D00B268CF /* WalksScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -802,6 +813,7 @@
 				4BA03AF82AA6072600B15ABE /* UserGraphQLImpl.swift in Sources */,
 				4BCC39D62AA7BBB400306629 /* HomeScreen.swift in Sources */,
 				4B2D81D42A94DDA000558031 /* Location.swift in Sources */,
+				4BD05FA52ABB235800C57791 /* PetTimeScreen.swift in Sources */,
 				4B2D81CD2A94B6BB00558031 /* LocationService.swift in Sources */,
 				4BC4778F2A9CD187007CCF95 /* NetworkInterceptorProvider.swift in Sources */,
 				4B2D82552A98EA5A00558031 /* UIApplication+Extension.swift in Sources */,

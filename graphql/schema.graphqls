@@ -11,6 +11,8 @@ type Query {
   getWalkDayActivity(date: DateTimeType!): WalkDayActivity!
   getWalkIntervalActivityByDay(fromDate: DateTimeType!, toDate: DateTimeType!): WalkIntervalActivity!
   me: UserType!
+  getCommunities: [CommunityType!]!
+  getCommunity(id: String!): CommunityType!
 }
 
 type CalendarEventType {
@@ -88,10 +90,38 @@ type DogType {
   sex: String!
 }
 
+type CommunityType {
+  id: String!
+  name: String!
+  owner: UserType!
+  members: [CommunityMemberType!]!
+  places: [CommunityPlaceType!]!
+}
+
+type CommunityMemberType {
+  user: UserType!
+  lastCheckin: CommunityMemberLastCheckinType
+}
+
+type CommunityMemberLastCheckinType {
+  date: DateTimeType!
+  place: CommunityPlaceType!
+}
+
+type CommunityPlaceType {
+  id: String!
+  name: String!
+  lat: Float!
+  lon: Float!
+}
+
 type Mutation {
   createEvent(input: CreateEventInput!): CalendarEventType!
   createWalk(input: CreateWalkInput!): WalkType!
   setPushToken(token: String!): UserType!
+  createCommunity(name: String!): CommunityType!
+  createCommunityPlace(input: CommunityPlaceInput!): CommunityType!
+  checkinCommunityPlace(communityId: String!, placeId: String!, date: DateTimeType!): CommunityType!
 }
 
 input CreateEventInput {
@@ -116,4 +146,11 @@ input CreateWalkHistoryItemType {
   latitude: Float!
   longitude: Float!
   timestamp: DateTimeType!
+}
+
+input CommunityPlaceInput {
+  communityId: String!
+  name: String!
+  lat: Float!
+  lon: Float!
 }

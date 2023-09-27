@@ -30,7 +30,7 @@ struct ContentView: View {
                 case .homeScreen: HomeScreen().environmentObject(navigationController)
                 case .calendarScreen: CalendarScreen().environmentObject(navigationController)
                 case .walksScreen: WalksScreen().environmentObject(navigationController)
-                case .testScreen: TestScreen()
+                case .petTimeScreen: PetTimeScreen().environmentObject(navigationController)
                 }
             }
         }

@@ -50,12 +50,8 @@ extension TripsWidget {
     class ViewModel: ObservableObject {
         var parentViewModel: HomeScreenTripsViewModel
         
-        let walksRepository = WalksRepositoryImpl.shared
-        
         @Published var statistic: GetWalkDayActivity? = nil
-        
         private var subscribers: Set<AnyCancellable> = []
-        private var date: Date = Date()
         
         init(parentViewModel: HomeScreenTripsViewModel) {
             self.parentViewModel = parentViewModel

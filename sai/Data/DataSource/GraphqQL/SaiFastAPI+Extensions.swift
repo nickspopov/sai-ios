@@ -105,3 +105,56 @@ extension GetMeQuery.Data.Me {
         return UserModel(id: self.id, name: self.name, dogs: dogs)
     }
 }
+
+
+// MARK: - Communitues CRUD
+extension GetCommunitiesQuery.Data.GetCommunity {
+    func toSwiftModel() -> CommunityModel {
+        return CommunityModel(id: self.id, name: self.name, members: self.members.map({
+            CommunityMember(user: UserModel(id: $0.user.id, name: $0.user.name, dogs: []), lastCheckin: $0.lastCheckin != nil ? LastCheckinModel(date: Date(fromISOString: $0.lastCheckin!.date), place: CommunityPlace(id: $0.lastCheckin!.place.id, name: $0.lastCheckin!.place.name)) : nil)
+        }), places: self.places.map({
+            CommunityPlace(id: $0.id, name: $0.name, lat: $0.lat, lon: $0.lon)
+        }))
+    }
+}
+
+extension GetCommunityQuery.Data.GetCommunity {
+    func toSwiftModel() -> CommunityModel {
+        return CommunityModel(id: self.id, name: self.name, members: self.members.map({
+            CommunityMember(user: UserModel(id: $0.user.id, name: $0.user.name, dogs: []), lastCheckin: $0.lastCheckin != nil ? LastCheckinModel(date: Date(fromISOString: $0.lastCheckin!.date), place: CommunityPlace(id: $0.lastCheckin!.place.id, name: $0.lastCheckin!.place.name)) : nil)
+        }), places: self.places.map({
+            CommunityPlace(id: $0.id, name: $0.name, lat: $0.lat, lon: $0.lon)
+        }))
+    }
+}
+
+extension CreateCommunityMutation.Data.CreateCommunity {
+    func toSwiftModel() -> CommunityModel {
+        return CommunityModel(id: self.id, name: self.name, members: self.members.map({
+            CommunityMember(user: UserModel(id: $0.user.id, name: $0.user.name, dogs: []), lastCheckin: $0.lastCheckin != nil ? LastCheckinModel(date: Date(fromISOString: $0.lastCheckin!.date), place: CommunityPlace(id: $0.lastCheckin!.place.id, name: $0.lastCheckin!.place.name)) : nil)
+        }), places: self.places.map({
+            CommunityPlace(id: $0.id, name: $0.name, lat: $0.lat, lon: $0.lon)
+        }))
+    }
+}
+
+extension CheckinCommunityPlaceMutation.Data.CheckinCommunityPlace {
+    func toSwiftModel() -> CommunityModel {
+        return CommunityModel(id: self.id, name: self.name, members: self.members.map({
+            CommunityMember(user: UserModel(id: $0.user.id, name: $0.user.name, dogs: []), lastCheckin: $0.lastCheckin != nil ? LastCheckinModel(date: Date(fromISOString: $0.lastCheckin!.date), place: CommunityPlace(id: $0.lastCheckin!.place.id, name: $0.lastCheckin!.place.name)) : nil)
+        }), places: self.places.map({
+            CommunityPlace(id: $0.id, name: $0.name, lat: $0.lat, lon: $0.lon)
+        }))
+    }
+}
+
+
+extension CreateCommunityPlaceMutation.Data.CreateCommunityPlace {
+    func toSwiftModel() -> CommunityModel {
+        return CommunityModel(id: self.id, name: self.name, members: self.members.map({
+            CommunityMember(user: UserModel(id: $0.user.id, name: $0.user.name, dogs: []), lastCheckin: $0.lastCheckin != nil ? LastCheckinModel(date: Date(fromISOString: $0.lastCheckin!.date), place: CommunityPlace(id: $0.lastCheckin!.place.id, name: $0.lastCheckin!.place.name)) : nil)
+        }), places: self.places.map({
+            CommunityPlace(id: $0.id, name: $0.name, lat: $0.lat, lon: $0.lon)
+        }))
+    }
+}

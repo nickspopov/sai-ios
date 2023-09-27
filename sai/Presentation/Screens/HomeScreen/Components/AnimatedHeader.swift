@@ -144,6 +144,8 @@ fileprivate struct DateViewPickerDescription: View {
 
 // MARK: - Header
 fileprivate struct Header: View {
+    @EnvironmentObject var navigationController: NavigationController
+    
     var body: some View {
         HStack(alignment: .center) {
             Image("profile")
@@ -153,7 +155,7 @@ fileprivate struct Header: View {
                 .clipShape(Circle())
                 .overlay(Circle().stroke(Color.white, lineWidth: 1))
             Spacer()
-            Button(action: {print("Pet-time pressed")}) {
+            Button(action: {navigationController.push(to: .petTimeScreen)}) {
                 Typography("Pet-time", .regular(.five))
                     .foregroundColor(.white)
             }

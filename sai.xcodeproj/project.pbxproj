@@ -317,14 +317,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		4B2D82352A960A7800558031 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				4B2D82382A960AD100558031 /* Errors.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		4B2D823E2A961BB000558031 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -440,6 +432,7 @@
 			isa = PBXGroup;
 			children = (
 				4B99D9FB2AA36B81002392B8 /* DataSource */,
+				4B2D82382A960AD100558031 /* Errors.swift */,
 				4B99D9FA2AA36B69002392B8 /* Repository */,
 			);
 			path = Data;
@@ -539,7 +532,6 @@
 				4B99D9F92AA36B57002392B8 /* Data */,
 				4B99D9F32AA27F14002392B8 /* Domain */,
 				4B99D9F22AA27EB0002392B8 /* Core */,
-				4B2D82352A960A7800558031 /* Protocols */,
 				4B9F4BA32A93FF9700E8ECB5 /* saiApp.swift */,
 				4B9F4BA52A93FF9700E8ECB5 /* ContentView.swift */,
 				4B89063C2AA5C554002E7BCB /* AppDelegate.swift */,

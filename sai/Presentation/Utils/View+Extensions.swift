@@ -99,8 +99,13 @@ extension View {
 
 // MARK: - Will DisAppear
 extension View {
-    func onWillDisappear(_ perform: @escaping () -> Void) -> some View {
-        self.modifier(WillDisappearModifier(callback: perform))
+    func lifecycle(onWillDisappear: (() -> Void)? = nil, onWillAppear: (() -> Void)? = nil, onDidDisappear: (() -> Void)? = nil, onDidAppear: (() -> Void)? = nil) -> some View {
+        self.modifier(LifecycleModifier(
+            onWillDisappear: onWillDisappear,
+            onWillAppear: onWillAppear,
+            onDidDisappear: onDidDisappear,
+            onDidAppear: onDidAppear
+        ))
     }
 }
 

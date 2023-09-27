@@ -65,12 +65,10 @@ struct HomeScreen: View {
         )
         .ignoresSafeArea(.all)
         .toolbar(.hidden, for: .navigationBar)
-        .onWillDisappear {
-            isSheetPresented = false
-        }
-        .onAppear {
-            isSheetPresented = true
-        }
+        .lifecycle(
+            onWillDisappear: {isSheetPresented = false},
+            onDidAppear: {isSheetPresented = true}
+        )
     }
 }
 

@@ -1,13 +1,5 @@
 mutation SetPushToken($token: String!) {
   setPushToken(token: $token) {
-    id
-    name
-    dogs {
-      id
-      name
-      breed
-      dateOfBirth
-      sex
-    }
+    ...UserFragment
   }
 }

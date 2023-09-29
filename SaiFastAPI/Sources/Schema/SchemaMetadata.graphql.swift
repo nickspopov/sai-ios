@@ -29,10 +29,10 @@ public enum SchemaMetadata: ApolloAPI.SchemaMetadata {
     case "CalendarEventType": return SaiFastAPI.Objects.CalendarEventType
     case "CommunityType": return SaiFastAPI.Objects.CommunityType
     case "UserType": return SaiFastAPI.Objects.UserType
+    case "DogType": return SaiFastAPI.Objects.DogType
     case "CommunityPlaceType": return SaiFastAPI.Objects.CommunityPlaceType
     case "CommunityMemberType": return SaiFastAPI.Objects.CommunityMemberType
     case "CommunityMemberLastCheckinType": return SaiFastAPI.Objects.CommunityMemberLastCheckinType
-    case "DogType": return SaiFastAPI.Objects.DogType
     case "Query": return SaiFastAPI.Objects.Query
     case "WalkIntervalActivity": return SaiFastAPI.Objects.WalkIntervalActivity
     case "WalkIntervalActivityItem": return SaiFastAPI.Objects.WalkIntervalActivityItem

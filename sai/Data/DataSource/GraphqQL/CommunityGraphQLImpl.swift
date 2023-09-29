@@ -12,7 +12,7 @@ class CommunityGraphQLImpl: CommunityDataSource {
     func getAll() async throws -> [CommunityModel] {
         do {
             let result = try await Network.shared.apollo.fetchSingle(query: GetCommunitiesQuery(), cachePolicy: .fetchIgnoringCacheData)
-            return result.getCommunities.map { $0.toSwiftModel() }
+            return result.getCommunities.map { $0.fragments.communityFragment.toDomain() }
         } catch {
             throw RepositoryError.somethingWentWrong
         }
@@ -20,13 +20,13 @@ class CommunityGraphQLImpl: CommunityDataSource {
     
     func getAllCached() async -> [CommunityModel] {
         let result = await Network.shared.apollo.getCachedQuery(query: GetCommunitiesQuery())
-        return result?.getCommunities.map { $0.toSwiftModel() } ?? []
+        return result?.getCommunities.map { $0.fragments.communityFragment.toDomain() } ?? []
     }
     
     func getBy(id: String) async throws -> CommunityModel {
         do {
             let result = try await Network.shared.apollo.fetchSingle(query: GetCommunityQuery(id: id), cachePolicy: .fetchIgnoringCacheData)
-            return result.getCommunity.toSwiftModel()
+            return result.getCommunity.fragments.communityFragment.toDomain()
         } catch {
             throw RepositoryError.somethingWentWrong
         }
@@ -34,13 +34,13 @@ class CommunityGraphQLImpl: CommunityDataSource {
     
     func getByCached(id: String) async -> CommunityModel? {
         let result = await Network.shared.apollo.getCachedQuery(query: GetCommunityQuery(id: id))
-        return result?.getCommunity.toSwiftModel()
+        return result?.getCommunity.fragments.communityFragment.toDomain()
     }
     
     func save(community: CommunityModel) async throws -> CommunityModel {
         do {
             let result = try await Network.shared.apollo.perform(mutation: CreateCommunityMutation(name: community.name))
-            return result.createCommunity.toSwiftModel()
+            return result.createCommunity.fragments.communityFragment.toDomain()
         } catch {
             throw RepositoryError.somethingWentWrong
         }
@@ -49,7 +49,7 @@ class CommunityGraphQLImpl: CommunityDataSource {
     func save(place: CommunityPlace, for communityId: String) async throws -> CommunityModel {
         do {
             let result = try await Network.shared.apollo.perform(mutation: CreateCommunityPlaceMutation(input: CommunityPlaceInput(communityId: communityId, name: place.name, lat: place.lat!, lon: place.lon!)))
-            return result.createCommunityPlace.toSwiftModel()
+            return result.createCommunityPlace.fragments.communityFragment.toDomain()
         } catch {
             throw RepositoryError.somethingWentWrong
         }
@@ -59,7 +59,7 @@ class CommunityGraphQLImpl: CommunityDataSource {
     func saveCheckin(in community: CommunityModel, for place: CommunityPlace, date: Date) async throws -> CommunityModel {
         do {
             let result = try await Network.shared.apollo.perform(mutation: CheckinCommunityPlaceMutation(communityId: community.id, placeId: place.id, date: date.ISO8601Format()))
-            return result.checkinCommunityPlace.toSwiftModel()
+            return result.checkinCommunityPlace.fragments.communityFragment.toDomain()
         } catch {
             throw RepositoryError.somethingWentWrong
         }

@@ -7,7 +7,8 @@ public class CreateCommunityMutation: GraphQLMutation {
   public static let operationName: String = "CreateCommunity"
   public static let operationDocument: ApolloAPI.OperationDocument = .init(
     definition: .init(
-      #"mutation CreateCommunity($name: String!) { createCommunity(name: $name) { __typename id name owner { __typename id name } places { __typename id name lat lon } members { __typename user { __typename id name } lastCheckin { __typename date place { __typename id name } } } } }"#
+      #"mutation CreateCommunity($name: String!) { createCommunity(name: $name) { __typename ...CommunityFragment } }"#,
+      fragments: [CommunityFragment.self, UserFragment.self, DogFragment.self, CommunityPlaceFragment.self, CommunityMemberFragment.self, CommunityMemberLastCheckinFragment.self]
     ))
 
   public var name: String
@@ -39,11 +40,7 @@ public class CreateCommunityMutation: GraphQLMutation {
       public static var __parentType: ApolloAPI.ParentType { SaiFastAPI.Objects.CommunityType }
       public static var __selections: [ApolloAPI.Selection] { [
         .field("__typename", String.self),
-        .field("id", String.self),
-        .field("name", String.self),
-        .field("owner", Owner.self),
-        .field("places", [Place].self),
-        .field("members", [Member].self),
+        .fragment(CommunityFragment.self),
       ] }
 
       public var id: String { __data["id"] }
@@ -51,6 +48,13 @@ public class CreateCommunityMutation: GraphQLMutation {
       public var owner: Owner { __data["owner"] }
       public var places: [Place] { __data["places"] }
       public var members: [Member] { __data["members"] }
+
+      public struct Fragments: FragmentContainer {
+        public let __data: DataDict
+        public init(_dataDict: DataDict) { __data = _dataDict }
+
+        public var communityFragment: CommunityFragment { _toFragment() }
+      }
 
       /// CreateCommunity.Owner
       ///
@@ -60,14 +64,40 @@ public class CreateCommunityMutation: GraphQLMutation {
         public init(_dataDict: DataDict) { __data = _dataDict }
 
         public static var __parentType: ApolloAPI.ParentType { SaiFastAPI.Objects.UserType }
-        public static var __selections: [ApolloAPI.Selection] { [
-          .field("__typename", String.self),
-          .field("id", String.self),
-          .field("name", String.self),
-        ] }
 
         public var id: String { __data["id"] }
         public var name: String { __data["name"] }
+        public var dogs: [Dog] { __data["dogs"] }
+
+        public struct Fragments: FragmentContainer {
+          public let __data: DataDict
+          public init(_dataDict: DataDict) { __data = _dataDict }
+
+          public var userFragment: UserFragment { _toFragment() }
+        }
+
+        /// CreateCommunity.Owner.Dog
+        ///
+        /// Parent Type: `DogType`
+        public struct Dog: SaiFastAPI.SelectionSet {
+          public let __data: DataDict
+          public init(_dataDict: DataDict) { __data = _dataDict }
+
+          public static var __parentType: ApolloAPI.ParentType { SaiFastAPI.Objects.DogType }
+
+          public var id: String { __data["id"] }
+          public var name: String { __data["name"] }
+          public var breed: String { __data["breed"] }
+          public var dateOfBirth: SaiFastAPI.DateTimeType { __data["dateOfBirth"] }
+          public var sex: String { __data["sex"] }
+
+          public struct Fragments: FragmentContainer {
+            public let __data: DataDict
+            public init(_dataDict: DataDict) { __data = _dataDict }
+
+            public var dogFragment: DogFragment { _toFragment() }
+          }
+        }
       }
 
       /// CreateCommunity.Place
@@ -78,18 +108,18 @@ public class CreateCommunityMutation: GraphQLMutation {
         public init(_dataDict: DataDict) { __data = _dataDict }
 
         public static var __parentType: ApolloAPI.ParentType { SaiFastAPI.Objects.CommunityPlaceType }
-        public static var __selections: [ApolloAPI.Selection] { [
-          .field("__typename", String.self),
-          .field("id", String.self),
-          .field("name", String.self),
-          .field("lat", Double.self),
-          .field("lon", Double.self),
-        ] }
 
         public var id: String { __data["id"] }
         public var name: String { __data["name"] }
         public var lat: Double { __data["lat"] }
         public var lon: Double { __data["lon"] }
+
+        public struct Fragments: FragmentContainer {
+          public let __data: DataDict
+          public init(_dataDict: DataDict) { __data = _dataDict }
+
+          public var communityPlaceFragment: CommunityPlaceFragment { _toFragment() }
+        }
       }
 
       /// CreateCommunity.Member
@@ -100,14 +130,16 @@ public class CreateCommunityMutation: GraphQLMutation {
         public init(_dataDict: DataDict) { __data = _dataDict }
 
         public static var __parentType: ApolloAPI.ParentType { SaiFastAPI.Objects.CommunityMemberType }
-        public static var __selections: [ApolloAPI.Selection] { [
-          .field("__typename", String.self),
-          .field("user", User.self),
-          .field("lastCheckin", LastCheckin?.self),
-        ] }
 
         public var user: User { __data["user"] }
         public var lastCheckin: LastCheckin? { __data["lastCheckin"] }
+
+        public struct Fragments: FragmentContainer {
+          public let __data: DataDict
+          public init(_dataDict: DataDict) { __data = _dataDict }
+
+          public var communityMemberFragment: CommunityMemberFragment { _toFragment() }
+        }
 
         /// CreateCommunity.Member.User
         ///
@@ -117,14 +149,40 @@ public class CreateCommunityMutation: GraphQLMutation {
           public init(_dataDict: DataDict) { __data = _dataDict }
 
           public static var __parentType: ApolloAPI.ParentType { SaiFastAPI.Objects.UserType }
-          public static var __selections: [ApolloAPI.Selection] { [
-            .field("__typename", String.self),
-            .field("id", String.self),
-            .field("name", String.self),
-          ] }
 
           public var id: String { __data["id"] }
           public var name: String { __data["name"] }
+          public var dogs: [Dog] { __data["dogs"] }
+
+          public struct Fragments: FragmentContainer {
+            public let __data: DataDict
+            public init(_dataDict: DataDict) { __data = _dataDict }
+
+            public var userFragment: UserFragment { _toFragment() }
+          }
+
+          /// CreateCommunity.Member.User.Dog
+          ///
+          /// Parent Type: `DogType`
+          public struct Dog: SaiFastAPI.SelectionSet {
+            public let __data: DataDict
+            public init(_dataDict: DataDict) { __data = _dataDict }
+
+            public static var __parentType: ApolloAPI.ParentType { SaiFastAPI.Objects.DogType }
+
+            public var id: String { __data["id"] }
+            public var name: String { __data["name"] }
+            public var breed: String { __data["breed"] }
+            public var dateOfBirth: SaiFastAPI.DateTimeType { __data["dateOfBirth"] }
+            public var sex: String { __data["sex"] }
+
+            public struct Fragments: FragmentContainer {
+              public let __data: DataDict
+              public init(_dataDict: DataDict) { __data = _dataDict }
+
+              public var dogFragment: DogFragment { _toFragment() }
+            }
+          }
         }
 
         /// CreateCommunity.Member.LastCheckin
@@ -135,14 +193,16 @@ public class CreateCommunityMutation: GraphQLMutation {
           public init(_dataDict: DataDict) { __data = _dataDict }
 
           public static var __parentType: ApolloAPI.ParentType { SaiFastAPI.Objects.CommunityMemberLastCheckinType }
-          public static var __selections: [ApolloAPI.Selection] { [
-            .field("__typename", String.self),
-            .field("date", SaiFastAPI.DateTimeType.self),
-            .field("place", Place.self),
-          ] }
 
           public var date: SaiFastAPI.DateTimeType { __data["date"] }
           public var place: Place { __data["place"] }
+
+          public struct Fragments: FragmentContainer {
+            public let __data: DataDict
+            public init(_dataDict: DataDict) { __data = _dataDict }
+
+            public var communityMemberLastCheckinFragment: CommunityMemberLastCheckinFragment { _toFragment() }
+          }
 
           /// CreateCommunity.Member.LastCheckin.Place
           ///
@@ -152,14 +212,18 @@ public class CreateCommunityMutation: GraphQLMutation {
             public init(_dataDict: DataDict) { __data = _dataDict }
 
             public static var __parentType: ApolloAPI.ParentType { SaiFastAPI.Objects.CommunityPlaceType }
-            public static var __selections: [ApolloAPI.Selection] { [
-              .field("__typename", String.self),
-              .field("id", String.self),
-              .field("name", String.self),
-            ] }
 
             public var id: String { __data["id"] }
             public var name: String { __data["name"] }
+            public var lat: Double { __data["lat"] }
+            public var lon: Double { __data["lon"] }
+
+            public struct Fragments: FragmentContainer {
+              public let __data: DataDict
+              public init(_dataDict: DataDict) { __data = _dataDict }
+
+              public var communityPlaceFragment: CommunityPlaceFragment { _toFragment() }
+            }
           }
         }
       }

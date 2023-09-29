@@ -1,29 +1,5 @@
 mutation CreateCommunity($name: String!) {
   createCommunity(name: $name) {
-    id
-    name
-    owner {
-      id
-      name
-    }
-    places {
-      id
-      name
-      lat
-      lon
-    }
-    members {
-      user {
-        id
-      	name
-      }
-      lastCheckin {
-        date
-        place {
-          id
-          name
-        }
-      }
-    }
+    ...CommunityFragment
   }
 }

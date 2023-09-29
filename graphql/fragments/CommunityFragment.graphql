@@ -1,0 +1,36 @@
+fragment CommunityFragment on CommunityType {
+    id
+    name
+    owner {
+      ...UserFragment
+    }
+    places {
+      ...CommunityPlaceFragment
+    }
+    members {
+      ...CommunityMemberFragment
+    }
+}
+
+fragment CommunityPlaceFragment on CommunityPlaceType {
+  id
+  name
+  lat
+  lon
+}
+
+fragment CommunityMemberFragment on CommunityMemberType {
+  user {
+    ...UserFragment
+  }
+  lastCheckin {
+    ...CommunityMemberLastCheckinFragment
+  }
+}
+
+fragment CommunityMemberLastCheckinFragment on CommunityMemberLastCheckinType {
+  date
+  place {
+    ...CommunityPlaceFragment
+  }
+}

@@ -11,11 +11,11 @@ import SaiFastAPI
 class UserGrapQLImpl: UserDataSource {
     func getMe() async throws -> UserModel {
         let result = try await Network.shared.apollo.fetchSingle(query: GetMeQuery(), cachePolicy: .fetchIgnoringCacheData, queue: .global(qos: .userInitiated))
-        return result.me.toSwiftModel()
+        return result.me.fragments.userFragment.toDomain()
     }
     
     func getMeCached() async -> UserModel? {
         let result = await Network.shared.apollo.getCachedQuery(query: GetMeQuery())
-        return result?.me.toSwiftModel()
+        return result?.me.fragments.userFragment.toDomain()
     }
 }

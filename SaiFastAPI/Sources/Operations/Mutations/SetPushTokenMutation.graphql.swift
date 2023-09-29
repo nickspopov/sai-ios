@@ -7,7 +7,8 @@ public class SetPushTokenMutation: GraphQLMutation {
   public static let operationName: String = "SetPushToken"
   public static let operationDocument: ApolloAPI.OperationDocument = .init(
     definition: .init(
-      #"mutation SetPushToken($token: String!) { setPushToken(token: $token) { __typename id name dogs { __typename id name breed dateOfBirth sex } } }"#
+      #"mutation SetPushToken($token: String!) { setPushToken(token: $token) { __typename ...UserFragment } }"#,
+      fragments: [UserFragment.self, DogFragment.self]
     ))
 
   public var token: String
@@ -39,14 +40,19 @@ public class SetPushTokenMutation: GraphQLMutation {
       public static var __parentType: ApolloAPI.ParentType { SaiFastAPI.Objects.UserType }
       public static var __selections: [ApolloAPI.Selection] { [
         .field("__typename", String.self),
-        .field("id", String.self),
-        .field("name", String.self),
-        .field("dogs", [Dog].self),
+        .fragment(UserFragment.self),
       ] }
 
       public var id: String { __data["id"] }
       public var name: String { __data["name"] }
       public var dogs: [Dog] { __data["dogs"] }
+
+      public struct Fragments: FragmentContainer {
+        public let __data: DataDict
+        public init(_dataDict: DataDict) { __data = _dataDict }
+
+        public var userFragment: UserFragment { _toFragment() }
+      }
 
       /// SetPushToken.Dog
       ///
@@ -56,20 +62,19 @@ public class SetPushTokenMutation: GraphQLMutation {
         public init(_dataDict: DataDict) { __data = _dataDict }
 
         public static var __parentType: ApolloAPI.ParentType { SaiFastAPI.Objects.DogType }
-        public static var __selections: [ApolloAPI.Selection] { [
-          .field("__typename", String.self),
-          .field("id", String.self),
-          .field("name", String.self),
-          .field("breed", String.self),
-          .field("dateOfBirth", SaiFastAPI.DateTimeType.self),
-          .field("sex", String.self),
-        ] }
 
         public var id: String { __data["id"] }
         public var name: String { __data["name"] }
         public var breed: String { __data["breed"] }
         public var dateOfBirth: SaiFastAPI.DateTimeType { __data["dateOfBirth"] }
         public var sex: String { __data["sex"] }
+
+        public struct Fragments: FragmentContainer {
+          public let __data: DataDict
+          public init(_dataDict: DataDict) { __data = _dataDict }
+
+          public var dogFragment: DogFragment { _toFragment() }
+        }
       }
     }
   }

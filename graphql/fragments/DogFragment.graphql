@@ -1,0 +1,7 @@
+fragment DogFragment on DogType {
+  id
+  name
+  breed
+  dateOfBirth
+  sex
+}

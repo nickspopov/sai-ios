@@ -11,21 +11,21 @@ import SaiFastAPI
 // MARK: - Walk analytics
 extension GetWalkDayActivityQuery.Data.GetWalkDayActivity {
     var swiftDate: Date {
-        return Date(fromISOString: self.date)
+        return self.date.toDomain()
     }
 }
 
 extension GetWalkDayActivityQuery.Data.GetWalkDayActivity {
-    func toSwiftModel() -> GetWalkDayActivity {
+    func toDomain() -> GetWalkDayActivity {
         return GetWalkDayActivity(totalDistance: self.totalDistance, totalDuration: self.totalDuration, avgSpeed: self.avgSpeed, avgPace: self.avgPace, date: self.swiftDate)
     }
 }
 
 
 extension GetWalkIntervalActivityByDayQuery.Data.GetWalkIntervalActivityByDay {
-    func toSwiftModel() -> GetWalkIntervalActivityByDay {
+    func toDomain() -> GetWalkIntervalActivityByDay {
         return GetWalkIntervalActivityByDay(totalDuration: self.totalDuration, totalDistance: self.totalDistance, items: self.items.map {
-            GetWalkIntervalActivityItem(duration: $0.duration, date: Date(fromISOString: $0.date))
+            GetWalkIntervalActivityItem(duration: $0.duration, date: $0.date.toDomain())
         })
     }
 }
@@ -34,11 +34,11 @@ extension GetWalkIntervalActivityByDayQuery.Data.GetWalkIntervalActivityByDay {
 extension CreateWalkInput {
     init(from walk: Walk) {
         self.init(
-            startedAt: walk.startedAt.ISO8601Format(), finishedAt: Date().ISO8601Format(), walkHistory: CreateWalkHistoryType(history: walk.walkHistory.history.map({ _historyItem in
+            startedAt: walk.startedAt.toGraphQL(), finishedAt: Date().toGraphQL(), walkHistory: CreateWalkHistoryType(history: walk.walkHistory.history.map({ _historyItem in
                 CreateWalkHistoryItemType(
                     latitude: _historyItem.latitude,
                     longitude: _historyItem.longitude,
-                    timestamp: _historyItem.timestamp.ISO8601Format()
+                    timestamp: _historyItem.timestamp.toGraphQL()
                 )
             }))
         )
@@ -46,33 +46,33 @@ extension CreateWalkInput {
 }
 
 extension CreateWalkMutation.Data.CreateWalk {
-    func toSwiftModel() -> Walk {
+    func toDomain() -> Walk {
         let history = self.walkHistory.history.map {
-            Location(latitude: $0.latitude, longitude: $0.longitude, timestamp: Date(fromISOString: $0.timestamp))
+            Location(latitude: $0.latitude, longitude: $0.longitude, timestamp: $0.timestamp.toDomain())
         }
-        return Walk(id: self.id, startedAt: Date(fromISOString: self.startedAt), finishedAt: Date(fromISOString: self.finishedAt), walkHistory: WalkHistoryModel(history: history)
+        return Walk(id: self.id, startedAt: self.startedAt.toDomain(), finishedAt: self.finishedAt.toDomain(), walkHistory: WalkHistoryModel(history: history)
         )
     }
 }
 
 
 extension GetWalksQuery.Data.GetWalk {
-    func toSwiftModel() -> Walk {
+    func toDomain() -> Walk {
         let history = self.walkHistory.history.map {
-            Location(latitude: $0.latitude, longitude: $0.longitude, timestamp: Date(fromISOString: $0.timestamp))
+            Location(latitude: $0.latitude, longitude: $0.longitude, timestamp: $0.timestamp.toDomain())
         }
-        return Walk(id: self.id, startedAt: Date(fromISOString: self.startedAt), finishedAt: Date(fromISOString: self.finishedAt), walkHistory: WalkHistoryModel(history: history)
+        return Walk(id: self.id, startedAt: self.startedAt.toDomain(), finishedAt: self.finishedAt.toDomain(), walkHistory: WalkHistoryModel(history: history)
         )
     }
 }
 
 
 extension GetWalkQuery.Data.GetWalk {
-    func toSwiftModel() -> Walk {
+    func toDomain() -> Walk {
         let history = self.walkHistory.history.map {
-            Location(latitude: $0.latitude, longitude: $0.longitude, timestamp: Date(fromISOString: $0.timestamp))
+            Location(latitude: $0.latitude, longitude: $0.longitude, timestamp: $0.timestamp.toDomain())
         }
-        return Walk(id: self.id, startedAt: Date(fromISOString: self.startedAt), finishedAt: Date(fromISOString: self.finishedAt), walkHistory: WalkHistoryModel(history: history)
+        return Walk(id: self.id, startedAt: self.startedAt.toDomain(), finishedAt: self.finishedAt.toDomain(), walkHistory: WalkHistoryModel(history: history)
         )
     }
 }
@@ -80,81 +80,73 @@ extension GetWalkQuery.Data.GetWalk {
 // MARK: - CalendarEvents CRUD
 extension CreateEventInput {
     init(from event: CalendarEvent) {
-        self.init(title: event.title, notes: event.notes, startedAt: event.startedAt.ISO8601Format(), endedAt: event.endedAt.ISO8601Format(), type: .init(rawValue: event.type.rawValue))
+        self.init(title: event.title, notes: event.notes, startedAt: event.startedAt.toGraphQL(), endedAt: event.endedAt.toGraphQL(), type: .init(rawValue: event.type.rawValue))
     }
 }
 
 extension CreateEventMutation.Data.CreateEvent {
-    func toSwiftModel() -> CalendarEvent {
-        return CalendarEvent(id: self.id, title: self.title, notes: self.notes, startedAt: Date(fromISOString: self.startedAt), endedAt: Date(fromISOString: self.endedAt), type: CalendarEventType(rawValue: self.type.rawValue) ?? .other)
+    func toDomain() -> CalendarEvent {
+        return CalendarEvent(id: self.id, title: self.title, notes: self.notes, startedAt: self.startedAt.toDomain(), endedAt: self.endedAt.toDomain(), type: CalendarEventType(rawValue: self.type.rawValue) ?? .other)
     }
 }
 
 
 extension GetEventsQuery.Data.GetEvent {
-    func toSwiftModel() -> CalendarEvent {
-        return CalendarEvent(id: self.id, title: self.title, notes: self.notes, startedAt: Date(fromISOString: self.startedAt), endedAt: Date(fromISOString: self.endedAt), type: CalendarEventType(rawValue: self.type.rawValue) ?? .other)
+    func toDomain() -> CalendarEvent {
+        return CalendarEvent(id: self.id, title: self.title, notes: self.notes, startedAt: self.startedAt.toDomain(), endedAt: self.endedAt.toDomain(), type: CalendarEventType(rawValue: self.type.rawValue) ?? .other)
     }
 }
 
+// MARK: - Dog
+extension DogFragment {
+    func toDomain() -> DogModel {
+        return DogModel(id: self.id, name: self.name, breed: self.breed, sex: self.sex, dateOfBirth: self.dateOfBirth.toDomain())
+    }
+}
 
-// MARK: - User CRUD
-extension GetMeQuery.Data.Me {
-    func toSwiftModel() -> UserModel {
-        let dogs: [DogModel] = self.dogs.map { DogModel(id: $0.id, name: $0.name, breed: $0.breed, sex: $0.sex, dateOfBirth: Date(fromISOString: $0.dateOfBirth)) }
+// MARK: - User
+extension UserFragment {
+    func toDomain() -> UserModel {
+        let dogs: [DogModel] = self.dogs.map { $0.fragments.dogFragment.toDomain() }
         return UserModel(id: self.id, name: self.name, dogs: dogs)
     }
 }
 
-
-// MARK: - Communitues CRUD
-extension GetCommunitiesQuery.Data.GetCommunity {
-    func toSwiftModel() -> CommunityModel {
-        return CommunityModel(id: self.id, name: self.name, members: self.members.map({
-            CommunityMember(user: UserModel(id: $0.user.id, name: $0.user.name, dogs: []), lastCheckin: $0.lastCheckin != nil ? LastCheckinModel(date: Date(fromISOString: $0.lastCheckin!.date), place: CommunityPlace(id: $0.lastCheckin!.place.id, name: $0.lastCheckin!.place.name)) : nil)
-        }), places: self.places.map({
-            CommunityPlace(id: $0.id, name: $0.name, lat: $0.lat, lon: $0.lon)
-        }))
+// MARK: - Communitues
+extension CommunityFragment {
+    func toDomain() -> CommunityModel {
+        return CommunityModel(id: self.id, name: self.name, members: self.members.map({ $0.fragments.communityMemberFragment.toDomain() }), places: self.places.map({ $0.fragments.communityPlaceFragment.toDomain() }))
     }
 }
 
-extension GetCommunityQuery.Data.GetCommunity {
-    func toSwiftModel() -> CommunityModel {
-        return CommunityModel(id: self.id, name: self.name, members: self.members.map({
-            CommunityMember(user: UserModel(id: $0.user.id, name: $0.user.name, dogs: []), lastCheckin: $0.lastCheckin != nil ? LastCheckinModel(date: Date(fromISOString: $0.lastCheckin!.date), place: CommunityPlace(id: $0.lastCheckin!.place.id, name: $0.lastCheckin!.place.name)) : nil)
-        }), places: self.places.map({
-            CommunityPlace(id: $0.id, name: $0.name, lat: $0.lat, lon: $0.lon)
-        }))
+extension CommunityPlaceFragment {
+    func toDomain() -> CommunityPlace {
+        return CommunityPlace(id: self.id, name: self.name, lat: self.lat, lon: self.lon)
     }
 }
 
-extension CreateCommunityMutation.Data.CreateCommunity {
-    func toSwiftModel() -> CommunityModel {
-        return CommunityModel(id: self.id, name: self.name, members: self.members.map({
-            CommunityMember(user: UserModel(id: $0.user.id, name: $0.user.name, dogs: []), lastCheckin: $0.lastCheckin != nil ? LastCheckinModel(date: Date(fromISOString: $0.lastCheckin!.date), place: CommunityPlace(id: $0.lastCheckin!.place.id, name: $0.lastCheckin!.place.name)) : nil)
-        }), places: self.places.map({
-            CommunityPlace(id: $0.id, name: $0.name, lat: $0.lat, lon: $0.lon)
-        }))
+extension CommunityMemberLastCheckinFragment {
+    func toDomain() -> LastCheckinModel {
+        return LastCheckinModel(date: self.date.toDomain(), place: CommunityPlace(id: self.place.id, name: self.place.name))
     }
 }
 
-extension CheckinCommunityPlaceMutation.Data.CheckinCommunityPlace {
-    func toSwiftModel() -> CommunityModel {
-        return CommunityModel(id: self.id, name: self.name, members: self.members.map({
-            CommunityMember(user: UserModel(id: $0.user.id, name: $0.user.name, dogs: []), lastCheckin: $0.lastCheckin != nil ? LastCheckinModel(date: Date(fromISOString: $0.lastCheckin!.date), place: CommunityPlace(id: $0.lastCheckin!.place.id, name: $0.lastCheckin!.place.name)) : nil)
-        }), places: self.places.map({
-            CommunityPlace(id: $0.id, name: $0.name, lat: $0.lat, lon: $0.lon)
-        }))
+extension CommunityMemberFragment {
+    func toDomain() -> CommunityMember {
+        return CommunityMember(user: self.user.fragments.userFragment.toDomain(), lastCheckin: self.lastCheckin?.fragments.communityMemberLastCheckinFragment.toDomain())
     }
 }
 
 
-extension CreateCommunityPlaceMutation.Data.CreateCommunityPlace {
-    func toSwiftModel() -> CommunityModel {
-        return CommunityModel(id: self.id, name: self.name, members: self.members.map({
-            CommunityMember(user: UserModel(id: $0.user.id, name: $0.user.name, dogs: []), lastCheckin: $0.lastCheckin != nil ? LastCheckinModel(date: Date(fromISOString: $0.lastCheckin!.date), place: CommunityPlace(id: $0.lastCheckin!.place.id, name: $0.lastCheckin!.place.name)) : nil)
-        }), places: self.places.map({
-            CommunityPlace(id: $0.id, name: $0.name, lat: $0.lat, lon: $0.lon)
-        }))
+// MARK: - Utils
+extension SaiFastAPI.DateTimeType {
+    func toDomain() -> Date {
+        return Date(fromISOString: self)
+    }
+}
+
+extension Date {
+    func toGraphQL() -> SaiFastAPI.DateTimeType {
+        return self.ISO8601Format()
     }
 }

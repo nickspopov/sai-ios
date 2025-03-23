@@ -142,7 +142,9 @@ extension CalendarScreen {
 extension CalendarScreen {
     var navigationRow: some View {
         HStack {
-            Button(action: {}) {
+            Button(action: {
+                navigationController.pop()
+            }) {
                 Image(systemName: "chevron.left")
                     .blendMode(.difference)
             }

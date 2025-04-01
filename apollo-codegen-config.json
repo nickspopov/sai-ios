@@ -28,7 +28,7 @@
   "schemaDownloadConfiguration": {
     "downloadMethod": {
         "introspection": {
-            "endpointURL": "https://fastapi-sai.koyeb.app/graphql",
+            "endpointURL": "http://localhost:8000/graphql",
             "httpMethod": {
                 "POST": {}
             },

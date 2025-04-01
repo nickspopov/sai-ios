@@ -63,6 +63,8 @@
 		4B99924E2D9C4D0F009B73F0 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 4B99924D2D9C4D0F009B73F0 /* FirebaseMessaging */; };
 		4B9992502D9C4D0F009B73F0 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4B99924F2D9C4D0F009B73F0 /* FirebaseStorage */; };
 		4B9992522D9C4D0F009B73F0 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 4B9992512D9C4D0F009B73F0 /* FirebaseStorageCombine-Community */; };
+		4B9992552D9C4FD0009B73F0 /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9992542D9C4FD0009B73F0 /* ProfileScreen.swift */; };
+		4B9992572D9C5B04009B73F0 /* ProfileScreenViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9992562D9C5B04009B73F0 /* ProfileScreenViewModels.swift */; };
 		4B99D9EE2AA1E3FB002392B8 /* TimeInterval+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B99D9ED2AA1E3FB002392B8 /* TimeInterval+Extensions.swift */; };
 		4B99D9F62AA3699D002392B8 /* CalendarEventsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B99D9F52AA3699D002392B8 /* CalendarEventsRepository.swift */; };
 		4B99D9F82AA36B18002392B8 /* WalksRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B99D9F72AA36B18002392B8 /* WalksRepository.swift */; };
@@ -169,6 +171,8 @@
 		4B8906412AA5C884002E7BCB /* LoadingAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingAppView.swift; sourceTree = "<group>"; };
 		4B8B80152AA9BA0000642FB5 /* TasksTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTab.swift; sourceTree = "<group>"; };
 		4B8B80172AA9BF5B00642FB5 /* CheckFeelingWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckFeelingWidget.swift; sourceTree = "<group>"; };
+		4B9992542D9C4FD0009B73F0 /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
+		4B9992562D9C5B04009B73F0 /* ProfileScreenViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenViewModels.swift; sourceTree = "<group>"; };
 		4B99D9ED2AA1E3FB002392B8 /* TimeInterval+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Extensions.swift"; sourceTree = "<group>"; };
 		4B99D9F52AA3699D002392B8 /* CalendarEventsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventsRepository.swift; sourceTree = "<group>"; };
 		4B99D9F72AA36B18002392B8 /* WalksRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalksRepository.swift; sourceTree = "<group>"; };
@@ -278,6 +282,7 @@
 		4B2D81AD2A94A9ED00558031 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				4B9992532D9C4FBC009B73F0 /* ProfileScreen */,
 				4BD05FA32ABB232E00C57791 /* PetTimeScreen */,
 				4B89063E2AA5C5C5002E7BCB /* SignInScreen */,
 				4BD94A6C2A9A256D00B268CF /* WalksScreen */,
@@ -329,6 +334,7 @@
 				4BF70B6C2AAF3CB3008B70F6 /* HomeScreen */,
 				4B2D82562A98EED300558031 /* CalendarScreenViewModel.swift */,
 				4BD94A6F2A9A285800B268CF /* WalksScreenViewModel.swift */,
+				4B9992562D9C5B04009B73F0 /* ProfileScreenViewModels.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -400,6 +406,14 @@
 				4B89063F2AA5C5D4002E7BCB /* SignInScreen.swift */,
 			);
 			path = SignInScreen;
+			sourceTree = "<group>";
+		};
+		4B9992532D9C4FBC009B73F0 /* ProfileScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4B9992542D9C4FD0009B73F0 /* ProfileScreen.swift */,
+			);
+			path = ProfileScreen;
 			sourceTree = "<group>";
 		};
 		4B99D9F22AA27EB0002392B8 /* Core */ = {
@@ -808,6 +822,7 @@
 				4BC4778B2A9CB290007CCF95 /* Network.swift in Sources */,
 				4B82BE222AA8ECAF005383B6 /* AllTab.swift in Sources */,
 				4B99DA092AA37271002392B8 /* WalkAnalytic.swift in Sources */,
+				4B9992572D9C5B04009B73F0 /* ProfileScreenViewModels.swift in Sources */,
 				4B2D81D02A94B7C200558031 /* Walk.swift in Sources */,
 				4BA03AF02AA605F600B15ABE /* UserModel.swift in Sources */,
 				4B99D9EE2AA1E3FB002392B8 /* TimeInterval+Extensions.swift in Sources */,
@@ -827,6 +842,7 @@
 				4BCD3D5C2AB055CA00275CDA /* AppDelegate+Injection.swift in Sources */,
 				4BF70B692AADF99B008B70F6 /* ChevronDownIcon.swift in Sources */,
 				4BA03AF82AA6072600B15ABE /* UserGraphQLImpl.swift in Sources */,
+				4B9992552D9C4FD0009B73F0 /* ProfileScreen.swift in Sources */,
 				4BCC39D62AA7BBB400306629 /* HomeScreen.swift in Sources */,
 				4BB233BF2ABD86D700FC80D8 /* CommunityDataSource.swift in Sources */,
 				4BB233C32ABD91B000FC80D8 /* CommunityRepositoryImpl.swift in Sources */,
@@ -1001,7 +1017,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = sai/sai.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"sai/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1037,7 +1053,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = sai/sai.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"sai/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

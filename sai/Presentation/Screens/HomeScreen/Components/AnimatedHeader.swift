@@ -154,6 +154,9 @@ fileprivate struct Header: View {
                 .background(Color(red: 55, green: 55, blue: 55))
                 .clipShape(Circle())
                 .overlay(Circle().stroke(Color.white, lineWidth: 1))
+                .onTapGesture {
+                    navigationController.push(to: .profileScreen)
+                }
             Spacer()
             Button(action: {navigationController.push(to: .petTimeScreen)}) {
                 Typography("Pet-time", .regular(.five))

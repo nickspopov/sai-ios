@@ -31,6 +31,7 @@ struct ContentView: View {
                 case .calendarScreen: CalendarScreen().environmentObject(navigationController)
                 case .walksScreen: WalksScreen().environmentObject(navigationController)
                 case .petTimeScreen: PetTimeScreen().environmentObject(navigationController)
+                case .profileScreen: ProfileScreen().environmentObject(navigationController)
                 }
             }
         }

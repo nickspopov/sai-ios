@@ -16,8 +16,8 @@ class Network {
         let cache = InMemoryNormalizedCache()
         let store = ApolloStore(cache: cache)
         let provider = NetworkInterceptorProvider(client: client, store: store)
-         let url = URL(string: "http://192.168.1.132:8000/graphql")!
-//        let url = URL(string: "http://localhost:8000/graphql")!
+        //  let url = URL(string: "http://192.168.1.132:8000/graphql")!
+       let url = URL(string: "http://localhost:8000/graphql")!
         let transport = RequestChainNetworkTransport(interceptorProvider: provider, endpointURL: url)
 
         return ApolloClient(networkTransport: transport, store: store)

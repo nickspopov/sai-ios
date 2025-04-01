@@ -146,7 +146,7 @@ extension HomeScreen {
         VStack {
             EmptyView()
         }
-        .introspect(.sheet, on: .iOS(.v16, .v17), customize: { (_sheet: UISheetPresentationController) in
+        .introspect(.sheet, on: .iOS(.v16, .v17, .v18), customize: { (_sheet: UISheetPresentationController) in
             _sheet.containerView.map { _view in
                 _view.subviews.forEach { _subView in
                     _subView.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0)

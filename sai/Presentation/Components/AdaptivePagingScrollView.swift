@@ -115,7 +115,7 @@ struct AdaptivePagingScrollView: View {
         .background(Color.black.opacity(0.00001)) // hack - this allows gesture recognizing even when background is transparent
         .frameModifier(visibleContentLength, currentScrollOffset, orientation)
         .highPriorityGesture(
-            DragGesture(minimumDistance: 30, coordinateSpace: .local)
+            DragGesture(minimumDistance: 50, coordinateSpace: .local)
                 .updating($dragGestureActive) { value, state, transaction in
                     state = true
                 }
@@ -129,7 +129,6 @@ struct AdaptivePagingScrollView: View {
                     currentScrollOffset = countCurrentScrollOffset()
                 }
                 .onEnded { value in
-                    print("OnEnded")
                     let cleanOffset: CGFloat
                     switch orientation {
                     case .horizontal:

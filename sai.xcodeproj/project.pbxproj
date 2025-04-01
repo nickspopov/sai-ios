@@ -1082,7 +1082,7 @@
 			repositoryURL = "https://github.com/siteline/swiftui-introspect";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.12.0;
+				minimumVersion = 1.0.0;
 			};
 		};
 		4B8906332AA5C53C002E7BCB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {

@@ -42,7 +42,7 @@ struct TripBackgroundShape: Shape {
 struct TripBackgroundShape_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            Text("AAAAA")
+            Text("")
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(

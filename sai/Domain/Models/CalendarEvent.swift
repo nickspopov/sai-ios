@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import FirebaseFirestoreSwift
 
 enum CalendarEventType: String, Codable, CaseIterable {
     case walking, grooming, food, vet, other

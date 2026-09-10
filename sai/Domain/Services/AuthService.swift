@@ -75,8 +75,9 @@ class AuthServiceFirebaseImpl: AuthService {
     }
     
     func getToken() async -> String? {
+        guard let currentUser = auth.currentUser else { return nil }
         return await withCheckedContinuation { continuation in
-            auth.currentUser?.getIDTokenForcingRefresh(false) { token, error in
+            currentUser.getIDTokenForcingRefresh(false) { token, error in
                 if let _ = error {
                     continuation.resume(returning: nil)
                 } else if let token = token {

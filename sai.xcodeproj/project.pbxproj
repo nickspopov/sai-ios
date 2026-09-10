@@ -1111,7 +1111,7 @@
 			repositoryURL = "https://github.com/siteline/swiftui-introspect";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				minimumVersion = 26.0.0;
 			};
 		};
 		4B8B80192AAA0ACF00642FB5 /* XCRemoteSwiftPackageReference "Popovers" */ = {

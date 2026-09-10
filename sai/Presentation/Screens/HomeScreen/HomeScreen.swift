@@ -146,12 +146,16 @@ extension HomeScreen {
         VStack {
             EmptyView()
         }
-        .introspect(.sheet, on: .iOS(.v16, .v17, .v18), customize: { (_sheet: UISheetPresentationController) in
-            _sheet.containerView.map { _view in
-                _view.subviews.forEach { _subView in
-                    _subView.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0)
-                }
+        .introspect(.sheet, on: .iOS(.v16, .v17, .v18, .v26), customize: { (_sheet: UISheetPresentationController) in
+            guard let container = _sheet.containerView else { return }
+            let strip = {
+                container.subviews.forEach { $0.layer.shadowColor = UIColor.clear.cgColor }
+                // iOS 26: the sheet chrome is a Liquid Glass material (CABackdropLayer/CASDFLayer under
+                // _UIMultiLayer) that `.presentationBackground(.clear)` does not remove. Hide it.
+                hideGlassLayers(in: container.layer)
             }
+            strip()
+            DispatchQueue.main.async(execute: strip)
         })
         .screenPositionYChangePreference { _bottomSheetY in
             withAnimation {
@@ -161,6 +165,15 @@ extension HomeScreen {
     }
 }
 
+
+fileprivate func hideGlassLayers(in layer: CALayer) {
+    let name = String(describing: type(of: layer))
+    if name.contains("CABackdropLayer") || name.contains("CASDFLayer") {
+        layer.isHidden = true
+        return
+    }
+    layer.sublayers?.forEach { hideGlassLayers(in: $0) }
+}
 
 // MARK: - Sheet calculations
 fileprivate enum SheetState: CGFloat {

@@ -148,10 +148,11 @@ fileprivate struct Header: View {
     
     var body: some View {
         HStack(alignment: .center) {
-            Image("profile")
+            Image(systemName: "person.crop.circle.fill")
                 .resizable()
+                .symbolRenderingMode(.palette)
+                .foregroundStyle(.white, Color(white: 0.3))
                 .frame(width: 50, height: 50)
-                .background(Color(red: 55, green: 55, blue: 55))
                 .clipShape(Circle())
                 .overlay(Circle().stroke(Color.white, lineWidth: 1))
                 .onTapGesture {

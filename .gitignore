@@ -43,3 +43,6 @@ injected_container.swift
 *.ipa
 timeline.xctimeline
 playground.xcworkspace
+
+# Firebase config (per-developer)
+sai/GoogleService-Info.plist

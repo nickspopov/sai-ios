@@ -30,7 +30,6 @@
 		4B2D82192A94F77A00558031 /* TestScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82182A94F77A00558031 /* TestScreen.swift */; };
 		4B2D821D2A94FFAF00558031 /* WalksDBImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D821C2A94FFAF00558031 /* WalksDBImpl.swift */; };
 		4B2D821F2A95058500558031 /* WalksRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D821E2A95058500558031 /* WalksRepositoryImpl.swift */; };
-		4B2D82212A95475F00558031 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B2D82202A95475E00558031 /* GoogleService-Info.plist */; };
 		4B2D82392A960AD100558031 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82382A960AD100558031 /* Errors.swift */; };
 		4B2D82402A961BC300558031 /* HomeScreenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D823F2A961BC300558031 /* HomeScreenProvider.swift */; };
 		4B2D82442A9629F200558031 /* CalendarWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D82432A9629F200558031 /* CalendarWidget.swift */; };
@@ -711,6 +710,7 @@
 				4B9F4B9C2A93FF9700E8ECB5 /* Sources */,
 				4B9F4B9D2A93FF9700E8ECB5 /* Frameworks */,
 				4B9F4B9E2A93FF9700E8ECB5 /* Resources */,
+				4BA0F1E52C0000000000A001 /* Copy Firebase config */,
 			);
 			buildRules = (
 			);
@@ -780,7 +780,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B2D82212A95475F00558031 /* GoogleService-Info.plist in Resources */,
 				4B2D81BB2A94AA3E00558031 /* Inter-Medium.otf in Resources */,
 				4B9F4BAB2A93FF9900E8ECB5 /* Preview Assets.xcassets in Resources */,
 				4B2D81BA2A94AA3E00558031 /* Inter-Light.otf in Resources */,
@@ -792,6 +791,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4BA0F1E52C0000000000A001 /* Copy Firebase config */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Firebase config";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# GoogleService-Info.plist is not committed. Copy it into the bundle if present.\nSRC=\"$SRCROOT/sai/GoogleService-Info.plist\"\nif [ -f \"$SRC\" ]; then\n  cp \"$SRC\" \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/\"\nelse\n  echo \"warning: sai/GoogleService-Info.plist missing - Firebase will not be configured\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4B9F4B9C2A93FF9700E8ECB5 /* Sources */ = {
